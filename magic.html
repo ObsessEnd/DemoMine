@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Magic Systems & Meta Build - Terramity Awakened Wiki</title>
+  <title>Magic, Spell Grimoire & Meta Builds - Terramity Awakened Wiki</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Silkscreen&display=swap" rel="stylesheet">
@@ -40,6 +40,11 @@
           <span class="en-text">Search...</span>
           <kbd style="background:rgba(255,255,255,0.1); padding:1px 5px; border-radius:3px; font-size:0.7rem;">/</kbd>
         </button>
+        <button id="audio-toggle-btn" class="btn-lang" title="Bật/Tắt Âm Thanh & Nhạc Nền">
+          <span>🔊</span>
+          <span class="vi-text">Âm Thanh</span>
+          <span class="en-text">Audio</span>
+        </button>
         <button id="lang-toggle-btn" class="btn-lang" title="Chuyển đổi ngôn ngữ">
           <span id="lang-label">🇻🇳 VI</span>
         </button>
@@ -50,128 +55,284 @@
   <!-- Main Content -->
   <main class="page-wrapper">
     <div style="margin-bottom:2rem;">
-      <h1>✨ <span class="vi-text">Hệ Thống Phép Thuật & Rèn Bất Tử</span><span class="en-text">Magic Systems & Supreme Meta Build</span></h1>
+      <h1>✨ <span class="vi-text">Đại Bách Khoa Ma Thuật & Pháp Điển Tối Thượng</span><span class="en-text">Magic Grimoire & Supreme Meta Builds</span></h1>
       <p style="color:var(--text-secondary);">
-        <span class="vi-text">Hướng dẫn toàn diện 8 trường phái Iron's Spells, Goety thu hồn đệ tớ, Lò rèn Hephaestus Forge và bí quyết rèn trang bị bất tử Eternal Stella.</span>
-        <span class="en-text">Comprehensive guide for 8 Iron's Spells schools, Goety necromancy rituals, Hephaestus Forge, and the Eternal Stella indestructible formula.</span>
+        <span class="vi-text">Phân tích chuyên sâu 8 trường phái Iron's Spells, bảng chỉ số tăng tiến phép thuật Lv1 - Lv10, ma đạo Goety Necromancy, lò rèn Hephaestus Forge và lộ trình Meta Build Bất Tử Cấp 100.</span>
+        <span class="en-text">In-depth guide to 8 magic schools, Lv1-Lv10 spell scaling matrix, Goety necromancy rituals, Hephaestus Forge, and the 6-step Level 100 Immortal Meta Build.</span>
       </p>
     </div>
 
-    <!-- Section: Meta Build 6 Steps -->
-    <section style="margin-bottom:3rem; background:linear-gradient(135deg, rgba(168,85,247,0.1) 0%, rgba(0,229,163,0.1) 100%); padding:1.5rem; border-radius:var(--radius-lg); border:1px solid var(--border-highlight);">
-      <h2 style="color:var(--accent-gold); margin-bottom:1rem;">
-        👑 <span class="vi-text">CÔNG THỨC 6 BƯỚC RÈN TRANG BỊ BẤT KHẢ CHIẾN BẠI (ENDGAME META)</span>
-        <span class="en-text">6-STEP SUPREME IMMORTAL GEAR META BUILD</span>
-      </h2>
-      <p style="font-size:0.92rem; color:var(--text-secondary); margin-bottom:1.5rem;">
-        <span class="vi-text">Kết hợp sức mạnh tối thượng từ 5 mod ma thuật lớn để tạo nên set đồ không thể bị tiêu diệt:</span>
-        <span class="en-text">Combine supreme mechanics across 5 major magic mods to forge immortal gear:</span>
-      </p>
+    <!-- Section 1: 8 Magic Schools Overview -->
+    <section>
+      <h2>🔮 <span class="vi-text">8 Trường Phái Phép Thuật (Iron's Spells)</span><span class="en-text">8 Elemental Magic Schools</span></h2>
+      <div class="grid-cards" style="margin-top:1rem;">
+        <div class="card" style="border-top:2px solid var(--accent-crimson);">
+          <h3 style="color:var(--accent-crimson);">🔥 <span class="vi-text">Hỏa Thuật (Fire)</span><span class="en-text">Fire School</span></h3>
+          <p class="vi-text" style="font-size:0.85rem; color:var(--text-secondary);">Chuyên về sát thương bộc phát cực hạn, thiêu đốt theo thời gian (DoT) và nổ AOE quét sạch đám đông.</p>
+          <p class="en-text" style="font-size:0.85rem; color:var(--text-secondary);">Extreme burst AOE damage, lingering burning DoT, and explosive meteor strikes.</p>
+          <div style="margin-top:8px; font-size:0.78rem; color:var(--accent-gold);"><strong>Spells:</strong> Fireball, Meteor, Fire Breath, Flaming Strike, Magma Bomb.</div>
+        </div>
 
-      <div class="grid-cards" id="meta-steps-grid"></div>
+        <div class="card" style="border-top:2px solid var(--accent-cyan);">
+          <h3 style="color:var(--accent-cyan);">❄️ <span class="vi-text">Băng Thuật (Ice)</span><span class="en-text">Ice School</span></h3>
+          <p class="vi-text" style="font-size:0.85rem; color:var(--text-secondary);">Khống chế diện rộng, đóng băng làm chậm kẻ thù, tạo chông băng xuyên giáp và lướt trên băng (Frost Step).</p>
+          <p class="en-text" style="font-size:0.85rem; color:var(--text-secondary);">Crowd control, freezing slowing auras, penetrating ice spikes, and Frost Step dash.</p>
+          <div style="margin-top:8px; font-size:0.78rem; color:var(--accent-gold);"><strong>Spells:</strong> Frost Step, Ice Spike, Ray of Frost, Blizzard, Cone of Cold.</div>
+        </div>
+
+        <div class="card" style="border-top:2px solid var(--accent-gold);">
+          <h3 style="color:var(--accent-gold);">⚡ <span class="vi-text">Lôi Thuật (Lightning)</span><span class="en-text">Lightning School</span></h3>
+          <p class="vi-text" style="font-size:0.85rem; color:var(--text-secondary);">Tốc độ thi triển siêu nhanh, giật sét lan truyền giữa nhiều mục tiêu và làm tê liệt boss ngắt chiêu thức.</p>
+          <p class="en-text" style="font-size:0.85rem; color:var(--text-secondary);">Instant cast speed, chain lightning jumping between mobs, and stun interrupts.</p>
+          <div style="margin-top:8px; font-size:0.78rem; color:var(--accent-gold);"><strong>Spells:</strong> Chain Lightning, Electrocute, Lightning Bolt, Charge Pad, Thunderstorm.</div>
+        </div>
+
+        <div class="card" style="border-top:2px solid #38bdf8;">
+          <h3 style="color:#38bdf8;">✨ <span class="vi-text">Thánh Quang (Holy)</span><span class="en-text">Holy School</span></h3>
+          <p class="vi-text" style="font-size:0.85rem; color:var(--text-secondary);">Hồi sinh lực cho tổ đội, thanh tẩy mọi lời nguyền/debuff và giáng sấm thánh trừng phạt cực đau lên quái Undead.</p>
+          <p class="en-text" style="font-size:0.85rem; color:var(--text-secondary);">Team healing, debuff cleansing, and catastrophic smite bonuses against Undead.</p>
+          <div style="margin-top:8px; font-size:0.78rem; color:var(--accent-gold);"><strong>Spells:</strong> Divine Smite, Heal, Greater Heal, Angel Wing, Guiding Light.</div>
+        </div>
+
+        <div class="card" style="border-top:2px solid var(--accent-purple);">
+          <h3 style="color:var(--accent-purple);">🌌 <span class="vi-text">Hư Không (Ender)</span><span class="en-text">Ender School</span></h3>
+          <p class="vi-text" style="font-size:0.85rem; color:var(--text-secondary);">Dịch chuyển không gian, tạo lỗ đen hút quái vật (Black Hole), phóng sóng siêu âm (Sonic Boom) xuyên tường.</p>
+          <p class="en-text" style="font-size:0.85rem; color:var(--text-secondary);">Space blink, Black Hole gravity pull, Sonic Boom armor piercing.</p>
+          <div style="margin-top:8px; font-size:0.78rem; color:var(--accent-gold);"><strong>Spells:</strong> Sonic Boom, Black Hole, Teleport, Dragon Breath, Starfall.</div>
+        </div>
+
+        <div class="card" style="border-top:2px solid #e11d48;">
+          <h3 style="color:#e11d48;">🩸 <span class="vi-text">Huyết Ma (Blood)</span><span class="en-text">Blood School</span></h3>
+          <p class="vi-text" style="font-size:0.85rem; color:var(--text-secondary);">Hút sinh lực đối thủ (Lifesteal), hiến tế máu để cường hóa sát thương và gây sát thương chuẩn xuyên giáp.</p>
+          <p class="en-text" style="font-size:0.85rem; color:var(--text-secondary);">Lifesteal drain, blood sacrifice damage amplifiers, and True Damage slashes.</p>
+          <div style="margin-top:8px; font-size:0.78rem; color:var(--accent-gold);"><strong>Spells:</strong> Blood Slash, Heartstop, Blood Needles, Blood Step, Ray of Siphoning.</div>
+        </div>
+
+        <div class="card" style="border-top:2px solid #10b981;">
+          <h3 style="color:#10b981;">🌿 <span class="vi-text">Tự Nhiên (Nature)</span><span class="en-text">Nature School</span></h3>
+          <p class="vi-text" style="font-size:0.85rem; color:var(--text-secondary);">Đầu độc ăn mòn, quấn rễ giam cầm mục tiêu (Root), rải bào tử độc dịch bệnh và triệu hồi gai góc rừng rậm.</p>
+          <p class="en-text" style="font-size:0.85rem; color:var(--text-secondary);">Corrosive poison, root ensnarement, plague spores, and thorn walls.</p>
+          <div style="margin-top:8px; font-size:0.78rem; color:var(--accent-gold);"><strong>Spells:</strong> Blight, Poison Splash, Root, Acid Orb, Oakskin, Spider Web.</div>
+        </div>
+
+        <div class="card" style="border-top:2px solid #a855f7;">
+          <h3 style="color:#a855f7;">👁️ <span class="vi-text">Triệu Hoán (Evocation)</span><span class="en-text">Evocation School</span></h3>
+          <p class="vi-text" style="font-size:0.85rem; color:var(--text-secondary);">Triệu hồi nanh vuốt Fang dưới đất, gọi bầy Vex cắn xé và triệu hoán linh thú chiến đấu thay bản thân.</p>
+          <p class="en-text" style="font-size:0.85rem; color:var(--text-secondary);">Evocation fangs, Vex summons, spectral shields, and spectral hammer strikes.</p>
+          <div style="margin-top:8px; font-size:0.78rem; color:var(--accent-gold);"><strong>Spells:</strong> Fang Strike, Summon Vex, Spectral Hammer, Invisibility, Lob Creeper.</div>
+        </div>
+      </div>
     </section>
 
-    <!-- Section: 8 Magic Schools -->
-    <section style="margin-bottom:3rem;">
-      <h2>🔮 <span class="vi-text">8 Trường Phái Iron's Spells 'n Spellbooks</span><span class="en-text">8 Schools of Iron's Spells</span></h2>
+    <!-- Section 2: Spell Scaling Matrix (Lv1 vs Lv10) -->
+    <section style="margin-top:3.5rem;">
+      <h2>📜 <span class="vi-text">Bảng Tăng Tiến Chỉ Số Phép Thuật (Level 1 $\rightarrow$ Level 10 Scaling)</span><span class="en-text">Spell Grimoire & Scaling Matrix</span></h2>
+      <p style="color:var(--text-secondary); margin-bottom:1rem;">
+        <span class="vi-text">Bảng tra cứu tiêu hao Mana, thời gian hồi chiêu (Cooldown) và bước nhảy sát thương của các phép thuật tiêu biểu khi được nâng cấp qua 10 bậc sách phép:</span>
+        <span class="en-text">Mana cost, cooldowns, cast times, and damage scaling comparing Level 1 baseline vs Level 10 max rank:</span>
+      </p>
+
       <div class="table-responsive">
         <table class="data-table">
           <thead>
             <tr>
-              <th><span class="vi-text">Trường Phái</span><span class="en-text">School</span></th>
-              <th><span class="vi-text">Cổ Tự (Rune)</span><span class="en-text">Rune</span></th>
-              <th><span class="vi-text">Bộ Giáp Chuyên Biệt</span><span class="en-text">Dedicated Armor</span></th>
-              <th><span class="vi-text">Đặc Tính Chiến Đấu</span><span class="en-text">Combat Specialty</span></th>
+              <th><span class="vi-text">Tên Phép Thuật</span><span class="en-text">Spell Name</span></th>
+              <th><span class="vi-text">Hệ Phái</span><span class="en-text">School</span></th>
+              <th><span class="vi-text">Tiêu Hao Mana (Lv1 / Lv10)</span><span class="en-text">Mana Cost</span></th>
+              <th><span class="vi-text">Thời Gian Hồi (CD)</span><span class="en-text">Cooldown</span></th>
+              <th><span class="vi-text">Sát Thương Cấp 1</span><span class="en-text">Level 1 DMG</span></th>
+              <th><span class="vi-text">Sát Thương Cấp 10 (Max)</span><span class="en-text">Level 10 DMG (Max)</span></th>
+              <th><span class="vi-text">Cơ Chế Đặc Biệt</span><span class="en-text">Special Trait</span></th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><strong style="color:var(--accent-crimson);">🔥 Hỏa Hệ (Fire)</strong></td>
-              <td><code>fire_rune</code></td>
-              <td>Pyromancer Armor</td>
-              <td><span class="vi-text">+5% Sát thương Hỏa / mảnh, thiêu đốt diện rộng, kháng lửa tuyệt đối</span><span class="en-text">+5% Fire damage per piece, massive burn AOE, fire immunity</span></td>
+              <td><strong style="color:var(--accent-crimson);">🔥 Fireball (Hỏa Cầu)</strong></td>
+              <td><span class="badge badge-crimson">Fire</span></td>
+              <td><code>25 / 110 Mana</code></td>
+              <td><code>4.0s / 1.5s</code></td>
+              <td>12 DMG (Lửa)</td>
+              <td><strong style="color:var(--accent-gold);">85 DMG + 15s DoT</strong></td>
+              <td>Phát nổ phá vỡ màng chắn boss, thiêu rụi diện rộng.</td>
             </tr>
             <tr>
-              <td><strong style="color:var(--accent-blue);">❄️ Băng Hệ (Ice)</strong></td>
-              <td><code>ice_rune</code></td>
-              <td>Cryomancer Armor</td>
-              <td><span class="vi-text">+5% Sát thương Băng / mảnh, đóng băng làm chậm mục tiêu, kháng lạnh</span><span class="en-text">+5% Ice damage per piece, freezing slowdown, frost resistance</span></td>
+              <td><strong style="color:var(--accent-crimson);">☄️ Meteor (Mưa Thiên Thạch)</strong></td>
+              <td><span class="badge badge-crimson">Fire</span></td>
+              <td><code>80 / 320 Mana</code></td>
+              <td><code>25.0s / 12.0s</code></td>
+              <td>35 DMG</td>
+              <td><strong style="color:var(--accent-gold);">240 DMG (Nổ AOE)</strong></td>
+              <td>Gọi thiên thạch từ tầng mây nổ hất tung 20 block.</td>
             </tr>
             <tr>
-              <td><strong style="color:var(--accent-gold);">⚡ Lôi Hệ (Lightning)</strong></td>
-              <td><code>lightning_rune</code></td>
-              <td>Electromancer Armor</td>
-              <td><span class="vi-text">+5% Sát thương Lôi / mảnh, giật điện chuỗi, sát thương tức thời cực lớn</span><span class="en-text">+5% Lightning damage per piece, chain shocks, burst instant DPS</span></td>
+              <td><strong style="color:var(--accent-cyan);">❄️ Frost Step (Lướt Băng)</strong></td>
+              <td><span class="badge badge-cyan">Ice</span></td>
+              <td><code>15 / 45 Mana</code></td>
+              <td><code>6.0s / 1.8s</code></td>
+              <td>Tạo đường băng</td>
+              <td><strong style="color:var(--accent-cyan);">Lướt 30 Block + Đóng Băng</strong></td>
+              <td>Lướt xuyên địa hình và đóng băng mọi kẻ địch cản đường.</td>
             </tr>
             <tr>
-              <td><strong style="color:#fde047);">✨ Thánh Hệ (Holy)</strong></td>
-              <td><code>holy_rune</code></td>
-              <td>Priest Armor</td>
-              <td><span class="vi-text">+5% Sát thương Thánh / mảnh, hồi máu toàn đội, trừ tà và diệt Undead</span><span class="en-text">+5% Holy damage per piece, team heal, smites undead foes</span></td>
+              <td><strong style="color:var(--accent-cyan);">🧊 Ice Spike (Chông Băng)</strong></td>
+              <td><span class="badge badge-cyan">Ice</span></td>
+              <td><code>20 / 85 Mana</code></td>
+              <td><code>3.0s / 1.0s</code></td>
+              <td>10 DMG</td>
+              <td><strong style="color:var(--accent-gold);">72 DMG (Xuyên giáp 50%)</strong></td>
+              <td>Chông băng mọc từ chân mục tiêu gây chảy máu băng.</td>
             </tr>
             <tr>
-              <td><strong style="color:var(--accent-purple);">🌌 Hư Không (Ender)</strong></td>
-              <td><code>ender_rune</code></td>
-              <td>Shadow-Walker Armor</td>
-              <td><span class="vi-text">+5% Sát thương Hư Không / mảnh, dịch chuyển không gian, tàng hình ám sát</span><span class="en-text">+5% Ender damage per piece, spatial teleport, stealth assassinations</span></td>
+              <td><strong style="color:var(--accent-gold);">⚡ Chain Lightning (Sấm Giật Lan)</strong></td>
+              <td><span class="badge badge-gold">Lightning</span></td>
+              <td><code>35 / 140 Mana</code></td>
+              <td><code>8.0s / 3.0s</code></td>
+              <td>15 DMG (3 Mục tiêu)</td>
+              <td><strong style="color:var(--accent-gold);">95 DMG (8 Mục tiêu Lan)</strong></td>
+              <td>Giật lan truyền điện gây choáng tê liệt 2.5 giây.</td>
             </tr>
             <tr>
-              <td><strong style="color:#ef4444);">🩸 Huyết Hệ (Blood)</strong></td>
-              <td><code>blood_rune</code></td>
-              <td>Cultist Armor</td>
-              <td><span class="vi-text">+5% Sát thương Huyết / mảnh, hiến tế máu tăng uy lực, hút máu đối phương</span><span class="en-text">+5% Blood damage per piece, self-sacrifice boosts, lifesteal</span></td>
+              <td><strong style="color:#38bdf8;">✨ Divine Smite (Sét Thánh Phạt)</strong></td>
+              <td><span class="badge badge-blue">Holy</span></td>
+              <td><code>45 / 180 Mana</code></td>
+              <td><code>10.0s / 4.0s</code></td>
+              <td>22 DMG (x2 Undead)</td>
+              <td><strong style="color:var(--accent-gold);">160 DMG (x3 với Undead)</strong></td>
+              <td>Gây tới 480 DMG vào Wither và quái vật xác sống!</td>
             </tr>
             <tr>
-              <td><strong style="color:var(--accent-cyan);">🦷 Triệu Hoán (Evocation)</strong></td>
-              <td><code>evocation_rune</code></td>
-              <td>Archevoker Armor</td>
-              <td><span class="vi-text">+5% Sát thương Triệu Hoán / mảnh, cắn nuốt bằng răng nanh Vex/Evoker</span><span class="en-text">+5% Evocation damage per piece, summoning fangs and Vexes</span></td>
+              <td><strong style="color:var(--accent-purple);">🌌 Sonic Boom (Sóng Âm Hư Không)</strong></td>
+              <td><span class="badge badge-purple">Ender</span></td>
+              <td><code>90 / 350 Mana</code></td>
+              <td><code>18.0s / 7.0s</code></td>
+              <td>40 DMG</td>
+              <td><strong style="color:var(--accent-gold);">220 DMG (XUYÊN 100% GIÁP)</strong></td>
+              <td>Bắn chùm sóng âm của Warden, xuyên qua mọi vật cản.</td>
             </tr>
             <tr>
-              <td><strong style="color:#84cc16);">🌿 Tự Nhiên (Nature)</strong></td>
-              <td><code>nature_rune</code></td>
-              <td>Plagued Armor</td>
-              <td><span class="vi-text">+5% Sát thương Tự Nhiên / mảnh, trói chân cây cỏ, đầu độc lan truyền</span><span class="en-text">+5% Nature damage per piece, vine root entangle, virulent poison</span></td>
+              <td><strong style="color:var(--accent-purple);">🕳️ Black Hole (Hố Đen Vũ Trụ)</strong></td>
+              <td><span class="badge badge-purple">Ender</span></td>
+              <td><code>120 / 450 Mana</code></td>
+              <td><code>45.0s / 20.0s</code></td>
+              <td>Hút quái vật 5s</td>
+              <td><strong style="color:var(--accent-gold);">Hút 12s + Nổ 300 DMG</strong></td>
+              <td>Hút toàn bộ quái vật và đạn tên vào tâm điểm phát nổ.</td>
+            </tr>
+            <tr>
+              <td><strong style="color:#e11d48;">🩸 Blood Slash (Trảm Huyết)</strong></td>
+              <td><span class="badge badge-crimson">Blood</span></td>
+              <td><code>20 Mana + 2 Tim</code></td>
+              <td><code>2.0s / 0.5s</code></td>
+              <td>18 DMG (Hút 10%)</td>
+              <td><strong style="color:var(--accent-gold);">110 DMG (Hút 35% Máu)</strong></td>
+              <td>Tung nhát chém máu lưỡi liềm hồi phục tức thì sinh lực.</td>
+            </tr>
+            <tr>
+              <td><strong style="color:#10b981;">🌿 Blight (Dịch Bệnh Ăn Mòn)</strong></td>
+              <td><span class="badge badge-cyan">Nature</span></td>
+              <td><code>30 / 120 Mana</code></td>
+              <td><code>12.0s / 5.0s</code></td>
+              <td>Độc 8 Tim</td>
+              <td><strong style="color:var(--accent-gold);">Độc 45 Tim + Giảm 40% Giáp</strong></td>
+              <td>Ăn mòn giáp đối thủ và lây nhiễm sang mục tiêu kế cận.</td>
             </tr>
           </tbody>
         </table>
       </div>
     </section>
 
-    <!-- Section: Forbidden & Arcanus -->
-    <section style="margin-bottom:3rem;">
-      <h2>🌟 <span class="vi-text">Forbidden & Arcanus: Lò Rèn Hephaestus & Eternal Stella</span><span class="en-text">Forbidden & Arcanus: Hephaestus Forge</span></h2>
-      <div class="grid-cards">
-        <div class="card tier-3">
-          <div class="card-title">⚒️ Hephaestus Forge</div>
+    <!-- Section 3: Ink Ranks Hierarchy -->
+    <section style="margin-top:3.5rem;">
+      <h2>✒️ <span class="vi-text">Cấp Bậc Mực Khắc Sách (Ink Hierarchy & Crafting)</span><span class="en-text">Ink Ranks & Recipe Hierarchy</span></h2>
+      <div class="grid-cards" style="margin-top:1rem;">
+        <div class="card">
+          <div class="card-title">⚪ Common Ink (Cấp 1 - 2)</div>
           <div class="card-body">
-            <p class="vi-text">Cấu trúc đa khối xây từ 48 Polished Darkstone, 9 Arcane Chiseled Polished Darkstone, Smithing Table ở trung tâm và kích hoạt bằng <strong>Mundabitur Dust</strong>.</p>
-            <p class="en-text">Multiblock structure made of 48 Polished Darkstone, 9 Arcane Chiseled Darkstone, central Smithing Table, activated with <strong>Mundabitur Dust</strong>.</p>
-            <div style="margin-top:10px; font-size:0.85rem;">
-              <strong><span class="vi-text">4 Nguồn Năng Lượng:</span><span class="en-text">4 Energy Fuels:</span></strong>
-              <ul style="margin-top:4px;">
-                <li>Aureal (Aureal Flasks / Aureal Mobs)</li>
-                <li>Souls (Soul Extractor)</li>
-                <li>Blood (Mystical Dagger + Test Tube)</li>
-                <li>XP (Bottle o' Enchanting)</li>
-              </ul>
-            </div>
+            <div><strong>Công thức:</strong> 1x Lọ Thủy Tinh + 1x Thỏi Đồng + 1x Túi Mực (Ink Sac).</div>
+            <div style="margin-top:4px; font-size:0.8rem; color:var(--text-secondary);">Khắc các cuộn phép sơ cấp (Fireball Lv1, Frost Step Lv1).</div>
           </div>
         </div>
 
-        <div class="card tier-4">
-          <div class="card-title">💎 Eternal Stella (Bất Tử 100%)</div>
+        <div class="card">
+          <div class="card-title">🟢 Uncommon Ink (Cấp 3 - 4)</div>
           <div class="card-body">
-            <p class="vi-text">Bảo vật rèn ra từ Hephaestus Forge. Khi kết hợp với bất kỳ vũ khí hay giáp nào trên Đe (Anvil):</p>
-            <p class="en-text">Supreme artifact crafted from the Hephaestus Forge. When combined with any weapon or armor in an Anvil:</p>
-            <div style="margin-top:10px; background:rgba(0,0,0,0.3); padding:10px; border-radius:6px; border-left:3px solid var(--accent-gold);">
-              <strong style="color:var(--accent-gold); font-size:0.95rem;">✨ INDESTRUCTIBLE</strong>
-              <p class="vi-text" style="font-size:0.85rem; margin-top:4px;">Hồi phục 100% độ bền và trang bị trở thành <strong>Bất Tử vĩnh viễn</strong>, không bao giờ bị hỏng hay mất độ bền trong bất kỳ trận chiến nào!</p>
-              <p class="en-text" style="font-size:0.85rem; margin-top:4px;">Restores 100% durability and grants permanent <strong>Indestructibility</strong>. Never takes durability loss in any battle!</p>
-            </div>
+            <div><strong>Công thức:</strong> 1x Common Ink + 2x Thỏi Sắt + 2x Tinh Chất Ma Thuật (Arcane Essence).</div>
+            <div style="margin-top:4px; font-size:0.8rem; color:var(--text-secondary);">Nâng cấp phép thuật lên cấp độ trung cấp.</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">🔵 Rare Ink (Cấp 5 - 6)</div>
+          <div class="card-body">
+            <div><strong>Công thức:</strong> 1x Uncommon Ink + 2x Thỏi Vàng + 2x Tinh Chất Tro Tàn (Cinder Essence).</div>
+            <div style="margin-top:4px; font-size:0.8rem; color:var(--text-secondary);">Khắc các phép cao cấp (Chain Lightning Lv5, Divine Smite Lv5).</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">🟣 Epic Ink (Cấp 7 - 8)</div>
+          <div class="card-body">
+            <div><strong>Công thức:</strong> 1x Rare Ink + 2x Mảnh Thạch Anh Tím + 1x Hơi Thở Rồng (Dragon Breath).</div>
+            <div style="margin-top:4px; font-size:0.8rem; color:var(--text-secondary);">Mở khóa phép hủy diệt (Meteor Lv7, Sonic Boom Lv7).</div>
+          </div>
+        </div>
+
+        <div class="card" style="border-top:2px solid var(--accent-gold);">
+          <div class="card-title" style="color:var(--accent-gold);">👑 Legendary Ink (Cấp 9 - 10 MAX)</div>
+          <div class="card-body">
+            <div><strong>Công thức:</strong> 1x Epic Ink + 1x Mảnh Netherite + 1x Lõi Hư Không (Ruined Core / Void Core).</div>
+            <div style="margin-top:4px; font-size:0.8rem; color:var(--text-secondary);">Đạt đỉnh cao tối thượng Level 10 của toàn bộ 70+ phép thuật!</div>
           </div>
         </div>
       </div>
+    </section>
+
+    <!-- Section 4: Goety Necromancy & Minion Army -->
+    <section style="margin-top:3.5rem;">
+      <h2>💀 <span class="vi-text">Binh Đoàn Xác Sống & Nghi Lễ Tối Thượng (Goety Dark Arts)</span><span class="en-text">Goety Necromancy & Minion Army</span></h2>
+      <div style="background:var(--bg-secondary); padding:1.25rem; border-radius:var(--radius-md); border:1px solid var(--border-subtle);">
+        <p class="vi-text" style="color:var(--text-secondary); margin-bottom:1rem;">
+          Goety cung cấp hệ thống nuôi dưỡng và triệu hồi quân đội xác sống trung thành (Zombies, Skeletons, Vex, Wither Necromancers) đi theo bảo vệ người chơi:
+        </p>
+        <ul style="font-size:0.88rem; color:var(--text-secondary); padding-left:18px; line-height:1.7;">
+          <li><span class="vi-text"><strong>Linh Hồn & Soul Energy:</strong> Cầm <em>Soul Jar</em> để thu thập linh hồn quái vật khi tiêu diệt chúng, dùng làm nhiên liệu thi triển hắc thuật.</span></li>
+          <li><span class="vi-text"><strong>Nghi Lễ Tế Đàn Hắc Ám (Dark Altar):</strong> Xây tế đàn 3x3 khối đá Obsidian + Nến Hắc Ám, thực hiện nghi lễ lúc 00:00 nửa đêm để triệu hồi Chúa Tể <strong>Apostle</strong>.</span></li>
+          <li><span class="vi-text"><strong>Trượng Thần Tối Thượng (Nameless Staff):</strong> Ban quyền điều khiển tuyệt đối lên đội quân xác sống, cho phép phát lệnh Tấn công, Phòng thủ hoặc Đi theo.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Section 5: Hephaestus Forge Multiblock & Meta Build -->
+    <section style="margin-top:3.5rem;">
+      <h2>🔥 <span class="vi-text">Lò Rèn Thần Hephaestus & 6 Bước Tạo Meta Build Bất Tử</span><span class="en-text">Hephaestus Forge Multiblock & Immortal Meta Build</span></h2>
+      
+      <div style="background:var(--bg-card); padding:1.25rem; border-radius:var(--radius-md); border:1px solid var(--border-subtle); margin-bottom:1.5rem;">
+        <h3 style="color:var(--accent-gold); margin-bottom:0.5rem;"><span class="vi-text">Cấu Trúc Lò Rèn Hephaestus Forge (Forbidden & Arcanus):</span></h3>
+        <p style="font-size:0.85rem; color:var(--text-secondary);">
+          Xây sàn 9 khối <em>Arcane Chiseled Darkstone</em> + 4 <em>Darkstone Pedestals</em> ở 4 góc + Đặt khối <em>Hephaestus Forge</em> ở tâm giữa.
+        </p>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:0.75rem; margin-top:1rem;">
+          <div style="background:rgba(0,0,0,0.3); padding:0.65rem; border-radius:4px; border-left:2px solid #38bdf8;">
+            <strong style="font-size:0.8rem; color:#38bdf8;">1. Năng Lượng Aureal (2000)</strong>
+            <div style="font-size:0.75rem; color:var(--text-muted);">Nạp bằng Aureal Bottle hoặc Arcane Crystal Dust.</div>
+          </div>
+          <div style="background:rgba(0,0,0,0.3); padding:0.65rem; border-radius:4px; border-left:2px solid #a855f7;">
+            <strong style="font-size:0.8rem; color:#a855f7;">2. Linh Hồn Souls (10)</strong>
+            <div style="font-size:0.75rem; color:var(--text-muted);">Nạp từ Cát Linh Hồn Soul Sand vào Lò Rèn.</div>
+          </div>
+          <div style="background:rgba(0,0,0,0.3); padding:0.65rem; border-radius:4px; border-left:2px solid #e11d48;">
+            <strong style="font-size:0.8rem; color:#e11d48;">3. Máu Tế Blood (1000)</strong>
+            <div style="font-size:0.75rem; color:var(--text-muted);">Hiến tế quái vật đứng trên đỉnh khối tế đàn.</div>
+          </div>
+          <div style="background:rgba(0,0,0,0.3); padding:0.65rem; border-radius:4px; border-left:2px solid #10b981;">
+            <strong style="font-size:0.8rem; color:#10b981;">4. Kinh Nghiệm EXP (3 Orbs)</strong>
+            <div style="font-size:0.75rem; color:var(--text-muted);">Nạp 3 viên ngọc Xpetrified Orbs nén từ 90 cấp kinh nghiệm.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6-Step Roadmap Grid -->
+      <div class="grid-cards" id="meta-build-grid"></div>
     </section>
   </main>
 
@@ -194,24 +355,26 @@
 
   <script src="js/data.js"></script>
   <script src="js/data_items.js"></script>
+  <script src="js/audio.js"></script>
   <script src="js/app.js"></script>
   <script>
-    const metaContainer = document.getElementById('meta-steps-grid');
-    if (metaContainer && WIKI_DATA.meta_build) {
+    const metaGrid = document.getElementById('meta-build-grid');
+    if (metaGrid && WIKI_DATA.meta_build) {
       WIKI_DATA.meta_build.forEach(step => {
         const card = document.createElement('div');
         card.className = 'card tier-4';
         card.innerHTML = `
           <div class="card-header">
-            <div class="card-title" style="color:var(--accent-gold); font-size:1rem;">Bước ${step.step}: <span class="vi-text">${step.title_vi}</span><span class="en-text">${step.title}</span></div>
-            <span class="badge badge-gold">Step ${step.step}</span>
+            <div class="card-title">
+              <span style="color:var(--accent-gold);">BƯỚC ${step.step}:</span> <span class="vi-text">${step.title_vi}</span><span class="en-text">${step.title}</span>
+            </div>
           </div>
           <div class="card-body">
-            <p class="vi-text">${step.desc_vi}</p>
-            <p class="en-text">${step.desc}</p>
+            <span class="vi-text">${step.desc_vi}</span>
+            <span class="en-text">${step.desc}</span>
           </div>
         `;
-        metaContainer.appendChild(card);
+        metaGrid.appendChild(card);
       });
     }
   </script>

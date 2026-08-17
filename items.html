@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Items & Recipes Explorer - Terramity Awakened Wiki</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Silkscreen&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="lang-vi">
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="index.html" class="brand">
+        <img src="images/logo.svg" alt="Logo" width="28" height="28" style="vertical-align:middle;">
+        <span>TERRAMITY AWAKENED</span>
+        <span class="brand-badge">v1.0.5</span>
+      </a>
+
+      <nav class="main-nav">
+        <a href="index.html" class="nav-link">🏠 <span class="vi-text">Trang Chủ</span><span class="en-text">Home</span></a>
+        <a href="items.html" class="nav-link active">📦 <span class="vi-text">Vật Phẩm</span><span class="en-text">Items</span></a>
+        <a href="bosses.html" class="nav-link">🗡️ <span class="vi-text">Săn Boss</span><span class="en-text">Bosses</span></a>
+        <a href="progression.html" class="nav-link">📈 <span class="vi-text">Tiến Trình</span><span class="en-text">Progression</span></a>
+        <a href="magic.html" class="nav-link">✨ <span class="vi-text">Phép Thuật</span><span class="en-text">Magic</span></a>
+        <a href="dimensions.html" class="nav-link">🌌 <span class="vi-text">Không Gian</span><span class="en-text">Dimensions</span></a>
+        <a href="creatures.html" class="nav-link">🐉 <span class="vi-text">Sinh Vật</span><span class="en-text">Creatures</span></a>
+        <a href="classes.html" class="nav-link">🛡️ <span class="vi-text">Hệ Phái</span><span class="en-text">Classes</span></a>
+        <a href="utilities.html" class="nav-link">🎒 <span class="vi-text">Tiện Ích</span><span class="en-text">Utilities</span></a>
+        <a href="tips.html" class="nav-link">💡 <span class="vi-text">Mẹo & Bug</span><span class="en-text">Tips & Bugs</span></a>
+      </nav>
+
+      <div class="header-actions">
+        <button id="btn-open-search" class="btn-search" title="Nhấn / để tìm kiếm">
+          <span>🔍</span>
+          <span class="vi-text">Tìm kiếm...</span>
+          <span class="en-text">Search...</span>
+          <kbd style="background:rgba(255,255,255,0.1); padding:1px 5px; border-radius:3px; font-size:0.7rem;">/</kbd>
+        </button>
+        <button id="lang-toggle-btn" class="btn-lang" title="Chuyển đổi ngôn ngữ">
+          <span id="lang-label">🇻🇳 VI</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="page-wrapper">
+    <div style="margin-bottom:1.5rem;">
+      <h1>📦 <span class="vi-text">Tra Cứu Vật Phẩm, Công Thức & Tag Hệ Phái</span><span class="en-text">Items, Recipes & Class Progression</span></h1>
+      <p style="color:var(--text-secondary);">
+        <span class="vi-text">Tra cứu vật phẩm theo hệ phái (Mage Fire, Warrior, Paladin, Ranger) và giai đoạn (Early/Mid/Late). Nhấp vào bất kỳ item nào để xem công thức chi tiết, hiệu ứng và nguồn nhặt đồ!</span>
+        <span class="en-text">Explore items tagged by class specialization and progression stage. Click any item card to inspect recipes, special effects, and structure drop sources!</span>
+      </p>
+    </div>
+
+    <!-- Filter Bar -->
+    <div class="filter-bar">
+      <div class="filter-group">
+        <span class="filter-label"><span class="vi-text">Hệ Phái / Chuyên Hệ:</span><span class="en-text">Class Specialization:</span></span>
+        <select id="class-filter" class="select-filter">
+          <option value="all">Tất cả hệ phái (All Classes)</option>
+          <option value="Fire Mage">🔥 Fire Mage (Hỏa Thuật Sư)</option>
+          <option value="Ice Mage">❄️ Ice Mage (Băng Thuật Sư)</option>
+          <option value="Mage">🧙‍♂️ Mage Chung (All Mages)</option>
+          <option value="Warrior">🗡️ Warrior / Berserker (Đấu Sĩ)</option>
+          <option value="Paladin">🛡️ Paladin (Hiệp Sĩ Thánh)</option>
+          <option value="Ranger">🏹 Ranger (Xạ Thủ)</option>
+          <option value="Meta Build">👑 Thần Khí Meta Build</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <span class="filter-label"><span class="vi-text">Giai đoạn:</span><span class="en-text">Progression Stage:</span></span>
+        <select id="stage-filter" class="select-filter">
+          <option value="all">Tất cả giai đoạn (All Stages)</option>
+          <option value="Early">🟢 Khởi đầu (Early Game)</option>
+          <option value="Mid">🟡 Trung kỳ (Mid Game)</option>
+          <option value="Late">🟠 Thần thoại (Late Game)</option>
+          <option value="Endgame">🔴 Tận diệt (Endgame)</option>
+        </select>
+      </div>
+
+      <input type="text" id="item-search-box" class="input-search" placeholder="Tìm tên item, công thức, quái rớt...">
+    </div>
+
+    <!-- Item Cards Grid -->
+    <div id="items-grid" class="grid-items"></div>
+  </main>
+
+  <!-- Global Search Modal -->
+  <div id="search-modal" class="modal-backdrop">
+    <div class="modal-box">
+      <div class="modal-header">
+        <span>🔍</span>
+        <input type="text" id="global-search-input" class="modal-search-input" placeholder="Gõ tên Boss, Dimension, Item để tìm kiếm...">
+        <span style="font-size:0.8rem; color:var(--text-muted);"><kbd>ESC</kbd></span>
+      </div>
+      <div id="search-results-list" class="modal-results"></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>Terramity Awakened Wiki • Static Offline Edition • Powered by Gemini AI & Antigravity</p>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    function renderItems() {
+      const grid = document.getElementById('items-grid');
+      const classFilter = document.getElementById('class-filter').value;
+      const stageFilter = document.getElementById('stage-filter').value;
+      const search = document.getElementById('item-search-box').value.toLowerCase();
+
+      grid.innerHTML = '';
+
+      if (!WIKI_DATA.items) return;
+
+      WIKI_DATA.items.forEach(item => {
+        if (classFilter !== 'all' && !item.classTags.some(t => t.toLowerCase() === classFilter.toLowerCase())) return;
+        if (stageFilter !== 'all' && item.stage !== stageFilter) return;
+
+        const match = `${item.name} ${item.name_vi} ${item.mod} ${item.recipe} ${item.category}`.toLowerCase();
+        if (search && !match.includes(search)) return;
+
+        const card = document.createElement('div');
+        card.className = 'item-card';
+        card.id = `item-${item.id}`;
+        card.onclick = () => openItemModal(item.id);
+
+        card.innerHTML = `
+          <div class="item-card-header">
+            <div class="item-icon-frame">
+              <img src="${item.icon}" alt="${item.name}" onerror="this.src='images/logo.svg'">
+            </div>
+            <div class="item-title-box">
+              <div class="item-name"><span class="vi-text">${item.name_vi}</span><span class="en-text">${item.name}</span></div>
+              <div class="item-mod">${item.mod} • <span class="badge badge-cyan" style="font-size:0.65rem;">${item.stage}</span></div>
+            </div>
+          </div>
+
+          <div class="item-tag-list">
+            ${item.classTags.map(t => `<span class="tag-pill tag-${t.toLowerCase().includes('mage') ? 'mage' : t.toLowerCase().includes('fire') ? 'fire' : t.toLowerCase().includes('warrior') ? 'warrior' : t.toLowerCase().includes('paladin') ? 'paladin' : 'ranger'}">${t}</span>`).join('')}
+          </div>
+
+          <div class="item-recipe-preview">
+            ⚒️ <strong><span class="vi-text">Craft:</span><span class="en-text">Craft:</span></strong> ${item.recipe}
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    document.getElementById('class-filter').addEventListener('change', renderItems);
+    document.getElementById('stage-filter').addEventListener('change', renderItems);
+    document.getElementById('item-search-box').addEventListener('input', renderItems);
+
+    renderItems();
+  </script>
+</body>
+</html>

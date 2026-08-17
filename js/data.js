@@ -12,10 +12,335 @@ const WIKI_DATA = {
       mods: 356,
       quests: 432,
       bosses: 70,
-      dimensions: 5
+      dimensions: 5,
+      itemsExtracted: 8726
     }
   },
 
+  /* ==========================================================================
+     Items, Recipes & Class Tagged Progression Database
+     ========================================================================== */
+  items: [
+    /* --- MAGE (FIRE SPECIALIZATION) --- */
+    {
+      id: "fire_rune",
+      name: "Fire Rune",
+      name_vi: "Cổ Tự Hỏa Ma (Fire Rune)",
+      icon: "images/items/fire_rune.png",
+      mod: "Iron's Spells 'n Spellbooks",
+      stage: "Early",
+      classTags: ["Mage", "Fire Mage", "Battlemage"],
+      category: "Magic Material",
+      recipe: "1x Blank Rune + 1x Blaze Rod (Crafting Table)",
+      effects_vi: "Nguyên liệu cốt lõi để rèn Sách phép Lửa, Cuộn phép Hỏa cầu và Bộ giáp Pyromancer Armor.",
+      effects_en: "Core material for crafting Fire Spellbooks, Fireball scrolls, and Pyromancer Armor.",
+      source_type: "Crafting / Nether Fortress",
+      source_url: "dimensions.html#dim-nether",
+      source_location_vi: "Săn Blaze lấy Blaze Rod tại Nether Fortress, ghép tại Bàn chế tạo.",
+      source_location_en: "Harvest Blaze Rods from Nether Fortress Blazes, craft at Crafting Table."
+    },
+    {
+      id: "pyromancer_chestplate",
+      name: "Pyromancer Chestplate",
+      name_vi: "Áo Choàng Hỏa Thuật Sư (Pyromancer)",
+      icon: "images/items/pyromancer_chestplate.png",
+      mod: "Iron's Spells 'n Spellbooks",
+      stage: "Early",
+      classTags: ["Mage", "Fire Mage"],
+      category: "Armor",
+      recipe: "1x Iron Chestplate + 4x Arcane Cloth + 3x Fire Rune",
+      effects_vi: "+5% Sát thương Hỏa phép, +50 Mana tối đa, Kháng thiêu đốt 25%.",
+      effects_en: "+5% Fire Spell Power, +50 Max Mana, 25% Fire Resistance.",
+      source_type: "Crafting / Inscription",
+      source_url: "magic.html",
+      source_location_vi: "Chế tạo tại Bàn chế tạo sau khi có Arcane Cloth và Fire Rune.",
+      source_location_en: "Craft at Crafting Table using Arcane Cloth and Fire Runes."
+    },
+    {
+      id: "scroll_forge",
+      name: "Scroll Forge",
+      name_vi: "Lò Rèn Cuộn Phép (Scroll Forge)",
+      icon: "images/items/scroll_forge.png",
+      mod: "Iron's Spells 'n Spellbooks",
+      stage: "Early",
+      classTags: ["Mage", "All Classes"],
+      category: "Workstation",
+      recipe: "4x Iron Ingot + 2x Stone + 1x Blank Scroll + 1x Arcane Essence",
+      effects_vi: "Bàn tạo ra mọi loại Cuộn phép (Scrolls) từ Hỏa Cầu (Fireball) đến Bão Sét và Mưa Thiên Thạch.",
+      effects_en: "Crafts all spell scrolls from Fireball to Chain Lightning and Meteor Rain.",
+      source_type: "Crafting",
+      source_url: "magic.html",
+      source_location_vi: "Bàn chế tạo cơ bản từ những phút đầu vào game.",
+      source_location_en: "Basic workstation craftable from early resources on Day 1."
+    },
+    {
+      id: "fireblossom_rapier",
+      name: "Fireblossom Rapier",
+      name_vi: "Kiếm Liễu Hỏa Liên (Fireblossom Rapier)",
+      icon: "images/items/fireblossom_rapier.png",
+      mod: "Hazen 'n Stuff",
+      stage: "Early",
+      classTags: ["Mage", "Fire Mage", "Battlemage"],
+      category: "Spell Weapon",
+      recipe: "1x Iron Rapier + 2x Fire Rune + 1x Fireblossom",
+      effects_vi: "Tích hợp sẵn chiêu thức Flaming Strike Cấp 5; mỗi nhát đâm kích nổ ngọn lửa thiêu rụi mục tiêu.",
+      effects_en: "Pre-imbued with Flaming Strike Lv5; thrusting detonates fiery explosions on impact.",
+      source_type: "Crafting / Overworld Plants",
+      source_url: "creatures.html",
+      source_location_vi: "Thu hoạch hoa Fireblossom tại vùng đồi nóng kết hợp Fire Rune.",
+      source_location_en: "Harvest Fireblossoms in warm biomes combined with Fire Runes."
+    },
+    {
+      id: "fire_upgrade_orb",
+      name: "Fire Upgrade Orb",
+      name_vi: "Ngọc Cường Hóa Hỏa Hệ (Fire Orb)",
+      icon: "images/items/fire_upgrade_orb.png",
+      mod: "Iron's Spells 'n Spellbooks",
+      stage: "Mid",
+      classTags: ["Mage", "Fire Mage"],
+      category: "Upgrade Material",
+      recipe: "1x Upgrade Orb Base + 4x Fire Rune + 4x Cinder Essence",
+      effects_vi: "Khảm vào trang bị trên Đe Ma Thuật (Arcane Anvil), mỗi viên tăng vĩnh viễn +3% Sát thương Hỏa (tối đa 10 viên).",
+      effects_en: "Socket in Arcane Anvil to permanently add +3% Fire Spell Power per orb (Max 10).",
+      source_type: "Crafting / Nether",
+      source_url: "magic.html",
+      source_location_vi: "Săn quái Cinder trong Nether lấy Cinder Essence rèn thành ngọc.",
+      source_location_en: "Harvest Cinder Essence from Nether mobs to forge into orbs."
+    },
+
+    /* --- MAGE (ICE & ENDGAME) --- */
+    {
+      id: "ice_rune",
+      name: "Ice Rune",
+      name_vi: "Cổ Tự Băng Ma (Ice Rune)",
+      icon: "images/items/ice_rune.png",
+      mod: "Iron's Spells 'n Spellbooks",
+      stage: "Early",
+      classTags: ["Mage", "Ice Mage"],
+      category: "Magic Material",
+      recipe: "1x Blank Rune + 1x Frozen Bone (from Stray)",
+      effects_vi: "Dùng để rèn sách phép hệ Băng và trang bị Cryomancer Armor.",
+      effects_en: "Used to craft Ice Spellbooks and Cryomancer Armor.",
+      source_type: "Mob Drop (Stray in Tundra)",
+      source_url: "creatures.html",
+      source_location_vi: "Săn quái Stray tại quần xã tuyết băng giá lấy Xương Băng.",
+      source_location_en: "Hunt Strays in snowy biomes to obtain Frozen Bones."
+    },
+    {
+      id: "frostbound",
+      name: "Frostbound",
+      name_vi: "Lưỡi Hái Băng Ngục Frostbound",
+      icon: "images/items/frostbound.png",
+      mod: "Celestisynth",
+      stage: "Late",
+      classTags: ["Mage", "Ice Mage", "Warrior"],
+      category: "Mythical Weapon",
+      recipe: "Starlit Factory + Heated Celestial Core + Ice Dragon Bone + 4x Frost Shards",
+      effects_vi: "Kỹ năng [Absolute Zero]: Chém quét đóng băng toàn bộ kẻ địch xung quanh và triệu hồi rừng chông băng khổng lồ.",
+      effects_en: "[Absolute Zero]: Freezes all nearby enemies and erupts a forest of massive ice spikes.",
+      source_type: "Starlit Factory Crafting",
+      source_url: "magic.html",
+      source_location_vi: "Rèn tại trạm Starlit Factory sau khi đánh bại Rồng Băng cấp 4.",
+      source_location_en: "Crafted at Starlit Factory after defeating a Stage 4 Ice Dragon."
+    },
+
+    /* --- WARRIOR (BERSERKER) --- */
+    {
+      id: "rage_glove",
+      name: "Rage Glove",
+      name_vi: "Găng Tay Cuồng Nộ (Rage Glove)",
+      icon: "images/items/rage_glove.png",
+      mod: "Relics",
+      stage: "Early",
+      classTags: ["Warrior", "Berserker"],
+      category: "Relic / Curio",
+      recipe: "Raid Dungeons / Mineshafts Treasure Chests",
+      effects_vi: "+15% Tốc độ đánh, +2 Sát thương cận chiến, càng đánh liên tiếp tốc độ chém càng tăng.",
+      effects_en: "+15% Attack Speed, +2 Melee DMG, successive hits ramp up attack speed.",
+      source_type: "Dungeon Chest",
+      source_url: "utilities.html",
+      source_location_vi: "Tìm thấy trong rương hầm mỏ bỏ hoang Mineshaft hoặc pháo đài Outpost.",
+      source_location_en: "Found inside Mineshaft minecarts and Pillager Outpost chests."
+    },
+    {
+      id: "solaris",
+      name: "Solaris",
+      name_vi: "Đại Đao Thái Dương Solaris",
+      icon: "images/items/solaris.png",
+      mod: "Celestisynth",
+      stage: "Late",
+      classTags: ["Warrior", "Berserker"],
+      category: "Mythical Weapon",
+      recipe: "Starlit Factory + Heated Celestial Core + Sunbird Feather + Netherite Ingot",
+      effects_vi: "Kỹ năng [Solar Flare]: Chém liên hoàn tạo bão lửa thái dương quét sạch quái vật diện rộng.",
+      effects_en: "[Solar Flare]: Rapid combo cleaves unleashing solar shockwaves in wide area.",
+      source_type: "Starlit Factory Crafting",
+      source_url: "magic.html",
+      source_location_vi: "Rèn tại trạm Starlit Factory bằng Lông chim Umvuthi và Lõi Thiên Thể.",
+      source_location_en: "Crafted at Starlit Factory with Sunbird Feathers and Celestial Core."
+    },
+    {
+      id: "dreadsteel_ingot",
+      name: "Dreadsteel Ingot",
+      name_vi: "Thỏi Thép Hủy Diệt Dreadsteel",
+      icon: "images/items/dreadsteel_ingot.png",
+      mod: "Dreadsteel / Ice & Fire",
+      stage: "Late",
+      classTags: ["Warrior", "Paladin", "All Classes"],
+      category: "Super Alloy",
+      recipe: "1x Fire Dragonsteel + 1x Ice Dragonsteel + 1x Lightning Dragonsteel + 1x Dread Shard",
+      effects_vi: "Hợp kim mạnh nhất dùng để rèn Đại Lưỡi Hái Dreadsteel Scythe và Bộ giáp Vô Địch.",
+      effects_en: "Supreme alloy used to forge the Dreadsteel Scythe and invulnerable armor.",
+      source_type: "Dragon Forge / Crafting",
+      source_url: "creatures.html",
+      source_location_vi: "Luyện 3 loại Thép Rồng tại Dragon Forge rồi hợp nhất cùng Mảnh Dread Shard.",
+      source_location_en: "Smelt 3 Dragonsteels at Dragon Forge and combine with Dread Shard."
+    },
+
+    /* --- PALADIN (HOLY TANKER) --- */
+    {
+      id: "holy_rune",
+      name: "Holy Rune",
+      name_vi: "Cổ Tự Thánh Quang (Holy Rune)",
+      icon: "images/items/holy_rune.png",
+      mod: "Iron's Spells 'n Spellbooks",
+      stage: "Early",
+      classTags: ["Paladin", "Mage"],
+      category: "Magic Material",
+      recipe: "1x Blank Rune + 1x Divine Pearl (from Cleric Villagers)",
+      effects_vi: "Dùng để rèn Sách phép Thánh Quang, giáp Priest Armor và bùa chú hồi phục.",
+      effects_en: "Used to forge Holy Spellbooks, Priest Armor, and restorative talismans.",
+      source_type: "Villager Trading / Crafting",
+      source_url: "magic.html",
+      source_location_vi: "Giao dịch với Dân Làng Mục Sư (Cleric) lấy Divine Pearl rồi rèn cổ tự.",
+      source_location_en: "Trade with Cleric Villagers for Divine Pearls, then craft rune."
+    },
+    {
+      id: "hammer_of_kingbdogz",
+      name: "Hammer of Kingbdogz",
+      name_vi: "Búa Thần Sấm Kingbdogz",
+      icon: "images/items/hammer_of_kingbdogz.png",
+      mod: "The Aether",
+      stage: "Mid",
+      classTags: ["Paladin", "Warrior"],
+      category: "Holy Weapon",
+      recipe: "Dropped from Bronze Dungeon Boss Slider (The Aether)",
+      effects_vi: "Phóng sét giật lan và tạo sóng địa chấn đánh bật mọi kẻ địch khi nện xuống đất.",
+      effects_en: "Calls down chain lightning and seismic shockwaves when slammed into the ground.",
+      source_type: "Boss Drop: Slider",
+      source_url: "bosses.html#boss-slider",
+      source_location_vi: "Tiêu diệt trùm Slider trong Hầm ngục Đồng (The Aether).",
+      source_location_en: "Defeat Boss Slider in Bronze Dungeon (The Aether)."
+    },
+    {
+      id: "heart_amulet",
+      name: "Heart Amulet",
+      name_vi: "Dây Chuyền Trái Tim (Heart Amulet)",
+      icon: "images/items/heart_amulet.png",
+      mod: "Baubley Heart Canisters",
+      stage: "Early",
+      classTags: ["Paladin", "All Classes"],
+      category: "Relic / Accessory",
+      recipe: "4x Gold Ingot + 4x Diamond + 1x Heart Canister (Crafting Table)",
+      effects_vi: "Chứa tối đa 40 hộp Heart Canisters (Đỏ, Vàng, Lục, Lam) tăng thêm đến +80 Máu Tối Đa vĩnh viễn!",
+      effects_en: "Holds up to 40 Heart Canisters (Red, Yellow, Green, Blue) for up to +80 Max HP!",
+      source_type: "Crafting",
+      source_url: "utilities.html",
+      source_location_vi: "Chế tạo sớm tại Bàn chế tạo và đeo vào ô Curios Amulet.",
+      source_location_en: "Craft early at Crafting Table and equip into Curios Amulet slot."
+    },
+
+    /* --- RANGER (SNIPER / MOBILITY) --- */
+    {
+      id: "phoenix_bow",
+      name: "Phoenix Bow",
+      name_vi: "Cung Thần Phượng Hoàng (Phoenix Bow)",
+      icon: "images/items/phoenix_bow.png",
+      mod: "The Aether",
+      stage: "Mid",
+      classTags: ["Ranger", "Sniper"],
+      category: "Ranged Weapon",
+      recipe: "Dropped from Gold Dungeon Boss Sun Spirit (The Aether)",
+      effects_vi: "Tất cả mũi tên bắn ra tự động chuyển hóa thành Tên Lửa Phượng Hoàng thiêu đốt cực hạn.",
+      effects_en: "All fired arrows automatically transform into flaming Phoenix Blaze arrows.",
+      source_type: "Boss Drop: Sun Spirit",
+      source_url: "bosses.html#boss-sun_spirit",
+      source_location_vi: "Tiêu diệt trùm Sun Spirit tại Đền Vàng Thiên Giới Aether.",
+      source_location_en: "Defeat Boss Sun Spirit in Gold Dungeon (The Aether)."
+    },
+    {
+      id: "soul_elytra",
+      name: "Soul Elytra",
+      name_vi: "Cánh Linh Hồn (Soul Elytra)",
+      icon: "images/items/soul_elytra.png",
+      mod: "Deeper and Darker",
+      stage: "Late",
+      classTags: ["Ranger", "All Classes"],
+      category: "Armor / Flight",
+      recipe: "1x Elytra + 4x Soul Dust + 2x Resonarium Ingot (The Otherside)",
+      effects_vi: "+3 Điểm giáp, tự động kích hoạt lực đẩy phản lực mỗi 30s bay lượn vô hạn không cần Pháo hoa.",
+      effects_en: "+3 Armor, auto-boosts propulsion every 30s for infinite flight without fireworks.",
+      source_type: "Crafting / The Otherside",
+      source_url: "dimensions.html#dim-otherside",
+      source_location_vi: "Khai thác thỏi Resonarium trong cõi âm The Otherside kết hợp cánh Elytra.",
+      source_location_en: "Mine Resonarium in The Otherside dimension and upgrade Elytra."
+    },
+    {
+      id: "dreadbow",
+      name: "Dreadbow",
+      name_vi: "Cung Hắc Ám Dreadbow",
+      icon: "images/items/dreadbow.png",
+      mod: "Alex's Caves",
+      stage: "Mid",
+      classTags: ["Ranger", "Sniper"],
+      category: "Ranged Weapon",
+      recipe: "Crafted from Dread Shards & Dark Tendrils in Forlorn Hollows",
+      effects_vi: "Mỗi phát bắn triệu hồi một cơn mưa tên bóng tối dội từ trên trời xuống gây sát thương đa mục tiêu.",
+      effects_en: "Each shot calls down a rain of dark shadow arrows striking multiple targets.",
+      source_type: "Alex's Caves: Forlorn Hollows",
+      source_url: "creatures.html",
+      source_location_vi: "Khám phá hang bóng tối Forlorn Hollows và thu thập mảnh Dread Shard.",
+      source_location_en: "Explore Forlorn Hollows deep caves and collect Dread Shards."
+    },
+
+    /* --- SUPREME ARTIFACTS & METAGAME --- */
+    {
+      id: "eternal_stella",
+      name: "Eternal Stella",
+      name_vi: "Bảo Vật Bất Tử Eternal Stella",
+      icon: "images/items/eternal_stella.png",
+      mod: "Forbidden and Arcanus",
+      stage: "Late",
+      classTags: ["All Classes", "Meta Build"],
+      category: "Godly Artifact",
+      recipe: "Forged in Hephaestus Forge: 1x Stellarite + 3x Xpetrified Orbs + 2000 Aureal + 10 Souls",
+      effects_vi: "Khi ép vào Đe với bất kỳ trang bị nào: Hồi phục 100% độ bền và nhận dòng thuộc tính INDESTRUCTIBLE (Không bao giờ hỏng).",
+      effects_en: "When applied in Anvil: Restores 100% durability and grants permanent INDESTRUCTIBLE trait.",
+      source_type: "Hephaestus Forge Ritual",
+      source_url: "magic.html",
+      source_location_vi: "Nạp 4 nguồn năng lượng vào Lò rèn Hephaestus Forge đa khối để đúc ngọc.",
+      source_location_en: "Feed 4 energy fuels into Hephaestus Forge multiblock to forge."
+    },
+    {
+      id: "the_judgement",
+      name: "The Judgement",
+      name_vi: "Thần Khí The Judgement",
+      icon: "images/items/the_judgement.png",
+      mod: "Terramity",
+      stage: "Endgame",
+      classTags: ["All Classes", "Supreme Trophy"],
+      category: "Supreme Relic",
+      recipe: "Dropped 100% by Super-Boss Ultra Sniffer (1,000,000 HP)",
+      effects_vi: "Vật phẩm minh chứng bạn đã chinh phục hoàn toàn Modpack Terramity Awakened!",
+      effects_en: "Supreme relic proving total conquest of the Terramity Awakened modpack!",
+      source_type: "Super-Boss: Ultra Sniffer",
+      source_url: "bosses.html#boss-ultra_sniffer",
+      source_location_vi: "Đánh bại Chúa Tể Ultra Sniffer 1.000.000 HP tại Đấu trường Vô Cực.",
+      source_location_en: "Slay the Supreme Ultra Sniffer (1,000,000 HP) in the Endgame Arena."
+    }
+  ],
+
+  /* Bosses Data */
   bosses: [
     {
       id: "umvuthi",
@@ -240,6 +565,7 @@ const WIKI_DATA = {
     }
   ],
 
+  /* Dimensions Data */
   dimensions: [
     {
       id: "aether",
@@ -291,6 +617,7 @@ const WIKI_DATA = {
     }
   ],
 
+  /* 12 Eyes Data */
   eyes: [
     { name: "Cursed Eye", loc: "Bastion Remnant Treasure Chest (Nether)", rate: "50%" },
     { name: "Black Eye", loc: "Buried Treasure Chest or Kill The Warden", rate: "30% / 10% (Drops 2)" },
@@ -306,6 +633,7 @@ const WIKI_DATA = {
     { name: "Undead Eye", loc: "Craft: Phantom Membrane + Bone + Rotten Flesh + Ghast Tear + Undead Soul", rate: "Craftable" }
   ],
 
+  /* Meta Build 6 Steps */
   meta_build: [
     {
       step: 1,
@@ -351,6 +679,7 @@ const WIKI_DATA = {
     }
   ],
 
+  /* Classes Data */
   classes: [
     {
       id: "warrior",
@@ -398,6 +727,7 @@ const WIKI_DATA = {
     }
   ],
 
+  /* Survival Tips */
   tips: [
     {
       type: "danger",

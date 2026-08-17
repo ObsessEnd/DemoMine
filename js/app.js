@@ -151,6 +151,34 @@ function initSearch() {
       });
     }
 
+    // Search Items & Recipes
+    if (WIKI_DATA.items) {
+      WIKI_DATA.items.forEach(item => {
+        const text = `${item.name} ${item.name_vi} ${item.mod} ${item.classTags.join(' ')} ${item.category} ${item.recipe}`.toLowerCase();
+        if (!query || text.includes(query)) {
+          if (count++ > 15) return;
+          const div = document.createElement('div');
+          div.className = 'search-result-item';
+          div.innerHTML = `
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <div style="display:flex; align-items:center; gap:0.5rem;">
+                <img src="${item.icon}" alt="${item.name}" width="20" height="20" style="image-rendering:pixelated;" onerror="this.src='images/logo.svg'">
+                <strong style="color:var(--accent-gold); font-family:var(--font-title); font-size:0.9rem;"><span class="vi-text">${item.name_vi}</span><span class="en-text">${item.name}</span></strong>
+              </div>
+              <span class="badge badge-cyan">${item.stage}</span>
+            </div>
+            <div style="font-size:0.8rem; color:var(--text-muted); margin-top:3px;">
+              ${item.mod} • ${item.classTags.join(', ')} • 📜 ${item.recipe}
+            </div>
+          `;
+          div.addEventListener('click', () => {
+            window.location.href = `items.html#item-${item.id}`;
+          });
+          resultsContainer.appendChild(div);
+        }
+      });
+    }
+
     if (count === 0) {
       resultsContainer.innerHTML = `
         <div style="text-align:center; padding:2rem; color:var(--text-muted);">
@@ -159,6 +187,80 @@ function initSearch() {
       `;
     }
   }
+}
+
+/* ==========================================================================
+   Item Modal Popup Component
+   ========================================================================== */
+function openItemModal(itemId) {
+  const item = WIKI_DATA.items ? WIKI_DATA.items.find(i => i.id === itemId) : null;
+  if (!item) return;
+
+  let modal = document.getElementById('item-detail-modal');
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = 'item-detail-modal';
+    modal.className = 'modal-backdrop';
+    document.body.appendChild(modal);
+  }
+
+  modal.innerHTML = `
+    <div class="item-modal-box">
+      <div class="item-modal-header">
+        <div style="display:flex; align-items:center; gap:0.75rem;">
+          <div class="item-icon-frame">
+            <img src="${item.icon}" alt="${item.name}" onerror="this.src='images/logo.svg'">
+          </div>
+          <div>
+            <h3 style="margin:0; font-size:1.1rem; color:#fff;"><span class="vi-text">${item.name_vi}</span><span class="en-text">${item.name}</span></h3>
+            <div style="font-size:0.75rem; color:var(--text-muted);">${item.mod} • <span class="badge badge-cyan">${item.stage} Stage</span></div>
+          </div>
+        </div>
+        <button onclick="document.getElementById('item-detail-modal').classList.remove('open')" style="background:none; border:none; color:var(--text-muted); font-size:1.2rem; cursor:pointer;">✖</button>
+      </div>
+
+      <div class="item-modal-body">
+        <!-- Class Tags -->
+        <div>
+          <div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; margin-bottom:4px;"><span class="vi-text">Hệ Phái Phù Hợp:</span><span class="en-text">Class Compatibility:</span></div>
+          <div class="item-tag-list">
+            ${item.classTags.map(tag => `<span class="tag-pill tag-${tag.toLowerCase().includes('mage') ? 'mage' : tag.toLowerCase().includes('fire') ? 'fire' : tag.toLowerCase().includes('warrior') ? 'warrior' : tag.toLowerCase().includes('paladin') ? 'paladin' : 'ranger'}">${tag}</span>`).join('')}
+          </div>
+        </div>
+
+        <!-- Recipe -->
+        <div class="recipe-box">
+          <div style="font-size:0.8rem; color:var(--accent-gold); font-weight:700; margin-bottom:4px;">⚒️ <span class="vi-text">CÔNG THỨC CHẾ TẠO / THU THẬP:</span><span class="en-text">CRAFTING RECIPE:</span></div>
+          <div style="font-size:0.9rem; color:#fff; font-family:var(--font-title);">${item.recipe}</div>
+        </div>
+
+        <!-- Effects -->
+        <div>
+          <div style="font-size:0.8rem; color:var(--accent-cyan); font-weight:700; margin-bottom:4px;">✨ <span class="vi-text">HIỆU ỨNG & ĐẶC TÍNH:</span><span class="en-text">EFFECTS & TRAITS:</span></div>
+          <div style="font-size:0.88rem; color:var(--text-secondary); line-height:1.5;">
+            <span class="vi-text">${item.effects_vi}</span>
+            <span class="en-text">${item.effects_en}</span>
+          </div>
+        </div>
+
+        <!-- Location Source & Breadcrumb Link -->
+        <div style="background:rgba(0,0,0,0.25); padding:0.75rem 1rem; border-radius:6px; border:1px solid var(--border-color); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
+          <div>
+            <div style="font-size:0.75rem; color:var(--text-muted);"><span class="vi-text">Vị trí / Nguồn tìm kiếm:</span><span class="en-text">Obtain Source:</span></div>
+            <div style="font-size:0.85rem; color:var(--text-primary); margin-top:2px;">
+              📍 <span class="vi-text">${item.source_location_vi}</span><span class="en-text">${item.source_location_en}</span>
+            </div>
+          </div>
+          ${item.source_url ? `<a href="${item.source_url}" class="source-link-btn"><span class="vi-text">Đi Đến Vùng / Boss →</span><span class="en-text">Go To Location →</span></a>` : ''}
+        </div>
+      </div>
+    </div>
+  `;
+
+  modal.classList.add('open');
+  modal.onclick = (e) => {
+    if (e.target === modal) modal.classList.remove('open');
+  };
 }
 
 /* ==========================================================================

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Items & Recipes Explorer - Terramity Awakened Wiki</title>
+  <title>Items & Recipes Graph Explorer - Terramity Awakened Wiki</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Silkscreen&display=swap" rel="stylesheet">
@@ -50,17 +50,30 @@
   <!-- Main Content -->
   <main class="page-wrapper">
     <div style="margin-bottom:1.5rem;">
-      <h1>📦 <span class="vi-text">Tra Cứu Vật Phẩm, Công Thức & Tag Hệ Phái</span><span class="en-text">Items, Recipes & Class Progression</span></h1>
+      <h1>📦 <span class="vi-text">Bách Khoa Vật Phẩm & Cây Chế Tạo Liên Kết Hai Chiều</span><span class="en-text">Items & Bidirectional Crafting Graph</span></h1>
       <p style="color:var(--text-secondary);">
-        <span class="vi-text">Tra cứu vật phẩm theo hệ phái (Mage Fire, Warrior, Paladin, Ranger) và giai đoạn (Early/Mid/Late). Nhấp vào bất kỳ item nào để xem công thức chi tiết, hiệu ứng và nguồn nhặt đồ!</span>
-        <span class="en-text">Explore items tagged by class specialization and progression stage. Click any item card to inspect recipes, special effects, and structure drop sources!</span>
+        <span class="vi-text">Nhấp vào bất kỳ vật phẩm nào để xem <strong>nguyên liệu chế tạo (có thể click để nhảy tiếp)</strong>, vị trí tìm kiếm và danh sách <strong>toàn bộ trang bị có thể rèn ra từ vật phẩm đó</strong>!</span>
+        <span class="en-text">Click any item to inspect its <strong>clickable ingredients</strong>, drop locations, and the complete list of <strong>items you can craft from it</strong>!</span>
       </p>
     </div>
 
     <!-- Filter Bar -->
     <div class="filter-bar">
       <div class="filter-group">
-        <span class="filter-label"><span class="vi-text">Hệ Phái / Chuyên Hệ:</span><span class="en-text">Class Specialization:</span></span>
+        <span class="filter-label"><span class="vi-text">Phân Loại (Category):</span><span class="en-text">Category:</span></span>
+        <select id="cat-filter" class="select-filter">
+          <option value="all">Tất cả danh mục (All Categories)</option>
+          <option value="Weapon">🗡️ Vũ Khí (Weapons)</option>
+          <option value="Armor">🛡️ Giáp Trụ (Armors)</option>
+          <option value="Rune">✨ Phép Thuật & Cổ Tự (Runes & Spells)</option>
+          <option value="Material">⚒️ Nguyên Liệu & Hợp Kim (Materials)</option>
+          <option value="Artifact">👑 Cổ Vật & Bảo Vật (Artifacts)</option>
+          <option value="Upgrade">❤️ Nâng Cấp Sinh Lực (HP Upgrades)</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <span class="filter-label"><span class="vi-text">Hệ Phái (Class):</span><span class="en-text">Class Tag:</span></span>
         <select id="class-filter" class="select-filter">
           <option value="all">Tất cả hệ phái (All Classes)</option>
           <option value="Fire Mage">🔥 Fire Mage (Hỏa Thuật Sư)</option>
@@ -74,7 +87,7 @@
       </div>
 
       <div class="filter-group">
-        <span class="filter-label"><span class="vi-text">Giai đoạn:</span><span class="en-text">Progression Stage:</span></span>
+        <span class="filter-label"><span class="vi-text">Giai đoạn:</span><span class="en-text">Stage:</span></span>
         <select id="stage-filter" class="select-filter">
           <option value="all">Tất cả giai đoạn (All Stages)</option>
           <option value="Early">🟢 Khởi đầu (Early Game)</option>
@@ -84,7 +97,7 @@
         </select>
       </div>
 
-      <input type="text" id="item-search-box" class="input-search" placeholder="Tìm tên item, công thức, quái rớt...">
+      <input type="text" id="item-search-box" class="input-search" placeholder="Tìm tên item, nguyên liệu, quái rớt...">
     </div>
 
     <!-- Item Cards Grid -->
@@ -109,29 +122,34 @@
   </footer>
 
   <script src="js/data.js"></script>
+  <script src="js/data_items.js"></script>
   <script src="js/app.js"></script>
   <script>
     function renderItems() {
       const grid = document.getElementById('items-grid');
+      const catFilter = document.getElementById('cat-filter').value;
       const classFilter = document.getElementById('class-filter').value;
       const stageFilter = document.getElementById('stage-filter').value;
       const search = document.getElementById('item-search-box').value.toLowerCase();
 
       grid.innerHTML = '';
 
-      if (!WIKI_DATA.items) return;
+      const itemsList = typeof ITEM_GRAPH_DATABASE !== 'undefined' ? ITEM_GRAPH_DATABASE : (WIKI_DATA.items || []);
 
-      WIKI_DATA.items.forEach(item => {
-        if (classFilter !== 'all' && !item.classTags.some(t => t.toLowerCase() === classFilter.toLowerCase())) return;
+      itemsList.forEach(item => {
+        if (catFilter !== 'all' && !item.category.toLowerCase().includes(catFilter.toLowerCase())) return;
+        if (classFilter !== 'all' && !item.classTags.some(t => t.toLowerCase().includes(classFilter.toLowerCase()))) return;
         if (stageFilter !== 'all' && item.stage !== stageFilter) return;
 
-        const match = `${item.name} ${item.name_vi} ${item.mod} ${item.recipe} ${item.category}`.toLowerCase();
+        const match = `${item.name} ${item.name_vi} ${item.mod} ${item.recipe_desc_vi || ''} ${item.category}`.toLowerCase();
         if (search && !match.includes(search)) return;
 
         const card = document.createElement('div');
         card.className = 'item-card';
         card.id = `item-${item.id}`;
         card.onclick = () => openItemModal(item.id);
+
+        const usedCount = item.used_in ? item.used_in.length : 0;
 
         card.innerHTML = `
           <div class="item-card-header">
@@ -149,13 +167,20 @@
           </div>
 
           <div class="item-recipe-preview">
-            ⚒️ <strong><span class="vi-text">Craft:</span><span class="en-text">Craft:</span></strong> ${item.recipe}
+            ⚒️ <strong><span class="vi-text">Craft:</span><span class="en-text">Craft:</span></strong> ${item.recipe_desc_vi || item.recipe_desc_en || item.recipe || 'Xem chi tiết'}
           </div>
+
+          ${usedCount > 0 ? `
+            <div style="margin-top:6px; font-size:0.74rem; color:var(--accent-cyan); font-weight:600;">
+              🔨 <span class="vi-text">Dùng để rèn ${usedCount} món đồ khác →</span><span class="en-text">Used to craft ${usedCount} items →</span>
+            </div>
+          ` : ''}
         `;
         grid.appendChild(card);
       });
     }
 
+    document.getElementById('cat-filter').addEventListener('change', renderItems);
     document.getElementById('class-filter').addEventListener('change', renderItems);
     document.getElementById('stage-filter').addEventListener('change', renderItems);
     document.getElementById('item-search-box').addEventListener('input', renderItems);

@@ -190,11 +190,28 @@ function initSearch() {
 }
 
 /* ==========================================================================
-   Item Modal Popup Component
+   Item Modal Popup Component (Bidirectional Graph Navigation)
    ========================================================================== */
-function openItemModal(itemId) {
-  const item = WIKI_DATA.items ? WIKI_DATA.items.find(i => i.id === itemId) : null;
-  if (!item) return;
+let modalHistoryStack = [];
+
+function openItemModal(itemId, isBackNav = false) {
+  // Try finding in graph database first, then standard items
+  let item = null;
+  if (typeof ITEM_GRAPH_DATABASE !== 'undefined') {
+    item = ITEM_GRAPH_DATABASE.find(i => i.id === itemId);
+  }
+  if (!item && WIKI_DATA.items) {
+    item = WIKI_DATA.items.find(i => i.id === itemId);
+  }
+
+  if (!item) {
+    console.warn(`Item not found: ${itemId}`);
+    return;
+  }
+
+  if (!isBackNav) {
+    modalHistoryStack.push(itemId);
+  }
 
   let modal = document.getElementById('item-detail-modal');
   if (!modal) {
@@ -204,25 +221,66 @@ function openItemModal(itemId) {
     document.body.appendChild(modal);
   }
 
+  const hasHistory = modalHistoryStack.length > 1;
+
+  // Build ingredients interactive chips
+  let ingredientsHTML = '';
+  if (item.ingredients && item.ingredients.length > 0) {
+    ingredientsHTML = `
+      <div style="margin-top:8px;">
+        <div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; margin-bottom:4px;"><span class="vi-text">Nguyên Liệu Cần (Nhấp để xem):</span><span class="en-text">Click Ingredients to Inspect:</span></div>
+        <div style="display:flex; gap:0.4rem; flex-wrap:wrap;">
+          ${item.ingredients.map(ing => `
+            <button class="ingredient-chip" onclick="openItemModal('${ing.id}')" title="Xem chi tiết ${ing.name}">
+              <img src="images/items/${ing.id}.png" onerror="this.src='images/logo.svg'" width="16" height="16" style="image-rendering:pixelated;">
+              <span>${ing.count}x ${ing.name_vi || ing.name}</span>
+            </button>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  }
+
+  // Build used_in reverse crafting chips
+  let usedInHTML = '';
+  if (item.used_in && item.used_in.length > 0) {
+    usedInHTML = `
+      <div class="used-in-box">
+        <div style="font-size:0.8rem; color:var(--accent-cyan); font-weight:700; margin-bottom:6px;">
+          🔨 <span class="vi-text">DÙNG ĐỂ CHẾ TẠO RA (CRAFTS INTO):</span><span class="en-text">USED IN RECIPES:</span>
+        </div>
+        <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(130px, 1fr)); gap:0.5rem;">
+          ${item.used_in.map(u => `
+            <div class="used-in-chip" onclick="openItemModal('${u.id}')" title="Nhấp để xem công thức rèn ${u.name}">
+              <img src="${u.icon}" onerror="this.src='images/logo.svg'" width="22" height="22" style="image-rendering:pixelated;">
+              <div class="used-in-name">${u.name_vi || u.name}</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  }
+
   modal.innerHTML = `
     <div class="item-modal-box">
       <div class="item-modal-header">
-        <div style="display:flex; align-items:center; gap:0.75rem;">
+        <div style="display:flex; align-items:center; gap:0.65rem;">
+          ${hasHistory ? `<button onclick="goBackItemModal()" class="modal-back-btn" title="Quay lại item trước">←</button>` : ''}
           <div class="item-icon-frame">
             <img src="${item.icon}" alt="${item.name}" onerror="this.src='images/logo.svg'">
           </div>
           <div>
-            <h3 style="margin:0; font-size:1.1rem; color:#fff;"><span class="vi-text">${item.name_vi}</span><span class="en-text">${item.name}</span></h3>
+            <h3 style="margin:0; font-size:1.05rem; color:#fff;"><span class="vi-text">${item.name_vi}</span><span class="en-text">${item.name}</span></h3>
             <div style="font-size:0.75rem; color:var(--text-muted);">${item.mod} • <span class="badge badge-cyan">${item.stage} Stage</span></div>
           </div>
         </div>
-        <button onclick="document.getElementById('item-detail-modal').classList.remove('open')" style="background:none; border:none; color:var(--text-muted); font-size:1.2rem; cursor:pointer;">✖</button>
+        <button onclick="closeItemModal()" style="background:none; border:none; color:var(--text-muted); font-size:1.2rem; cursor:pointer;">✖</button>
       </div>
 
       <div class="item-modal-body">
         <!-- Class Tags -->
         <div>
-          <div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; margin-bottom:4px;"><span class="vi-text">Hệ Phái Phù Hợp:</span><span class="en-text">Class Compatibility:</span></div>
+          <div style="font-size:0.72rem; color:var(--text-muted); text-transform:uppercase; margin-bottom:4px;"><span class="vi-text">Hệ Phái Tương Thích:</span><span class="en-text">Class Tags:</span></div>
           <div class="item-tag-list">
             ${item.classTags.map(tag => `<span class="tag-pill tag-${tag.toLowerCase().includes('mage') ? 'mage' : tag.toLowerCase().includes('fire') ? 'fire' : tag.toLowerCase().includes('warrior') ? 'warrior' : tag.toLowerCase().includes('paladin') ? 'paladin' : 'ranger'}">${tag}</span>`).join('')}
           </div>
@@ -230,28 +288,32 @@ function openItemModal(itemId) {
 
         <!-- Recipe -->
         <div class="recipe-box">
-          <div style="font-size:0.8rem; color:var(--accent-gold); font-weight:700; margin-bottom:4px;">⚒️ <span class="vi-text">CÔNG THỨC CHẾ TẠO / THU THẬP:</span><span class="en-text">CRAFTING RECIPE:</span></div>
-          <div style="font-size:0.9rem; color:#fff; font-family:var(--font-title);">${item.recipe}</div>
+          <div style="font-size:0.78rem; color:var(--accent-gold); font-weight:700; margin-bottom:4px;">⚒️ <span class="vi-text">CÔNG THỨC CHẾ TẠO:</span><span class="en-text">CRAFTING RECIPE:</span></div>
+          <div style="font-size:0.85rem; color:#fff; font-family:var(--font-title);">${item.recipe_desc_vi || item.recipe || 'Không có công thức craft'}</div>
+          ${ingredientsHTML}
         </div>
 
         <!-- Effects -->
         <div>
-          <div style="font-size:0.8rem; color:var(--accent-cyan); font-weight:700; margin-bottom:4px;">✨ <span class="vi-text">HIỆU ỨNG & ĐẶC TÍNH:</span><span class="en-text">EFFECTS & TRAITS:</span></div>
-          <div style="font-size:0.88rem; color:var(--text-secondary); line-height:1.5;">
-            <span class="vi-text">${item.effects_vi}</span>
-            <span class="en-text">${item.effects_en}</span>
+          <div style="font-size:0.78rem; color:var(--accent-gold); font-weight:700; margin-bottom:4px;">✨ <span class="vi-text">HIỆU ỨNG & ĐẶC TÍNH:</span><span class="en-text">EFFECTS & TRAITS:</span></div>
+          <div style="font-size:0.85rem; color:var(--text-secondary); line-height:1.5;">
+            <span class="vi-text">${item.effects_vi || ''}</span>
+            <span class="en-text">${item.effects_en || ''}</span>
           </div>
         </div>
 
+        <!-- Used In Recipes (Reverse Graph) -->
+        ${usedInHTML}
+
         <!-- Location Source & Breadcrumb Link -->
-        <div style="background:rgba(0,0,0,0.25); padding:0.75rem 1rem; border-radius:6px; border:1px solid var(--border-color); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
+        <div style="background:rgba(0,0,0,0.25); padding:0.65rem 0.85rem; border-radius:6px; border:1px solid var(--border-subtle); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
           <div>
-            <div style="font-size:0.75rem; color:var(--text-muted);"><span class="vi-text">Vị trí / Nguồn tìm kiếm:</span><span class="en-text">Obtain Source:</span></div>
-            <div style="font-size:0.85rem; color:var(--text-primary); margin-top:2px;">
-              📍 <span class="vi-text">${item.source_location_vi}</span><span class="en-text">${item.source_location_en}</span>
+            <div style="font-size:0.72rem; color:var(--text-muted);"><span class="vi-text">Vị trí / Nguồn tìm kiếm:</span><span class="en-text">Obtain Source:</span></div>
+            <div style="font-size:0.82rem; color:var(--text-primary); margin-top:2px;">
+              📍 <span class="vi-text">${item.source_location_vi || ''}</span><span class="en-text">${item.source_location_en || ''}</span>
             </div>
           </div>
-          ${item.source_url ? `<a href="${item.source_url}" class="source-link-btn"><span class="vi-text">Đi Đến Vùng / Boss →</span><span class="en-text">Go To Location →</span></a>` : ''}
+          ${item.source_url ? `<a href="${item.source_url}" class="source-link-btn"><span class="vi-text">Xem Vùng / Boss →</span><span class="en-text">Go To Location →</span></a>` : ''}
         </div>
       </div>
     </div>
@@ -259,8 +321,22 @@ function openItemModal(itemId) {
 
   modal.classList.add('open');
   modal.onclick = (e) => {
-    if (e.target === modal) modal.classList.remove('open');
+    if (e.target === modal) closeItemModal();
   };
+}
+
+function closeItemModal() {
+  const modal = document.getElementById('item-detail-modal');
+  if (modal) modal.classList.remove('open');
+  modalHistoryStack = [];
+}
+
+function goBackItemModal() {
+  if (modalHistoryStack.length > 1) {
+    modalHistoryStack.pop(); // Remove current
+    const prevId = modalHistoryStack.pop(); // Get previous
+    openItemModal(prevId);
+  }
 }
 
 /* ==========================================================================

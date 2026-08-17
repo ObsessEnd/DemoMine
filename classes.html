@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Class Builds & Guides - Terramity Awakened Wiki</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Silkscreen&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="lang-vi">
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="index.html" class="brand">
+        <span>⚔️ TERRAMITY AWAKENED</span>
+        <span class="brand-badge">v1.0.5</span>
+      </a>
+
+      <nav class="main-nav">
+        <a href="index.html" class="nav-link">🏠 <span class="vi-text">Trang Chủ</span><span class="en-text">Home</span></a>
+        <a href="bosses.html" class="nav-link">🗡️ <span class="vi-text">Săn Boss</span><span class="en-text">Bosses</span></a>
+        <a href="progression.html" class="nav-link">📈 <span class="vi-text">Tiến Trình</span><span class="en-text">Progression</span></a>
+        <a href="magic.html" class="nav-link">✨ <span class="vi-text">Phép Thuật</span><span class="en-text">Magic</span></a>
+        <a href="dimensions.html" class="nav-link">🌌 <span class="vi-text">Không Gian</span><span class="en-text">Dimensions</span></a>
+        <a href="creatures.html" class="nav-link">🐉 <span class="vi-text">Sinh Vật</span><span class="en-text">Creatures</span></a>
+        <a href="classes.html" class="nav-link active">🛡️ <span class="vi-text">Hệ Phái</span><span class="en-text">Classes</span></a>
+        <a href="utilities.html" class="nav-link">🎒 <span class="vi-text">Tiện Ích</span><span class="en-text">Utilities</span></a>
+        <a href="tips.html" class="nav-link">💡 <span class="vi-text">Mẹo & Bug</span><span class="en-text">Tips & Bugs</span></a>
+      </nav>
+
+      <div class="header-actions">
+        <button id="btn-open-search" class="btn-search" title="Nhấn / để tìm kiếm">
+          <span>🔍</span>
+          <span class="vi-text">Tìm kiếm...</span>
+          <span class="en-text">Search...</span>
+          <kbd style="background:rgba(255,255,255,0.1); padding:1px 5px; border-radius:3px; font-size:0.7rem;">/</kbd>
+        </button>
+        <button id="lang-toggle-btn" class="btn-lang" title="Chuyển đổi ngôn ngữ">
+          <span id="lang-label">🇻🇳 VI</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="page-wrapper">
+    <div style="margin-bottom:2rem;">
+      <h1>🛡️ <span class="vi-text">4 Lớp Nhân Vật & Hướng Dẫn Build</span><span class="en-text">4 Combat Class Builds & Guides</span></h1>
+      <p style="color:var(--text-secondary);">
+        <span class="vi-text">Lựa chọn phong cách chiến đấu phù hợp: Đấu Sĩ cận chiến, Pháp Sư đa hệ, Hiệp Sĩ bất tử hoặc Xạ Thủ cơ động.</span>
+        <span class="en-text">Choose your optimal playstyle: Heavy Melee Warrior, Elemental Mage, Immortal Holy Paladin, or Agile Sniper Ranger.</span>
+      </p>
+    </div>
+
+    <!-- Class Cards -->
+    <div class="grid-cards" id="classes-grid"></div>
+
+    <!-- Comparison Table -->
+    <section style="margin-top:3rem;">
+      <h2>📊 <span class="vi-text">Bảng So Sánh Chỉ Số 4 Lớp Nhân Vật</span><span class="en-text">Class Stat & Playstyle Comparison</span></h2>
+      <div class="table-responsive">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th><span class="vi-text">Hệ Phái</span><span class="en-text">Class</span></th>
+              <th><span class="vi-text">Sát Thương (DPS)</span><span class="en-text">Damage Output</span></th>
+              <th><span class="vi-text">Chống Chịu</span><span class="en-text">Survivability</span></th>
+              <th><span class="vi-text">Độ Cơ Động</span><span class="en-text">Mobility</span></th>
+              <th><span class="vi-text">Độ Khó Chơi</span><span class="en-text">Difficulty</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong style="color:var(--accent-crimson);">🗡️ Warrior</strong></td>
+              <td>⭐⭐⭐⭐⭐</td>
+              <td>⭐⭐⭐⭐☆</td>
+              <td>⭐⭐⭐☆☆</td>
+              <td><span class="badge badge-cyan">Dễ (Easy)</span></td>
+            </tr>
+            <tr>
+              <td><strong style="color:var(--accent-purple);">🧙‍♂️ Mage</strong></td>
+              <td>⭐⭐⭐⭐⭐</td>
+              <td>⭐⭐☆☆☆</td>
+              <td>⭐⭐⭐☆☆</td>
+              <td><span class="badge badge-purple">Khó (Hard)</span></td>
+            </tr>
+            <tr>
+              <td><strong style="color:var(--accent-gold);">🛡️ Paladin</strong></td>
+              <td>⭐⭐⭐☆☆</td>
+              <td>⭐⭐⭐⭐⭐</td>
+              <td>⭐⭐☆☆☆</td>
+              <td><span class="badge badge-gold">Trung bình (Medium)</span></td>
+            </tr>
+            <tr>
+              <td><strong style="color:var(--accent-blue);">🏹 Ranger</strong></td>
+              <td>⭐⭐⭐⭐☆</td>
+              <td>⭐⭐⭐☆☆</td>
+              <td>⭐⭐⭐⭐⭐</td>
+              <td><span class="badge badge-blue">Trung bình (Medium)</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- Global Search Modal -->
+  <div id="search-modal" class="modal-backdrop">
+    <div class="modal-box">
+      <div class="modal-header">
+        <span>🔍</span>
+        <input type="text" id="global-search-input" class="modal-search-input" placeholder="Gõ tên Boss, Dimension, Item để tìm kiếm...">
+        <span style="font-size:0.8rem; color:var(--text-muted);"><kbd>ESC</kbd></span>
+      </div>
+      <div id="search-results-list" class="modal-results"></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>Terramity Awakened Wiki • Static Offline Edition • Powered by Gemini AI & Antigravity</p>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    const classContainer = document.getElementById('classes-grid');
+    if (classContainer && WIKI_DATA.classes) {
+      WIKI_DATA.classes.forEach(c => {
+        const card = document.createElement('div');
+        card.className = 'card tier-3';
+        card.innerHTML = `
+          <div class="card-header">
+            <div class="card-title"><span class="vi-text">${c.name_vi}</span><span class="en-text">${c.name}</span></div>
+            <span class="badge badge-gold"><span class="vi-text">${c.role_vi}</span><span class="en-text">${c.role}</span></span>
+          </div>
+          <div class="card-body">
+            <div style="font-size:0.85rem; margin-bottom:8px;">
+              <strong style="color:var(--accent-cyan);"><span class="vi-text">Vũ khí khuyên dùng:</span><span class="en-text">Weapons:</span></strong>
+              <div style="margin-top:2px; color:var(--text-primary);">${c.weapons}</div>
+            </div>
+            <div style="font-size:0.85rem; margin-bottom:8px;">
+              <strong style="color:var(--accent-gold);"><span class="vi-text">Tiến trình giáp:</span><span class="en-text">Armor Progression:</span></strong>
+              <div style="margin-top:2px; color:var(--text-primary);">${c.armor}</div>
+            </div>
+            <div style="font-size:0.85rem; margin-bottom:8px;">
+              <strong style="color:var(--accent-purple);"><span class="vi-text">Cổ vật Relics:</span><span class="en-text">Key Relics:</span></strong>
+              <div style="margin-top:2px; color:var(--text-primary);">${c.relics}</div>
+            </div>
+            <div style="font-size:0.82rem; color:var(--text-muted); background:rgba(0,0,0,0.25); padding:8px; border-radius:4px; margin-top:8px;">
+              💡 <em><span class="vi-text">${c.gameplay_vi}</span><span class="en-text">Master this class by utilizing synergistic relics and mobility tools.</span></em>
+            </div>
+          </div>
+        `;
+        classContainer.appendChild(card);
+      });
+    }
+  </script>
+</body>
+</html>

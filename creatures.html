@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creatures & Mythical Beasts - Terramity Awakened Wiki</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Silkscreen&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="lang-vi">
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="index.html" class="brand">
+        <span>⚔️ TERRAMITY AWAKENED</span>
+        <span class="brand-badge">v1.0.5</span>
+      </a>
+
+      <nav class="main-nav">
+        <a href="index.html" class="nav-link">🏠 <span class="vi-text">Trang Chủ</span><span class="en-text">Home</span></a>
+        <a href="bosses.html" class="nav-link">🗡️ <span class="vi-text">Săn Boss</span><span class="en-text">Bosses</span></a>
+        <a href="progression.html" class="nav-link">📈 <span class="vi-text">Tiến Trình</span><span class="en-text">Progression</span></a>
+        <a href="magic.html" class="nav-link">✨ <span class="vi-text">Phép Thuật</span><span class="en-text">Magic</span></a>
+        <a href="dimensions.html" class="nav-link">🌌 <span class="vi-text">Không Gian</span><span class="en-text">Dimensions</span></a>
+        <a href="creatures.html" class="nav-link active">🐉 <span class="vi-text">Sinh Vật</span><span class="en-text">Creatures</span></a>
+        <a href="classes.html" class="nav-link">🛡️ <span class="vi-text">Hệ Phái</span><span class="en-text">Classes</span></a>
+        <a href="utilities.html" class="nav-link">🎒 <span class="vi-text">Tiện Ích</span><span class="en-text">Utilities</span></a>
+        <a href="tips.html" class="nav-link">💡 <span class="vi-text">Mẹo & Bug</span><span class="en-text">Tips & Bugs</span></a>
+      </nav>
+
+      <div class="header-actions">
+        <button id="btn-open-search" class="btn-search" title="Nhấn / để tìm kiếm">
+          <span>🔍</span>
+          <span class="vi-text">Tìm kiếm...</span>
+          <span class="en-text">Search...</span>
+          <kbd style="background:rgba(255,255,255,0.1); padding:1px 5px; border-radius:3px; font-size:0.7rem;">/</kbd>
+        </button>
+        <button id="lang-toggle-btn" class="btn-lang" title="Chuyển đổi ngôn ngữ">
+          <span id="lang-label">🇻🇳 VI</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="page-wrapper">
+    <div style="margin-bottom:2rem;">
+      <h1>🐉 <span class="vi-text">Bách Khoa Sinh Vật & Rồng Thần Thoại</span><span class="en-text">Creatures & Mythical Bestiary</span></h1>
+      <p style="color:var(--text-secondary);">
+        <span class="vi-text">Khám phá 6 hệ sinh thái ngầm của Alex's Caves, ấp trứng thuần hóa 3 chủng tộc Rồng Lửa/Băng/Sét và 13 Boss Thần Thoại.</span>
+        <span class="en-text">Explore 6 underground Alex's Caves biomes, tame Fire/Ice/Lightning Dragons, and hunt 13 Legendary Monsters.</span>
+      </p>
+    </div>
+
+    <!-- Section 1: Alex's Caves -->
+    <section style="margin-bottom:3rem;">
+      <h2>🌋 <span class="vi-text">Alex's Caves: 6 Hệ Sinh Thái Dưới Lòng Đất</span><span class="en-text">Alex's Caves: 6 Subterranean Biomes</span></h2>
+      <div class="grid-cards">
+        <div class="card tier-1">
+          <div class="card-title">🧲 Magnetic Caves</div>
+          <div class="card-body">
+            <p class="vi-text">Hang từ tính ngập tràn quặng Neodymium. Chứa boss người máy <strong>Magnetron</strong>, găng tay từ trường <strong>Galena Gauntlet</strong> và khiên <strong>Resistor Shield</strong>.</p>
+            <p class="en-text">Magnetic caves with Neodymium ores. Houses the <strong>Magnetron</strong> boss, <strong>Galena Gauntlet</strong>, and <strong>Resistor Shield</strong>.</p>
+          </div>
+        </div>
+
+        <div class="card tier-2">
+          <div class="card-title">🦖 Primordial Caves</div>
+          <div class="card-body">
+            <p class="vi-text">Rừng rậm tiền sử ngầm dưới lòng đất. Quê hương của khủng long bạo chúa <strong>Tremorsaurus</strong> và ngọn thương hủy diệt <strong>Extinction Spear</strong>.</p>
+            <p class="en-text">Prehistoric jungle underground. Home to <strong>Tremorsaurus</strong> dinosaurs and the <strong>Extinction Spear</strong>.</p>
+          </div>
+        </div>
+
+        <div class="card tier-5">
+          <div class="card-title">☢️ Toxic Caves</div>
+          <div class="card-body">
+            <p class="vi-text">Vùng phóng xạ nguy hiểm chết người. Yêu cầu trang bị <strong>Hazmat Suit</strong> chống độc. Chế tạo súng tử ngoại <strong>Raygun</strong> và bom nguyên tử <strong>Nuclear Bomb</strong>.</p>
+            <p class="en-text">Highly radioactive wasteland. Requires <strong>Hazmat Suit</strong>. Craft the continuous death ray <strong>Raygun</strong> and <strong>Nuclear Bombs</strong>.</p>
+          </div>
+        </div>
+
+        <div class="card tier-2">
+          <div class="card-title">🌊 Abyssal Chasm</div>
+          <div class="card-body">
+            <p class="vi-text">Vực thẳm đáy biển sâu thẳm áp suất cao. Chứa tộc người cá <strong>Deep Ones</strong>, ngọc trai đen và yêu cầu trang bị <strong>Diving Armor</strong> để lặn sâu.</p>
+            <p class="en-text">Deep oceanic trench with crushing pressure. Home to <strong>Deep Ones</strong>, black pearls, and requires <strong>Diving Armor</strong>.</p>
+          </div>
+        </div>
+
+        <div class="card tier-3">
+          <div class="card-title">🌑 Forlorn Hollows</div>
+          <div class="card-body">
+            <p class="vi-text">Hang bóng tối u ám với quái vật sâu bọ và gai nhọn. Chế tạo cung hắc ám <strong>Dreadbow</strong> bắn mưa tên bóng đêm.</p>
+            <p class="en-text">Dark gloom caves infested with subterranean insects. Craft the <strong>Dreadbow</strong> for shadowy arrow barrages.</p>
+          </div>
+        </div>
+
+        <div class="card tier-4">
+          <div class="card-title">🍬 Candy Cavity</div>
+          <div class="card-body">
+            <p class="vi-text">Hang kẹo ngọt ngào nhưng ẩn chứa cạm bẫy chết người từ boss phù thủy bánh gừng <strong>Licowitch</strong> trong tháp kẹo Licowitch Tower.</p>
+            <p class="en-text">Deceptive sweet cavity concealing deadly traps and the gingerbread witch boss <strong>Licowitch</strong>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Ice and Fire Dragons -->
+    <section style="margin-bottom:3rem;">
+      <h2>🐉 <span class="vi-text">Ice & Fire: Tam Đại Chủng Tộc Rồng & Thép Dreadsteel</span><span class="en-text">Ice & Fire: 3 Dragon Breeds & Dreadsteel</span></h2>
+      <div class="grid-cards">
+        <div class="card tier-5">
+          <div class="card-title">🔥 Hỏa Long (Fire Dragon)</div>
+          <div class="card-body">
+            <p class="vi-text">Phun lửa thiêu rụi đồi núi Overworld. Rồng cấp 5 nằm sâu dưới hang Y < -20. Đặt trứng lên lửa để ấp rồng con.</p>
+            <p class="en-text">Breathes raging fire over hills. Stage 5 dragons dwell in deep caves (Y < -20). Hatch eggs directly on fire.</p>
+          </div>
+        </div>
+
+        <div class="card tier-2">
+          <div class="card-title">❄️ Băng Long (Ice Dragon)</div>
+          <div class="card-body">
+            <p class="vi-text">Phun hơi lạnh đóng băng vạn vật tại vùng tuyết lạnh băng giá. Đặt trứng rồng băng dưới nước đóng băng để ấp.</p>
+            <p class="en-text">Freezes targets in glacial biomes. Hatch ice dragon eggs submerged in freezing water.</p>
+          </div>
+        </div>
+
+        <div class="card tier-4">
+          <div class="card-title">⚡ Lôi Long (Lightning Dragon)</div>
+          <div class="card-body">
+            <p class="vi-text">Bắn tia sét giật lan khủng khiếp tại rừng nhiệt đới / savanna. Đặt trứng dưới trời mưa dông bão tố để ấp.</p>
+            <p class="en-text">Strikes with devastating chain lightning. Hatch lightning dragon eggs outside during thunderstorms.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert alert-info" style="margin-top:1.5rem;">
+        <div style="font-size:1.4rem;">⚒️</div>
+        <div>
+          <strong class="vi-text">LÒ RÈN DRAGON FORGE & THÉP DREADSTEEL:</strong>
+          <strong class="en-text">DRAGON FORGE & DREADSTEEL SYNTHESIS:</strong>
+          <span class="vi-text">Xây lò rèn Dragon Forge kết hợp hơi thở rồng để luyện ra <strong>Dragonsteel</strong>. Kết hợp cả 3 loại Dragonsteel Lửa + Băng + Sét cùng Mảnh Dread Shard để tạo nên <strong>Thép Dreadsteel Tối Thượng</strong>!</span>
+          <span class="en-text">Build Dragon Forges powered by dragon breath to craft <strong>Dragonsteel</strong>. Combine all 3 Dragonsteels (Fire + Ice + Lightning) with a Dread Shard to forge <strong>Supreme Dreadsteel</strong>!</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Global Search Modal -->
+  <div id="search-modal" class="modal-backdrop">
+    <div class="modal-box">
+      <div class="modal-header">
+        <span>🔍</span>
+        <input type="text" id="global-search-input" class="modal-search-input" placeholder="Gõ tên Boss, Dimension, Item để tìm kiếm...">
+        <span style="font-size:0.8rem; color:var(--text-muted);"><kbd>ESC</kbd></span>
+      </div>
+      <div id="search-results-list" class="modal-results"></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>Terramity Awakened Wiki • Static Offline Edition • Powered by Gemini AI & Antigravity</p>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

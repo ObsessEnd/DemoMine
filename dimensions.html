@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dimensions & 12 Ancient Eyes - Terramity Awakened Wiki</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Silkscreen&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="lang-vi">
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="index.html" class="brand">
+        <span>⚔️ TERRAMITY AWAKENED</span>
+        <span class="brand-badge">v1.0.5</span>
+      </a>
+
+      <nav class="main-nav">
+        <a href="index.html" class="nav-link">🏠 <span class="vi-text">Trang Chủ</span><span class="en-text">Home</span></a>
+        <a href="bosses.html" class="nav-link">🗡️ <span class="vi-text">Săn Boss</span><span class="en-text">Bosses</span></a>
+        <a href="progression.html" class="nav-link">📈 <span class="vi-text">Tiến Trình</span><span class="en-text">Progression</span></a>
+        <a href="magic.html" class="nav-link">✨ <span class="vi-text">Phép Thuật</span><span class="en-text">Magic</span></a>
+        <a href="dimensions.html" class="nav-link active">🌌 <span class="vi-text">Không Gian</span><span class="en-text">Dimensions</span></a>
+        <a href="creatures.html" class="nav-link">🐉 <span class="vi-text">Sinh Vật</span><span class="en-text">Creatures</span></a>
+        <a href="classes.html" class="nav-link">🛡️ <span class="vi-text">Hệ Phái</span><span class="en-text">Classes</span></a>
+        <a href="utilities.html" class="nav-link">🎒 <span class="vi-text">Tiện Ích</span><span class="en-text">Utilities</span></a>
+        <a href="tips.html" class="nav-link">💡 <span class="vi-text">Mẹo & Bug</span><span class="en-text">Tips & Bugs</span></a>
+      </nav>
+
+      <div class="header-actions">
+        <button id="btn-open-search" class="btn-search" title="Nhấn / để tìm kiếm">
+          <span>🔍</span>
+          <span class="vi-text">Tìm kiếm...</span>
+          <span class="en-text">Search...</span>
+          <kbd style="background:rgba(255,255,255,0.1); padding:1px 5px; border-radius:3px; font-size:0.7rem;">/</kbd>
+        </button>
+        <button id="lang-toggle-btn" class="btn-lang" title="Chuyển đổi ngôn ngữ">
+          <span id="lang-label">🇻🇳 VI</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="page-wrapper">
+    <div style="margin-bottom:2rem;">
+      <h1>🌌 <span class="vi-text">Các Chiều Không Gian & 12 Mắt Thần</span><span class="en-text">Dimensions & 12 Ancient Eyes</span></h1>
+      <p style="color:var(--text-secondary);">
+        <span class="vi-text">Hướng dẫn chi tiết cách kích hoạt cổng không gian, hầm ngục đặc thù và bảng tra cứu tọa độ 12 Mắt Thần End Remastered.</span>
+        <span class="en-text">Detailed portal activation guides, dimension dungeons, and the lookup checklist for all 12 End Remastered Eyes.</span>
+      </p>
+    </div>
+
+    <!-- Dimension Cards -->
+    <div class="grid-cards" style="margin-bottom:3rem;" id="dimension-cards-grid"></div>
+
+    <!-- 12 Eyes Section -->
+    <section>
+      <h2>👁️ <span class="vi-text">BẢNG TRA CỨU 12 MẮT THẦN CỔ XƯA (END REMASTERED)</span><span class="en-text">12 ANCIENT EYES LOOKUP (END REMASTERED)</span></h2>
+      <p style="color:var(--text-secondary); margin-bottom:1rem;">
+        <span class="vi-text">Để mở cổng The End, bạn bắt buộc phải thu thập đủ 12 con mắt đặc thù sau và cắm vào Khung Cổng Cổ Đại (Ancient Portal Frame):</span>
+        <span class="en-text">To activate the End Portal, you must collect all 12 unique ancient eyes and insert them into the Ancient Portal Frame:</span>
+      </p>
+
+      <div class="table-responsive">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th><span class="vi-text">Mắt Thần</span><span class="en-text">Eye Name</span></th>
+              <th><span class="vi-text">Vị Trí Cấu Trúc & Cách Thu Thập</span><span class="en-text">Structure Location & Method</span></th>
+              <th><span class="vi-text">Tỉ Lệ Xuất Hiện</span><span class="en-text">Spawn Rate</span></th>
+              <th><span class="vi-text">Trạng Thái</span><span class="en-text">Status</span></th>
+            </tr>
+          </thead>
+          <tbody id="eyes-table-body"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- Global Search Modal -->
+  <div id="search-modal" class="modal-backdrop">
+    <div class="modal-box">
+      <div class="modal-header">
+        <span>🔍</span>
+        <input type="text" id="global-search-input" class="modal-search-input" placeholder="Gõ tên Boss, Dimension, Item để tìm kiếm...">
+        <span style="font-size:0.8rem; color:var(--text-muted);"><kbd>ESC</kbd></span>
+      </div>
+      <div id="search-results-list" class="modal-results"></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>Terramity Awakened Wiki • Static Offline Edition • Powered by Gemini AI & Antigravity</p>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    // Render Dimensions
+    const dimContainer = document.getElementById('dimension-cards-grid');
+    if (dimContainer && WIKI_DATA.dimensions) {
+      WIKI_DATA.dimensions.forEach(d => {
+        const card = document.createElement('div');
+        card.className = 'card tier-2';
+        card.id = `dim-${d.id}`;
+        card.innerHTML = `
+          <div class="card-header">
+            <div class="card-title">🌌 <span class="vi-text">${d.name_vi}</span><span class="en-text">${d.name}</span></div>
+            <span class="badge badge-purple">Dimension</span>
+          </div>
+          <div class="card-body">
+            <div style="font-size:0.88rem; margin-bottom:8px;">
+              <strong style="color:var(--accent-cyan);"><span class="vi-text">Cách mở cổng:</span><span class="en-text">Portal:</span></strong>
+              <div style="margin-top:2px; color:var(--text-primary);"><span class="vi-text">${d.portal_vi}</span><span class="en-text">${d.portal}</span></div>
+            </div>
+            <div style="font-size:0.85rem; margin-bottom:8px;">
+              <strong style="color:var(--accent-gold);"><span class="vi-text">Tài nguyên độc quyền:</span><span class="en-text">Key Resources:</span></strong>
+              <div style="margin-top:2px; color:var(--text-secondary);"><span class="vi-text">${d.key_resources_vi.join(', ')}</span><span class="en-text">${d.key_resources.join(', ')}</span></div>
+            </div>
+            <div style="font-size:0.82rem; color:var(--text-muted); background:rgba(0,0,0,0.25); padding:8px; border-radius:4px;">
+              <span class="vi-text">${d.guide_vi}</span><span class="en-text">${d.guide}</span>
+            </div>
+          </div>
+        `;
+        dimContainer.appendChild(card);
+      });
+    }
+
+    // Render 12 Eyes
+    const eyesBody = document.getElementById('eyes-table-body');
+    if (eyesBody && WIKI_DATA.eyes) {
+      WIKI_DATA.eyes.forEach(eye => {
+        const key = `eye_${eye.name.replace(/\s+/g, '_')}`;
+        const isDone = localStorage.getItem(key) === 'true';
+
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><strong style="color:var(--accent-gold);">👁️ ${eye.name}</strong></td>
+          <td>${eye.loc}</td>
+          <td><span class="badge badge-crimson">${eye.rate}</span></td>
+          <td>
+            <label class="checklist-item ${isDone ? 'done' : ''}" style="margin:0;">
+              <input type="checkbox" ${isDone ? 'checked' : ''} onchange="localStorage.setItem('${key}', this.checked); this.parentElement.classList.toggle('done', this.checked);">
+              <span class="vi-text" style="font-size:0.8rem;">Đã có</span>
+              <span class="en-text" style="font-size:0.8rem;">Collected</span>
+            </label>
+          </td>
+        `;
+        eyesBody.appendChild(tr);
+      });
+    }
+  </script>
+</body>
+</html>

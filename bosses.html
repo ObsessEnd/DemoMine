@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boss Guide & Tracker - Terramity Awakened Wiki</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Silkscreen&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="lang-vi">
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="index.html" class="brand">
+        <span>⚔️ TERRAMITY AWAKENED</span>
+        <span class="brand-badge">v1.0.5</span>
+      </a>
+
+      <nav class="main-nav">
+        <a href="index.html" class="nav-link">🏠 <span class="vi-text">Trang Chủ</span><span class="en-text">Home</span></a>
+        <a href="bosses.html" class="nav-link active">🗡️ <span class="vi-text">Săn Boss</span><span class="en-text">Bosses</span></a>
+        <a href="progression.html" class="nav-link">📈 <span class="vi-text">Tiến Trình</span><span class="en-text">Progression</span></a>
+        <a href="magic.html" class="nav-link">✨ <span class="vi-text">Phép Thuật</span><span class="en-text">Magic</span></a>
+        <a href="dimensions.html" class="nav-link">🌌 <span class="vi-text">Không Gian</span><span class="en-text">Dimensions</span></a>
+        <a href="creatures.html" class="nav-link">🐉 <span class="vi-text">Sinh Vật</span><span class="en-text">Creatures</span></a>
+        <a href="classes.html" class="nav-link">🛡️ <span class="vi-text">Hệ Phái</span><span class="en-text">Classes</span></a>
+        <a href="utilities.html" class="nav-link">🎒 <span class="vi-text">Tiện Ích</span><span class="en-text">Utilities</span></a>
+        <a href="tips.html" class="nav-link">💡 <span class="vi-text">Mẹo & Bug</span><span class="en-text">Tips & Bugs</span></a>
+      </nav>
+
+      <div class="header-actions">
+        <button id="btn-open-search" class="btn-search" title="Nhấn / để tìm kiếm">
+          <span>🔍</span>
+          <span class="vi-text">Tìm kiếm...</span>
+          <span class="en-text">Search...</span>
+          <kbd style="background:rgba(255,255,255,0.1); padding:1px 5px; border-radius:3px; font-size:0.7rem;">/</kbd>
+        </button>
+        <button id="lang-toggle-btn" class="btn-lang" title="Chuyển đổi ngôn ngữ">
+          <span id="lang-label">🇻🇳 VI</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="page-wrapper">
+    <div style="margin-bottom:1.5rem;">
+      <h1>🗡️ <span class="vi-text">Danh Sách & Hướng Dẫn Săn Boss</span><span class="en-text">Boss Guide & Hunting Road</span></h1>
+      <p style="color:var(--text-secondary);">
+        <span class="vi-text">Hơn 70+ Boss được phân bậc sao (1★ - 5★) kèm máu (HP), cách triệu hồi và chiến thuật đánh. Nhấp vào ô checkbox để theo dõi tiến độ tiêu diệt!</span>
+        <span class="en-text">70+ Boss encounters ranked by star tiers (1★ - 5★) with HP stats, summon methods, and battle tips. Click the checkboxes to track your kills!</span>
+      </p>
+    </div>
+
+    <!-- Filter Bar -->
+    <div class="filter-bar">
+      <div class="filter-group">
+        <span class="filter-label"><span class="vi-text">Lọc Bậc Sao:</span><span class="en-text">Star Tier:</span></span>
+        <select id="tier-filter" class="select-filter">
+          <option value="all">Tất cả bậc (All Tiers)</option>
+          <option value="1">1★ Sơ cấp (Early Bosses)</option>
+          <option value="2">2★ Trung cấp (Mid-tier)</option>
+          <option value="3">3★ Cao cấp (Dungeon Lords)</option>
+          <option value="4">4★ Huyền thoại (Mythical)</option>
+          <option value="5">5★ Chúa tể & Siêu Boss (Celestial)</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <span class="filter-label"><span class="vi-text">Chiều không gian:</span><span class="en-text">Dimension:</span></span>
+        <select id="dim-filter" class="select-filter">
+          <option value="all">Tất cả (All Dimensions)</option>
+          <option value="Overworld">Overworld</option>
+          <option value="The Aether">The Aether</option>
+          <option value="The Nether">The Nether</option>
+          <option value="The End">The End</option>
+        </select>
+      </div>
+
+      <input type="text" id="boss-search" class="input-search" placeholder="Tìm tên boss, mod, drop...">
+    </div>
+
+    <!-- Boss Grid -->
+    <div id="boss-grid" class="grid-cards"></div>
+  </main>
+
+  <!-- Global Search Modal -->
+  <div id="search-modal" class="modal-backdrop">
+    <div class="modal-box">
+      <div class="modal-header">
+        <span>🔍</span>
+        <input type="text" id="global-search-input" class="modal-search-input" placeholder="Gõ tên Boss, Dimension, Item để tìm kiếm...">
+        <span style="font-size:0.8rem; color:var(--text-muted);"><kbd>ESC</kbd></span>
+      </div>
+      <div id="search-results-list" class="modal-results"></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>Terramity Awakened Wiki • Static Offline Edition • Powered by Gemini AI & Antigravity</p>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    function renderBosses() {
+      const grid = document.getElementById('boss-grid');
+      const tierFilter = document.getElementById('tier-filter').value;
+      const dimFilter = document.getElementById('dim-filter').value;
+      const search = document.getElementById('boss-search').value.toLowerCase();
+
+      grid.innerHTML = '';
+
+      WIKI_DATA.bosses.forEach(b => {
+        if (tierFilter !== 'all' && b.tier.toString() !== tierFilter) return;
+        if (dimFilter !== 'all' && b.dimension !== dimFilter) return;
+        
+        const matchSearch = `${b.name} ${b.mod} ${b.location} ${b.location_vi}`.toLowerCase();
+        if (search && !matchSearch.includes(search)) return;
+
+        const isDone = localStorage.getItem(`boss_${b.id}`) === 'true';
+
+        const card = document.createElement('div');
+        card.className = `card tier-${b.tier}`;
+        card.id = `boss-${b.id}`;
+        card.innerHTML = `
+          <div class="card-header">
+            <div>
+              <div class="card-title">${b.name}</div>
+              <div class="card-subtitle">${b.mod} • ${b.dimension}</div>
+            </div>
+            <span class="badge badge-crimson">${b.stars}</span>
+          </div>
+          <div class="card-body">
+            <div style="margin-bottom:8px; display:flex; gap:6px; flex-wrap:wrap;">
+              <span class="badge badge-gold">❤️ ${b.hp.toLocaleString()} HP</span>
+              <span class="badge badge-purple">📍 <span class="vi-text">${b.location_vi}</span><span class="en-text">${b.location}</span></span>
+            </div>
+            <div style="font-size:0.85rem; margin-bottom:8px;">
+              <strong style="color:var(--accent-cyan);"><span class="vi-text">Triệu hồi:</span><span class="en-text">Summon:</span></strong>
+              <span class="vi-text">${b.summon_vi}</span>
+              <span class="en-text">${b.summon}</span>
+            </div>
+            <div style="font-size:0.85rem; margin-bottom:8px;">
+              <strong style="color:var(--accent-gold);"><span class="vi-text">Vật phẩm rơi:</span><span class="en-text">Key Drops:</span></strong>
+              <span class="vi-text">${b.drops_vi.join(', ')}</span>
+              <span class="en-text">${b.drops.join(', ')}</span>
+            </div>
+            <div style="font-size:0.82rem; color:var(--text-muted); background:rgba(0,0,0,0.25); padding:6px 8px; border-radius:4px; border-left:2px solid var(--accent-blue);">
+              💡 <em><span class="vi-text">${b.tips_vi}</span><span class="en-text">${b.tips}</span></em>
+            </div>
+          </div>
+          <div class="card-footer">
+            <label class="checklist-item ${isDone ? 'done' : ''}" style="margin:0;">
+              <input type="checkbox" id="check_${b.id}" ${isDone ? 'checked' : ''} onchange="toggleBoss('${b.id}', this.checked)">
+              <span class="vi-text" style="font-size:0.82rem;">Đã tiêu diệt (Defeated)</span>
+              <span class="en-text" style="font-size:0.82rem;">Defeated</span>
+            </label>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function toggleBoss(id, checked) {
+      localStorage.setItem(`boss_${id}`, checked);
+      const card = document.getElementById(`boss-${id}`);
+      if (card) {
+        const item = card.querySelector('.checklist-item');
+        if (checked) item.classList.add('done');
+        else item.classList.remove('done');
+      }
+    }
+
+    document.getElementById('tier-filter').addEventListener('change', renderBosses);
+    document.getElementById('dim-filter').addEventListener('change', renderBosses);
+    document.getElementById('boss-search').addEventListener('input', renderBosses);
+
+    renderBosses();
+  </script>
+</body>
+</html>

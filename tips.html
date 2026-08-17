@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tips, Bugs & FAQ - Terramity Awakened Wiki</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Silkscreen&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="lang-vi">
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="index.html" class="brand">
+        <span>⚔️ TERRAMITY AWAKENED</span>
+        <span class="brand-badge">v1.0.5</span>
+      </a>
+
+      <nav class="main-nav">
+        <a href="index.html" class="nav-link">🏠 <span class="vi-text">Trang Chủ</span><span class="en-text">Home</span></a>
+        <a href="bosses.html" class="nav-link">🗡️ <span class="vi-text">Săn Boss</span><span class="en-text">Bosses</span></a>
+        <a href="progression.html" class="nav-link">📈 <span class="vi-text">Tiến Trình</span><span class="en-text">Progression</span></a>
+        <a href="magic.html" class="nav-link">✨ <span class="vi-text">Phép Thuật</span><span class="en-text">Magic</span></a>
+        <a href="dimensions.html" class="nav-link">🌌 <span class="vi-text">Không Gian</span><span class="en-text">Dimensions</span></a>
+        <a href="creatures.html" class="nav-link">🐉 <span class="vi-text">Sinh Vật</span><span class="en-text">Creatures</span></a>
+        <a href="classes.html" class="nav-link">🛡️ <span class="vi-text">Hệ Phái</span><span class="en-text">Classes</span></a>
+        <a href="utilities.html" class="nav-link">🎒 <span class="vi-text">Tiện Ích</span><span class="en-text">Utilities</span></a>
+        <a href="tips.html" class="nav-link active">💡 <span class="vi-text">Mẹo & Bug</span><span class="en-text">Tips & Bugs</span></a>
+      </nav>
+
+      <div class="header-actions">
+        <button id="btn-open-search" class="btn-search" title="Nhấn / để tìm kiếm">
+          <span>🔍</span>
+          <span class="vi-text">Tìm kiếm...</span>
+          <span class="en-text">Search...</span>
+          <kbd style="background:rgba(255,255,255,0.1); padding:1px 5px; border-radius:3px; font-size:0.7rem;">/</kbd>
+        </button>
+        <button id="lang-toggle-btn" class="btn-lang" title="Chuyển đổi ngôn ngữ">
+          <span id="lang-label">🇻🇳 VI</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="page-wrapper">
+    <div style="margin-bottom:2rem;">
+      <h1>💡 <span class="vi-text">Mẹo Sống Còn, Cảnh Báo Lỗi & FAQ</span><span class="en-text">Survival Tips, Known Bugs & FAQ</span></h1>
+      <p style="color:var(--text-secondary);">
+        <span class="vi-text">Tổng hợp các kinh nghiệm xương máu, cảnh báo lỗi crash game và câu hỏi thường gặp khi chơi Terramity Awakened.</span>
+        <span class="en-text">Essential gameplay tips, critical bug warnings, and frequently asked questions for Terramity Awakened.</span>
+      </p>
+    </div>
+
+    <!-- Alert Box: Sugar Rush -->
+    <div class="alert alert-danger" style="margin-bottom:2rem;">
+      <div style="font-size:1.8rem;">🚫</div>
+      <div>
+        <h3 style="color:var(--accent-crimson); margin-bottom:4px;">
+          <span class="vi-text">LỖI CRASH WORLD NGHIÊM TRỌNG: SUGAR RUSH</span>
+          <span class="en-text">CRITICAL BUG: SUGAR RUSH EFFECT</span>
+        </h3>
+        <p class="vi-text">
+          <strong>TUYỆT ĐỐI KHÔNG SỬ DỤNG</strong> bất kỳ bình thuốc hay vật phẩm nào có hiệu ứng <code>Sugar Rush</code>. Xung đột mod sẽ kích hoạt lỗi <strong>Nhân bản quái vật vô hạn (Infinite Mob Multiplication)</strong> làm đóng băng hoàn toàn server / máy cá nhân và làm hỏng vĩnh viễn file lưu thế giới (save world)!
+        </p>
+        <p class="en-text">
+          <strong>DO NOT USE</strong> any potions or food items giving the <code>Sugar Rush</code> effect. A mod conflict triggers <strong>Infinite Mob Multiplication</strong> within seconds, permanently freezing and corrupting your world save!
+        </p>
+      </div>
+    </div>
+
+    <!-- 5 Survival Tips -->
+    <section style="margin-bottom:3rem;">
+      <h2>🌟 <span class="vi-text">5 Mẹo Sinh Tồn Hàng Đầu Dành Cho Bạn</span><span class="en-text">Top 5 Essential Survival Tips</span></h2>
+      <div class="grid-cards" id="tips-grid"></div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section style="margin-bottom:3rem;">
+      <h2>❓ <span class="vi-text">Câu Hỏi Thường Gặp (FAQ)</span><span class="en-text">Frequently Asked Questions</span></h2>
+      
+      <div style="display:flex; flex-direction:column; gap:1rem;">
+        <div class="card tier-1">
+          <div class="card-title">Q: Modpack này cần bao nhiêu RAM để chơi mượt?</div>
+          <div class="card-body">
+            <span class="vi-text">Khuyến nghị phân bổ tối thiểu <strong>8000 MB (8 GB RAM)</strong> trong cài đặt Launcher (CurseForge / Prism Launcher) để load mượt 356 mod và các hiệu ứng shader.</span>
+            <span class="en-text">We recommend allocating at least <strong>8000 MB (8 GB RAM)</strong> in your Launcher settings to handle all 356 mods and shaders smoothly.</span>
+          </div>
+        </div>
+
+        <div class="card tier-2">
+          <div class="card-title">Q: Tại sao tôi không thể mở cổng The End bằng mắt Ender thông thường?</div>
+          <div class="card-body">
+            <span class="vi-text">Modpack tích hợp mod <em>End Remastered</em>. Bạn bắt buộc phải thu thập đủ <strong>12 Mắt Thần Cổ Xưa</strong> từ các hầm ngục khác nhau (xem trang <a href="dimensions.html">Không Gian</a>).</span>
+            <span class="en-text">The modpack features <em>End Remastered</em>. You must collect all <strong>12 Ancient Eyes</strong> from various structures (see <a href="dimensions.html">Dimensions</a>).</span>
+          </div>
+        </div>
+
+        <div class="card tier-3">
+          <div class="card-title">Q: Rương đồ trong hầm ngục có bị người khác loot mất khi chơi nhiều người (Multiplayer) không?</div>
+          <div class="card-body">
+            <span class="vi-text">Không! Modpack sử dụng mod <em>Lootr</em> — mỗi người chơi khi mở cùng 1 chiếc rương đều sẽ nhận được một túi loot riêng biệt của chính mình.</span>
+            <span class="en-text">No! The modpack uses <em>Lootr</em> — every player opening the same dungeon chest gets their own unique instance of loot.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Global Search Modal -->
+  <div id="search-modal" class="modal-backdrop">
+    <div class="modal-box">
+      <div class="modal-header">
+        <span>🔍</span>
+        <input type="text" id="global-search-input" class="modal-search-input" placeholder="Gõ tên Boss, Dimension, Item để tìm kiếm...">
+        <span style="font-size:0.8rem; color:var(--text-muted);"><kbd>ESC</kbd></span>
+      </div>
+      <div id="search-results-list" class="modal-results"></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>Terramity Awakened Wiki • Static Offline Edition • Powered by Gemini AI & Antigravity</p>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    const tipsContainer = document.getElementById('tips-grid');
+    if (tipsContainer && WIKI_DATA.tips) {
+      WIKI_DATA.tips.forEach(t => {
+        const card = document.createElement('div');
+        card.className = `card tier-3`;
+        card.innerHTML = `
+          <div class="card-header">
+            <div class="card-title"><span class="vi-text">${t.title_vi}</span><span class="en-text">${t.title}</span></div>
+          </div>
+          <div class="card-body">
+            <p class="vi-text">${t.desc_vi}</p>
+            <p class="en-text">${t.desc}</p>
+          </div>
+        `;
+        tipsContainer.appendChild(card);
+      });
+    }
+  </script>
+</body>
+</html>

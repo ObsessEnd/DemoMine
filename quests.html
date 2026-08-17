@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bách Khoa Toàn Thư 865 Nhiệm Vụ (FTB Quest Log) - Terramity Awakened Wiki</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Silkscreen&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .quest-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.15rem;
+      position: relative;
+      transition: var(--transition-normal);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .quest-card:hover {
+      border-color: var(--border-medium);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+    }
+    .quest-card.completed {
+      border-color: var(--accent-cyan);
+      background: rgba(0, 196, 159, 0.05);
+    }
+    .quest-checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      user-select: none;
+      margin-top: 0.75rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border-subtle);
+    }
+    .quest-checkbox-label input {
+      accent-color: var(--accent-cyan);
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+    }
+    .quest-id-pill {
+      font-family: monospace;
+      font-size: 0.72rem;
+      padding: 2px 6px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 4px;
+      color: var(--text-muted);
+    }
+    .progress-banner {
+      background: linear-gradient(135deg, rgba(21,29,44,0.9), rgba(11,15,23,0.95));
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    .progress-bar-container {
+      width: 100%;
+      height: 10px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 5px;
+      overflow: hidden;
+      margin-top: 0.75rem;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent-cyan), var(--accent-gold));
+      width: 0%;
+      transition: width 0.4s ease;
+    }
+  </style>
+</head>
+<body class="lang-vi">
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="index.html" class="brand">
+        <img src="images/logo.svg" alt="Logo" width="28" height="28" style="vertical-align:middle;">
+        <span>TERRAMITY AWAKENED</span>
+        <span class="brand-badge">v1.0.5</span>
+      </a>
+
+      <nav class="main-nav">
+        <a href="index.html" class="nav-link">🏠 <span class="vi-text">Trang Chủ</span><span class="en-text">Home</span></a>
+        <a href="quests.html" class="nav-link active">📜 <span class="vi-text">Nhiệm Vụ</span><span class="en-text">Quests</span></a>
+        <a href="items.html" class="nav-link">📦 <span class="vi-text">Vật Phẩm</span><span class="en-text">Items</span></a>
+        <a href="bosses.html" class="nav-link">🗡️ <span class="vi-text">Săn Boss</span><span class="en-text">Bosses</span></a>
+        <a href="progression.html" class="nav-link">📈 <span class="vi-text">Tiến Trình</span><span class="en-text">Progression</span></a>
+        <a href="magic.html" class="nav-link">✨ <span class="vi-text">Phép Thuật</span><span class="en-text">Magic</span></a>
+        <a href="dimensions.html" class="nav-link">🌌 <span class="vi-text">Không Gian</span><span class="en-text">Dimensions</span></a>
+        <a href="creatures.html" class="nav-link">🐉 <span class="vi-text">Sinh Vật</span><span class="en-text">Creatures</span></a>
+        <a href="classes.html" class="nav-link">🛡️ <span class="vi-text">Hệ Phái</span><span class="en-text">Classes</span></a>
+        <a href="utilities.html" class="nav-link">🎒 <span class="vi-text">Tiện Ích</span><span class="en-text">Utilities</span></a>
+        <a href="tips.html" class="nav-link">💡 <span class="vi-text">Mẹo & Bug</span><span class="en-text">Tips & Bugs</span></a>
+      </nav>
+
+      <div class="header-actions">
+        <button id="btn-open-search" class="btn-search" title="Nhấn / để tìm kiếm">
+          <span>🔍</span>
+          <span class="vi-text">Tìm kiếm...</span>
+          <span class="en-text">Search...</span>
+          <kbd style="background:rgba(255,255,255,0.1); padding:1px 5px; border-radius:3px; font-size:0.7rem;">/</kbd>
+        </button>
+        <button id="audio-toggle-btn" class="btn-lang" title="Bật/Tắt Âm Thanh & Nhạc Nền">
+          <span>🔊</span>
+          <span class="vi-text">Âm Thanh</span>
+          <span class="en-text">Audio</span>
+        </button>
+        <button id="lang-toggle-btn" class="btn-lang" title="Chuyển đổi ngôn ngữ">
+          <span id="lang-label">🇻🇳 VI</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="page-wrapper">
+    <div style="margin-bottom:1.5rem;">
+      <h1>📜 <span class="vi-text">Đại Bách Khoa 865 Nhiệm Vụ (FTB Quest Log & % Tracker)</span><span class="en-text">Complete 865 FTB Quest Log</span></h1>
+      <p style="color:var(--text-secondary);">
+        <span class="vi-text">Trích xuất toàn bộ dữ liệu 40 file nhiệm vụ FTB Quests từ modpack: Thám hiểm cốt lõi, Alex's Caves, Ice & Fire, 8 Trường phái Ma thuật, Chiều không gian và Bách khoa câu cá 121 loài.</span>
+        <span class="en-text">Extracted from all 40 FTB Quest files: Adventure Core, Alex's Caves, Ice & Fire, 8 Magic Schools, Dimensions, and 121 Starcatcher Fish quests.</span>
+      </p>
+    </div>
+
+    <!-- Live Progress Banner -->
+    <div class="progress-banner">
+      <div>
+        <div style="font-size:1.15rem; font-weight:700; color:var(--accent-gold);">
+          🎯 <span class="vi-text">TIẾN ĐỘ HOÀN THÀNH MODPACK</span><span class="en-text">MODPACK COMPLETION PROGRESS</span>
+        </div>
+        <div style="font-size:0.85rem; color:var(--text-secondary); margin-top:4px;">
+          <span id="progress-text">Đang tải dữ liệu...</span>
+        </div>
+      </div>
+      <div style="text-align:right;">
+        <span id="progress-percent" style="font-size:1.8rem; font-family:'Silkscreen', monospace; color:var(--accent-cyan); font-weight:700;">0.0%</span>
+      </div>
+      <div class="progress-bar-container">
+        <div id="progress-bar-fill" class="progress-bar-fill"></div>
+      </div>
+    </div>
+
+    <!-- Filter & Search Controls -->
+    <div class="filter-bar" style="margin-bottom:1.5rem;">
+      <div class="filter-group">
+        <label class="filter-label">🔍 <span class="vi-text">Tìm Quest:</span><span class="en-text">Search:</span></label>
+        <input type="text" id="quest-search-input" class="search-box" placeholder="Tìm theo tên quest, item, reward, ID...">
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-label">📂 <span class="vi-text">Chương:</span><span class="en-text">Chapter:</span></label>
+        <select id="chapter-filter" class="select-filter">
+          <option value="all">Tất cả chương (All Chapters)</option>
+          <option value="adventure">Chương 1: Cốt Lõi Terramity & Cataclysm</option>
+          <option value="creatures">Chương 2: Sinh Vật, Alex's Caves & Rồng</option>
+          <option value="magic">Chương 3: Đại Ma Thuật & Pháp Điển</option>
+          <option value="dimensions">Chương 4: Chiều Không Gian & 12 Mắt Thần</option>
+          <option value="utilities">Chương 5: Tiện Ích & Bách Khoa Câu Cá</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-label">🔘 <span class="vi-text">Trạng Thái:</span><span class="en-text">Status:</span></label>
+        <select id="status-filter" class="select-filter">
+          <option value="all">Tất cả (All)</option>
+          <option value="incomplete">Chưa làm (Incomplete)</option>
+          <option value="completed">Đã xong (Completed)</option>
+        </select>
+      </div>
+
+      <div style="align-self:flex-end; margin-left:auto;">
+        <button id="btn-reset-quests" class="ingredient-chip" style="color:var(--accent-crimson); border-color:var(--accent-crimson);">
+          🗑️ <span class="vi-text">Reset Tiến Độ</span><span class="en-text">Reset Progress</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Quest Cards Grid -->
+    <div class="grid-cards" id="quests-grid"></div>
+  </main>
+
+  <!-- Global Search Modal -->
+  <div id="search-modal" class="modal-backdrop">
+    <div class="modal-box">
+      <div class="modal-header">
+        <span>🔍</span>
+        <input type="text" id="global-search-input" class="modal-search-input" placeholder="Gõ tên Boss, Dimension, Item để tìm kiếm...">
+        <span style="font-size:0.8rem; color:var(--text-muted);"><kbd>ESC</kbd></span>
+      </div>
+      <div id="search-results-list" class="modal-results"></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>Terramity Awakened Wiki • Static Offline Edition • Powered by Gemini AI & Antigravity</p>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/data_items.js"></script>
+  <script src="js/data_quests.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    let completedQuests = JSON.parse(localStorage.getItem('wiki_completed_quests') || '{}');
+
+    function updateProgress() {
+      if (typeof QUESTS_DATABASE === 'undefined') return;
+      const total = QUESTS_DATABASE.length;
+      const done = Object.keys(completedQuests).filter(id => completedQuests[id]).length;
+      const percent = ((done / total) * 100).toFixed(1);
+
+      document.getElementById('progress-text').innerText = `Đã hoàn thành ${done} / ${total} Nhiệm vụ (${percent}%)`;
+      document.getElementById('progress-percent').innerText = `${percent}%`;
+      document.getElementById('progress-bar-fill').style.width = `${percent}%`;
+    }
+
+    function toggleQuestDone(id, checked) {
+      if (checked) {
+        completedQuests[id] = true;
+        if (typeof AudioEngine !== 'undefined') AudioEngine.playLevelUp();
+      } else {
+        delete completedQuests[id];
+      }
+      localStorage.setItem('wiki_completed_quests', JSON.stringify(completedQuests));
+      
+      const card = document.getElementById(`quest-card-${id}`);
+      if (card) {
+        if (checked) card.classList.add('completed');
+        else card.classList.remove('completed');
+      }
+      updateProgress();
+    }
+
+    function renderQuests() {
+      const grid = document.getElementById('quests-grid');
+      if (!grid || typeof QUESTS_DATABASE === 'undefined') return;
+
+      const searchVal = document.getElementById('quest-search-input').value.toLowerCase().trim();
+      const chapterVal = document.getElementById('chapter-filter').value;
+      const statusVal = document.getElementById('status-filter').value;
+
+      grid.innerHTML = '';
+
+      const filtered = QUESTS_DATABASE.filter(q => {
+        const isDone = !!completedQuests[q.id];
+        if (statusVal === 'completed' && !isDone) return false;
+        if (statusVal === 'incomplete' && isDone) return false;
+        if (chapterVal !== 'all' && q.chapter_id !== chapterVal) return false;
+
+        if (searchVal) {
+          const matchTitle = q.title.toLowerCase().includes(searchVal);
+          const matchSub = (q.subtitle || '').toLowerCase().includes(searchVal);
+          const matchTasks = q.tasks.toLowerCase().includes(searchVal);
+          const matchRewards = q.rewards.toLowerCase().includes(searchVal);
+          const matchId = q.id.toLowerCase().includes(searchVal);
+          return matchTitle || matchSub || matchTasks || matchRewards || matchId;
+        }
+        return true;
+      });
+
+      // Limit rendering chunk if very large for instant DOM speed
+      const displayChunk = filtered.slice(0, 150);
+
+      displayChunk.forEach(q => {
+        const isDone = !!completedQuests[q.id];
+        const card = document.createElement('div');
+        card.id = `quest-card-${q.id}`;
+        card.className = `quest-card ${isDone ? 'completed' : ''}`;
+
+        card.innerHTML = `
+          <div>
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:0.5rem; margin-bottom:0.5rem;">
+              <span class="badge ${q.chapter_id === 'adventure' ? 'badge-crimson' : q.chapter_id === 'magic' ? 'badge-purple' : q.chapter_id === 'dimensions' ? 'badge-cyan' : q.chapter_id === 'creatures' ? 'badge-blue' : 'badge-gold'}">
+                #${q.stt} ${q.chapter_id.toUpperCase()}
+              </span>
+              <span class="quest-id-pill">${q.id}</span>
+            </div>
+
+            <h3 style="font-size:0.98rem; margin-bottom:0.25rem; color:var(--text-primary);">${q.title}</h3>
+            ${q.subtitle ? `<div style="font-size:0.78rem; color:var(--accent-gold); font-style:italic; margin-bottom:0.5rem;">"${q.subtitle}"</div>` : ''}
+
+            <div style="font-size:0.82rem; color:var(--text-secondary); margin-bottom:0.5rem; line-height:1.4;">
+              <strong style="color:var(--text-primary);">🎯 Mục tiêu:</strong> ${q.tasks}
+            </div>
+
+            <div style="font-size:0.78rem; color:var(--text-muted); margin-bottom:0.5rem;">
+              <strong>🔗 Điều kiện:</strong> ${q.dependencies}
+            </div>
+
+            <div style="font-size:0.8rem; color:var(--accent-cyan);">
+              <strong>🎁 Phần thưởng:</strong> ${q.rewards}
+            </div>
+          </div>
+
+          <label class="quest-checkbox-label">
+            <input type="checkbox" ${isDone ? 'checked' : ''} onchange="toggleQuestDone('${q.id}', this.checked)">
+            <span>${isDone ? '✅ Đã hoàn thành' : 'Chưa hoàn thành'}</span>
+          </label>
+        `;
+
+        grid.appendChild(card);
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:3rem; color:var(--text-muted);">Không tìm thấy quest nào phù hợp với bộ lọc.</div>`;
+      } else if (filtered.length > 150) {
+        const moreNote = document.createElement('div');
+        moreNote.style.gridColumn = '1/-1';
+        moreNote.style.textAlign = 'center';
+        moreNote.style.padding = '1.5rem';
+        moreNote.style.color = 'var(--text-muted)';
+        moreNote.innerText = `... Đang hiển thị 150 trên tổng số ${filtered.length} nhiệm vụ. Hãy dùng thanh tìm kiếm hoặc lọc theo chương để thu hẹp kết quả.`;
+        grid.appendChild(moreNote);
+      }
+    }
+
+    document.getElementById('quest-search-input').addEventListener('input', renderQuests);
+    document.getElementById('chapter-filter').addEventListener('change', renderQuests);
+    document.getElementById('status-filter').addEventListener('change', renderQuests);
+    document.getElementById('btn-reset-quests').addEventListener('click', () => {
+      if (confirm('Bạn có chắc chắn muốn xóa toàn bộ tiến độ làm nhiệm vụ đã lưu?')) {
+        completedQuests = {};
+        localStorage.removeItem('wiki_completed_quests');
+        renderQuests();
+        updateProgress();
+      }
+    });
+
+    renderQuests();
+    updateProgress();
+  </script>
+</body>
+</html>

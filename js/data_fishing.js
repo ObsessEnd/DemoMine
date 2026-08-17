@@ -1,0 +1,1 @@
+const FISHING_DATABASE = [];

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Boss Guide & Tracker - Terramity Awakened Wiki</title>
+  <title>Boss Guide & Combat Mechanics - Terramity Awakened Wiki</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Silkscreen&display=swap" rel="stylesheet">
@@ -50,10 +50,10 @@
   <!-- Main Content -->
   <main class="page-wrapper">
     <div style="margin-bottom:1.5rem;">
-      <h1>🗡️ <span class="vi-text">Danh Sách & Hướng Dẫn Săn Boss</span><span class="en-text">Boss Guide & Hunting Road</span></h1>
+      <h1>🗡️ <span class="vi-text">Bách Khoa Săn Boss: Cơ Chế Đòn Đánh & Từng Phase</span><span class="en-text">Boss Combat Mechanics & Phase Guide</span></h1>
       <p style="color:var(--text-secondary);">
-        <span class="vi-text">Hơn 70+ Boss được phân bậc sao (1★ - 5★) kèm máu (HP), cách triệu hồi và chiến thuật đánh. Nhấp vào ô checkbox để theo dõi tiến độ tiêu diệt!</span>
-        <span class="en-text">70+ Boss encounters ranked by star tiers (1★ - 5★) with HP stats, summon methods, and battle tips. Click the checkboxes to track your kills!</span>
+        <span class="vi-text">Phân tích chi tiết mốc máu chuyển Phase, danh sách đòn đánh nguy hiểm, cơ chế miễn nhiễm và bộ trang bị tối thiểu bắt buộc phải có trước khi đánh trùm.</span>
+        <span class="en-text">In-depth breakdown of Phase transitions, dangerous attack moves, damage immunities, and required gear before entering the arena.</span>
       </p>
     </div>
 
@@ -142,17 +142,66 @@
               <span class="badge badge-gold">❤️ ${b.hp.toLocaleString()} HP</span>
               <span class="badge badge-purple">📍 <span class="vi-text">${b.location_vi}</span><span class="en-text">${b.location}</span></span>
             </div>
-            <div style="font-size:0.85rem; margin-bottom:8px;">
+
+            <div style="font-size:0.85rem; margin-bottom:6px;">
               <strong style="color:var(--accent-cyan);"><span class="vi-text">Triệu hồi:</span><span class="en-text">Summon:</span></strong>
               <span class="vi-text">${b.summon_vi}</span>
               <span class="en-text">${b.summon}</span>
             </div>
-            <div style="font-size:0.85rem; margin-bottom:8px;">
-              <strong style="color:var(--accent-gold);"><span class="vi-text">Vật phẩm rơi:</span><span class="en-text">Key Drops:</span></strong>
+
+            <div style="font-size:0.85rem; margin-bottom:6px;">
+              <strong style="color:var(--accent-gold);"><span class="vi-text">Tỉ lệ rơi đồ (Drop Table):</span><span class="en-text">Drops:</span></strong>
               <span class="vi-text">${b.drops_vi.join(', ')}</span>
               <span class="en-text">${b.drops.join(', ')}</span>
             </div>
-            <div style="font-size:0.82rem; color:var(--text-muted); background:rgba(0,0,0,0.25); padding:6px 8px; border-radius:4px; border-left:2px solid var(--accent-blue);">
+
+            <!-- Deep Combat Mechanics Accordion -->
+            ${b.phases ? `
+            <div class="boss-mechanics-box">
+              <button class="boss-mechanics-toggle" onclick="toggleMechanics('${b.id}')">
+                <span>⚔️ <span class="vi-text">Chi Tiết Phase & Cơ Chế Đòn Đánh</span><span class="en-text">Phases & Attack Moves</span></span>
+                <span id="arrow-${b.id}">▼</span>
+              </button>
+              <div id="mech-${b.id}" class="boss-mechanics-content">
+                <!-- Phases -->
+                <div style="margin-bottom:8px;">
+                  <strong style="color:var(--accent-crimson); font-size:0.78rem; text-transform:uppercase;"><span class="vi-text">Các Giai Đoạn Trận Đấu (Phases):</span><span class="en-text">Phase Transitions:</span></strong>
+                  ${b.phases.map(p => `
+                    <div class="phase-item" style="margin-top:4px;">
+                      <div class="phase-title"><span class="vi-text">${p.name_vi}</span><span class="en-text">${p.name_en}</span></div>
+                      <div class="attack-move"><span class="vi-text">${p.desc_vi}</span><span class="en-text">${p.desc_vi}</span></div>
+                    </div>
+                  `).join('')}
+                </div>
+
+                <!-- Attacks -->
+                ${b.attacks ? `
+                <div style="margin-bottom:8px;">
+                  <strong style="color:var(--accent-gold); font-size:0.78rem; text-transform:uppercase;"><span class="vi-text">Danh Sách Đòn Đánh:</span><span class="en-text">Attack Moves:</span></strong>
+                  <ul style="margin-top:3px; padding-left:14px; font-size:0.78rem; color:var(--text-secondary);">
+                    ${b.attacks.map(atk => `<li>${atk}</li>`).join('')}
+                  </ul>
+                </div>
+                ` : ''}
+
+                <!-- Immunities -->
+                ${b.immunities_vi ? `
+                <div style="background:rgba(217,56,58,0.1); padding:6px 8px; border-radius:4px; border:1px solid rgba(217,56,58,0.25); margin-bottom:6px; font-size:0.78rem; color:#fda4af;">
+                  <strong>🛡️ <span class="vi-text">Miễn nhiễm & Kháng:</span><span class="en-text">Immunities:</span></strong> ${b.immunities_vi}
+                </div>
+                ` : ''}
+
+                <!-- Recommended Gear -->
+                ${b.recommended_gear_vi ? `
+                <div style="background:rgba(0,196,159,0.08); padding:6px 8px; border-radius:4px; border:1px solid rgba(0,196,159,0.2); font-size:0.78rem; color:#a7f3d0;">
+                  <strong>🎒 <span class="vi-text">Trang bị khuyến nghị:</span><span class="en-text">Required Gear:</span></strong> ${b.recommended_gear_vi}
+                </div>
+                ` : ''}
+              </div>
+            </div>
+            ` : ''}
+
+            <div style="font-size:0.8rem; color:var(--text-muted); background:rgba(0,0,0,0.2); padding:6px 8px; border-radius:4px; border-left:2px solid var(--accent-blue); margin-top:8px;">
               💡 <em><span class="vi-text">${b.tips_vi}</span><span class="en-text">${b.tips}</span></em>
             </div>
           </div>
@@ -166,6 +215,15 @@
         `;
         grid.appendChild(card);
       });
+    }
+
+    function toggleMechanics(id) {
+      const content = document.getElementById(`mech-${id}`);
+      const arrow = document.getElementById(`arrow-${id}`);
+      if (content) {
+        content.classList.toggle('open');
+        arrow.textContent = content.classList.contains('open') ? '▲' : '▼';
+      }
     }
 
     function toggleBoss(id, checked) {

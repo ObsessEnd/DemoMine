@@ -1,5 +1,5 @@
 /**
- * Terramity Awakened Wiki - Complete Bilingual Data Repository
+ * Terramity Awakened Wiki - Complete Bilingual Data Repository (Pro Edition)
  */
 
 const WIKI_DATA = {
@@ -18,10 +18,486 @@ const WIKI_DATA = {
   },
 
   /* ==========================================================================
-     Items, Recipes & Class Tagged Progression Database
+     PACKAGE 1: Deep Boss Mechanics, Phases & Combat Guide
      ========================================================================== */
+  bosses: [
+    {
+      id: "umvuthi",
+      name: "Umvuthi, The Sunbird",
+      mod: "Born in Chaos",
+      tier: 1,
+      stars: "★☆☆☆☆",
+      hp: 500,
+      dimension: "Overworld",
+      location: "Savanna / Umvuthana Groves",
+      location_vi: "Đồng cỏ Xavan / Rừng Umvuthana",
+      summon: "Found in Sunbird nest or summoned at Sun Altar",
+      summon_vi: "Tìm thấy tại tổ chim mặt trời hoặc triệu hồi tại Tế đàn Mặt trời",
+      drops: ["Sunbird Feather (100%)", "Solar Staff (30%)", "3500 XP"],
+      drops_vi: ["Lông vũ Chim Mặt Trời (100%)", "Trượng Thái Dương (30%)", "3500 Điểm EXP"],
+      tips: "Use ranged attacks. Beware of dive bombs and fire trails.",
+      tips_vi: "Nên dùng vũ khí tầm xa. Cẩn thận các đòn bổ nhào lao xuống và vệt lửa thiêu đốt.",
+      phases: [
+        {
+          name_vi: "Pha 1 (100% - 40% HP): Lượn Bắn Cầu Lửa",
+          name_en: "Phase 1 (100% - 40% HP): Aerial Fire Barrage",
+          desc_vi: "Bay vòng tròn trên cao, bắn 3 quả cầu lửa liên tiếp và thả vệt lửa thiêu đốt mặt đất."
+        },
+        {
+          name_vi: "Pha 2 (< 40% HP): Cuồng Nộ Lao Cảm Tử",
+          name_en: "Phase 2 (< 40% HP): Enraged Dive Bombs",
+          desc_vi: "Tốc độ bay tăng 50%, lao thẳng xuống đất tạo sóng chấn động lửa AOE bán kính 8 block."
+        }
+      ],
+      attacks: [
+        "🔥 Solar Fireball (Sát thương Hỏa tầm xa)",
+        "⚡ Diving Shockwave (Sát thương Vật lý 16 Tim + Hất tung)",
+        "☄️ Burning Trail (Thiêu đốt 5 Tim/giây)"
+      ],
+      immunities_vi: "Kháng 100% sát thương Lửa & Dung nham; Giảm 30% sát thương cận chiến khi đang bay.",
+      recommended_gear_vi: "Giáp Sắt cường hóa Kháng Lửa + Cung Tên / Nỏ bắn tầm xa + 2 Bình Thuốc Kháng Lửa (Fire Resistance)."
+    },
+    {
+      id: "slider",
+      name: "Slider",
+      mod: "The Aether",
+      tier: 1,
+      stars: "★☆☆☆☆",
+      hp: 400,
+      dimension: "The Aether",
+      location: "Bronze Dungeon",
+      location_vi: "Hầm ngục Đồng (Bronze Dungeon)",
+      summon: "Awaken in boss chamber inside Bronze Dungeon",
+      summon_vi: "Đánh thức trong phòng trùm hầm ngục Đồng",
+      drops: ["Bronze Dungeon Key (100%)", "Hammer of Kingbdogz (33%)", "Neptune Armor Piece (33%)", "Valkyrie Cape (33%)"],
+      drops_vi: ["Chìa khóa Hầm ngục Đồng (100%)", "Búa Thần Kingbdogz (33%)", "Mảnh Giáp Neptune (33%)", "Áo Choàng Valkyrie (33%)"],
+      tips: "ONLY takes damage from Pickaxes! Switches from blue (slow) to red (fast enraged).",
+      tips_vi: "CHỈ nhận sát thương từ Cuốc (Pickaxe)! Đổi màu từ xanh (chậm) sang đỏ (cuồng nộ siêu tốc).",
+      phases: [
+        {
+          name_vi: "Pha Xanh Lam (> 50% HP): Phòng Thủ Chậm",
+          name_en: "Blue Form (> 50% HP): Slow Ramming",
+          desc_vi: "Mắt xanh, di chuyển thẳng theo trục 4 hướng, tốc độ chậm. Dễ dàng nhảy né và dùng Cuốc chém vào thân."
+        },
+        {
+          name_vi: "Pha Đỏ Cuồng Nộ (< 50% HP): Húc Siêu Tốc & Đập Đất",
+          name_en: "Red Form (< 50% HP): High-Speed Charge",
+          desc_vi: "Mắt đỏ rực, tốc độ húc tăng gấp 3 lần, đâm liên tục vào tường làm rơi đá sập gây sát thương đè."
+        }
+      ],
+      attacks: [
+        "🔨 Heavy Collision (Húc trực diện 14 Tim + Đẩy lùi cực mạnh)",
+        "💥 Cave In Rocks (Đá trần rơi gây 6 Tim)"
+      ],
+      immunities_vi: "MIỄN NHIỄM 100% kiếm, rìu, cung tên và phép thuật! CHỈ NHẬN SÁT THƯƠNG TỪ CUỐC (Pickaxes).",
+      recommended_gear_vi: "Cuốc Kim Cương hoặc Cuốc Zanite (Zanite Pickaxe càng hỏng đánh càng đau) + Khiên chắn."
+    },
+    {
+      id: "valkyrie_queen",
+      name: "Valkyrie Queen",
+      mod: "The Aether",
+      tier: 2,
+      stars: "★★☆☆☆",
+      hp: 500,
+      dimension: "The Aether",
+      location: "Silver Dungeon (Temple in sky)",
+      location_vi: "Hầm ngục Bạc (Đền mây)",
+      summon: "Present 10 Valkyrie Medals to challenge her",
+      summon_vi: "Giao nộp 10 Huy hiệu Valkyrie Medal để khiêu chiến",
+      drops: ["Silver Dungeon Key (100%)", "Valkyrie Lance (50%)", "Valkyrie Armor Set Piece (50%)"],
+      drops_vi: ["Chìa khóa Hầm ngục Bạc (100%)", "Thương Valkyrie (50%)", "Mảnh Giáp Valkyrie (50%)"],
+      tips: "Teleports frequently and strikes with lightning thrusts.",
+      tips_vi: "Thường xuyên dịch chuyển tức thời và tung đòn đâm sét liên hoàn.",
+      phases: [
+        {
+          name_vi: "Pha 1: Dịch Chuyển & Phóng Tia Sét",
+          name_en: "Phase 1: Teleport & Lightning",
+          desc_vi: "Dịch chuyển sau lưng người chơi mỗi 4 giây và tung 3 nhát đâm thương tầm xa."
+        },
+        {
+          name_vi: "Pha 2 (< 30% HP): Triệu Hồi Hộ Vệ Valkyrie",
+          name_en: "Phase 2 (< 30% HP): Guardian Summoning",
+          desc_vi: "Bật khiên bất tử tạm thời và triệu hồi 4 nữ chiến binh Valkyrie phụ trợ."
+        }
+      ],
+      attacks: [
+        "⚡ Lightning Lance Thrust (Đâm thương giật sét 12 Tim)",
+        "🌀 Teleport Ambush (Dịch chuyển tập kích sau lưng)"
+      ],
+      immunities_vi: "Kháng giật điện và hất tung.",
+      recommended_gear_vi: "Giáp Neptune hoặc Kim Cương + Kiếm tốc độ đánh nhanh + Thuốc Tăng Tốc (Speed II)."
+    },
+    {
+      id: "dead_king",
+      name: "The Dead King",
+      mod: "Iron's Spells",
+      tier: 2,
+      stars: "★★☆☆☆",
+      hp: 1800,
+      dimension: "Overworld",
+      location: "Catacombs (Deep Underground)",
+      location_vi: "Hầm mộ ngầm Catacombs",
+      summon: "Locate with Wayward Compass in underground throne",
+      summon_vi: "Dùng Wayward Compass định vị hầm ngục và đánh thức tại ngai vàng",
+      drops: ["Dead King Helm (100%)", "Blood Staff (40%)", "Legendary Ink & Runes", "12000 XP"],
+      drops_vi: ["Mũ Vua Bất Tử (100%)", "Trượng Huyết Ma (40%)", "Mực & Cổ Tự Huyền Thoại", "12000 Điểm EXP"],
+      tips: "Has 2 phases. Summons hordes of undead mages and casts high-tier blood spells.",
+      tips_vi: "Có 2 giai đoạn. Triệu hồi quái phép liên tục và thi triển huyết phép diện rộng.",
+      phases: [
+        {
+          name_vi: "Pha 1 (1800 HP): Pháp Sư Huyết Ma Tối Cao",
+          name_en: "Phase 1 (1800 HP): Blood Archmage",
+          desc_vi: "Sử dụng gậy phép thi triển Blood Slash, Huyết Cầu và tạo vòng xoáy hút máu."
+        },
+        {
+          name_vi: "Pha 2 (Hồi sinh 1800 HP): Cận Chiến Cuồng Bạo",
+          name_en: "Phase 2 (Revives 1800 HP): Berserk Undead King",
+          desc_vi: "Hồi sinh toàn bộ máu, rút đại kiếm bóng tối chém liên hoàn và triệu hồi 8 lính xác sống."
+        }
+      ],
+      attacks: [
+        "🩸 Blood Slash Barrage (3 nhát chém huyết kiếm 18 Tim)",
+        "💀 Summon Undead Legion (Triệu hồi 8 lính xương phép)",
+        "🌀 Life Drain Nova (Vòng xoáy hút máu hồi phục bản thân)"
+      ],
+      immunities_vi: "Miễn nhiễm sát thương Độc tố & Làm mù; Kháng 50% sát thương Huyết phép.",
+      recommended_gear_vi: "Giáp Netherite hoặc Pyromancer + Cổ Tự Holy/Fire (Thánh/Lửa gây thêm 150% dmg vào boss)."
+    },
+    {
+      id: "netherite_monstrosity",
+      name: "Netherite Monstrosity",
+      mod: "Cataclysm",
+      tier: 3,
+      stars: "★★★☆☆",
+      hp: 4800,
+      dimension: "The Nether",
+      location: "Soul Blacksmith Arena",
+      location_vi: "Lò rèn Linh hồn (Soul Blacksmith Arena)",
+      summon: "Place Monstrous Eye into the central altar block",
+      summon_vi: "Đặt mắt Monstrous Eye vào bệ tế đàn trung tâm",
+      drops: ["Monstrous Horn (100%)", "Infernal Forge Hammer (50%)", "Netherite Scrap x12", "Monstrous Armor Plate"],
+      drops_vi: ["Sừng Quái Thú (100%)", "Búa Luyện Lửa Infernal (50%)", "Mảnh Netherite x12", "Tấm Giáp Quái Thú"],
+      tips: "Massive ground slams. Jump or combat roll before impact. Avoid lava pools.",
+      tips_vi: "Đòn đập đất cực mạnh. Nhảy lên hoặc lăn lộn (Combat Roll) né chấn động và dung nham.",
+      phases: [
+        {
+          name_vi: "Pha 1: Quái Thú Luyện Kim Vung Búa",
+          name_en: "Phase 1: Heavy Hammer Swings",
+          desc_vi: "Vung búa khổng lồ đập đất tạo sóng xung kích và phun dung nham ra xung quanh."
+        },
+        {
+          name_vi: "Pha 2 (< 50% HP): Nung Đỏ Toàn Thân & Hút Dung Nham",
+          name_en: "Phase 2 (< 50% HP): Molten Rage & Siphon",
+          desc_vi: "Thân quái thú rực sáng, hút dung nham từ sàn đấu để hồi máu và phóng tia laser hỏa ngục."
+        }
+      ],
+      attacks: [
+        "🔨 Earth Shatter Slam (Đập đất 28 Tim + Phá hủy địa hình)",
+        "🌋 Lava Geyser (Cột dung nham phun từ dưới chân)",
+        "🔥 Molten Charge (Lao thẳng húc nát người chơi)"
+      ],
+      immunities_vi: "Miễn nhiễm 100% Lửa, Kháng 70% sát thương Đẩy lùi.",
+      recommended_gear_vi: "Giáp Dragonsteel Băng hoặc Giáp Fiery Boots có khảm ngọc + Vũ khí Celestisynth + Thuốc Kháng Lửa."
+    },
+    {
+      id: "ignis",
+      name: "Ignis, The Profane",
+      mod: "Cataclysm",
+      tier: 5,
+      stars: "★★★★★",
+      hp: 1000000,
+      dimension: "The Nether",
+      location: "Burning Arena in Nether Wastes",
+      location_vi: "Đấu trường Rực Lửa giữa biển dung nham Nether",
+      summon: "Insert Ignis Heart into the Flame Altar",
+      summon_vi: "Cắm Trái tim Ignis Heart vào Tế đàn Lửa",
+      drops: ["Incinerator Greatsword (100%)", "Ignitium Ingot x8 (100%)", "Profane Core (100%)", "Ignis Trophy"],
+      drops_vi: ["Đại đao Incinerator (100%)", "Thỏi Kim Loại Ignitium x8 (100%)", "Lõi Bất Tịnh (100%)", "Cúp Ignis"],
+      tips: "Extreme fire damage and armor penetration. Equip Fire Dragonsteel or Warden Armor.",
+      tips_vi: "Sát thương thiêu đốt và xuyên giáp cực nặng. Cần trang bị giáp Warden hoặc Fire Dragonsteel.",
+      phases: [
+        {
+          name_vi: "Pha 1 (1.000.000 - 500.000 HP): Đại Kiếm Incinerator",
+          name_en: "Phase 1: Greatsword Slashes & Fire Waves",
+          desc_vi: "Vung đại kiếm rực lửa chém ra các đường sóng lửa xuyên thấu mọi loại khiên chắn."
+        },
+        {
+          name_vi: "Pha 2 (500.000 - 100.000 HP): Hỏa Ngục Toàn Phần",
+          name_en: "Phase 2: Full Infernal Awakening",
+          desc_vi: "Tốc độ chém tăng gấp đôi, nhảy lên không trung bổ nhát chém hủy diệt tạo vụ nổ 20 block."
+        },
+        {
+          name_vi: "Pha 3 (< 100.000 HP): Tận Diệt Tro Tàn",
+          name_en: "Phase 3: Ash Cataclysm",
+          desc_vi: "Liên tục thiêu đốt 10% Max HP của người chơi mỗi 3 giây nếu không đứng trong vùng bảo hộ nước."
+        }
+      ],
+      attacks: [
+        "⚔️ Incinerator Cleave (Chém xuyên giáp 45 Tim)",
+        "☄️ Hellfire Storm (Mưa thiên thạch bao phủ toàn bộ đấu trường)",
+        "💥 Ground Detonation (Bổ kiếm kích nổ hạt nhân lửa)"
+      ],
+      immunities_vi: "Miễn nhiễm 100% Lửa, Kháng 90% sát thương Hỏa phép, Giảm 50% sát thương tầm xa.",
+      recommended_gear_vi: "Giáp Warden Armor / Apocalyptium Cấp 100 + Vũ khí Băng Hệ + Full 40 Heart Canisters + Eternal Stella."
+    },
+    {
+      id: "apollyon",
+      name: "Apollyon (The Fallen Seraph)",
+      mod: "Goety Revelation",
+      tier: 5,
+      stars: "★★★★★",
+      hp: 6666,
+      dimension: "Overworld / Nether",
+      location: "Dark Altar Ritual",
+      location_vi: "Nghi lễ Tế Đàn Tối Thượng (Dark Altar)",
+      summon: "1% chance during Apostle Master Forge Ritual at midnight",
+      summon_vi: "1% tỉ lệ xuất hiện khi thực hiện nghi lễ gọi Apostle lúc nửa đêm",
+      drops: ["Ascension Halo (100%)", "Apocalyptium Ingot x4", "Seraph Bow", "Apocalypse Core"],
+      drops_vi: ["Hào Quang Thăng Hoa (Ascension Halo - 100%)", "Thỏi Apocalyptium x4", "Cung Thiên Sứ", "Lõi Tận Thế"],
+      tips: "Hellfire burns 6.66% Max HP. Cap damage per hit at 100. Bring Totems and high regen.",
+      tips_vi: "Ngọn lửa địa ngục thiêu 6.66% Máu tối đa. Sát thương nhận vào bị giới hạn 100/hit. Chuẩn bị nhiều Totem.",
+      phases: [
+        {
+          name_vi: "Pha 1: Đôi Cánh Thiên Sứ Rơi",
+          name_en: "Phase 1: Seraph Wings & Judgement Bow",
+          desc_vi: "Bay lượn trên không xả mưa tên thần thoại và phóng các tia sáng thánh khiết trừng phạt."
+        },
+        {
+          name_vi: "Pha 2 (< 50% HP): Địa Ngục Sa Ngã (Hurt Limit 100 Dmg/Hit)",
+          name_en: "Phase 2: Fallen Abyss (Hurt Limit 100/Hit)",
+          desc_vi: "Hào quang chuyển sang đen tối, kích hoạt màng bảo hộ giới hạn sát thương nhận vào tối đa 100/hit và gây thiêu đốt 6.66% Max HP."
+        }
+      ],
+      attacks: [
+        "🏹 Judgement Arrow Barrage (Mưa tên 100% Xuyên giáp)",
+        "🔥 Hellfire Immolation (Thiêu 6.66% Max HP mỗi giây)",
+        "⚡ Divine Smite Strike (Sét thánh giáng nát mặt đất)"
+      ],
+      immunities_vi: "GIỚI HẠN SÁT THƯƠNG NHẬN VÀO TỐI ĐA 100 DMG/HIT. Không thể bị one-shot bởi bất kỳ vũ khí nào!",
+      recommended_gear_vi: "Vũ khí tốc độ đánh cực nhanh (Dagger/Rapier) + Giáp hồi máu liên tục + 5+ Totem of Undying."
+    },
+    {
+      id: "ultra_sniffer",
+      name: "Ultra Sniffer (Vua Thần Thú Cổ Đại)",
+      mod: "Terramity",
+      tier: 5,
+      stars: "★★★★★",
+      hp: 1000000,
+      dimension: "Overworld / Custom Arena",
+      location: "Endgame Arena",
+      location_vi: "Đấu trường Vô Cực Tận Diệt",
+      summon: "Lightning strike on Super Sniffer Phase 2 when under 10% HP with Reverium Ingot",
+      summon_vi: "Đánh sét vào Super Sniffer giai đoạn 2 khi dưới 10% máu kèm thỏi Reverium",
+      drops: ["The Judgement (100%)", "Godly Essence (100%)", "Modpack Completion Badge (100%)"],
+      drops_vi: ["Thần Khí The Judgement (100%)", "Tinh Chất Thần Thánh (100%)", "Huy Hiệu Phá Đảo (100%)"],
+      tips: "The ultimate boss. Requires fully perfected Meta Build with Eternal Stella.",
+      tips_vi: "Siêu trùm tối thượng. Bắt buộc có trang bị Meta Build hoàn thiện ép ngọc Eternal Stella.",
+      phases: [
+        {
+          name_vi: "Pha 1 (1.000.000 HP): Sức Mạnh Thần Thú Tiền Sử",
+          name_en: "Phase 1: Primal Ancient Roar",
+          desc_vi: "Dậm chân tạo sóng địa chấn hất văng người chơi lên độ cao 50 block và gọi đàn Sniffer tiền sử."
+        },
+        {
+          name_vi: "Pha 2 (Dưới 300.000 HP): Thần Phạt Tối Cao",
+          name_en: "Phase 2: Divine Retribution",
+          desc_vi: "Tỏa ra hào quang vũ trụ, bắn tia laser năng lượng hủy diệt và triệu hồi sấm sét liên hoàn khắp đấu trường."
+        }
+      ],
+      attacks: [
+        "🦏 Primal Trample (Đạp đất 60 Tim + Choáng 3s)",
+        "🌌 Cosmic Laser Beam (Bắn tia laser vũ trụ 80 Tim/giây)",
+        "⚡ Ancient Lightning Storm (Sấm sét cổ đại bao phủ)"
+      ],
+      immunities_vi: "Kháng 80% mọi loại sát thương nguyên tố; Kháng 100% hiệu ứng khống chế.",
+      recommended_gear_vi: "Bộ Giáp Reverium Paladin Cấp 100 Bất Tử Eternal Stella + Đại Đao Solaris/Keres + Full Potions Buff."
+    }
+  ],
+
+  /* ==========================================================================
+     PACKAGE 3: Ore Spawning Y-Levels & Metallurgy Matrix
+     ========================================================================== */
+  ores: [
+    {
+      id: "topaz",
+      name: "Topaz Ore",
+      name_vi: "Quặng Hoàng Ngọc (Topaz)",
+      tier: "Tier 0",
+      y_level: "Y = 10 đến -32",
+      biomes_vi: "Badlands, Rừng Rậm (Jungle), Savanna nóng",
+      biomes_en: "Badlands, Jungle, Warm Savanna",
+      pickaxe_tier: "Sắt (Iron Pickaxe) trở lên",
+      vein_size: "4 - 8 khối mỗi mạch",
+      smelting_vi: "Nung trong Lò hoặc đập bằng Cuốc Gia Tài (Fortune) rơi Topaz Gem.",
+      uses_vi: "Ghép ngọc Prismatic Jewel, rèn công cụ Topaz tăng tốc độ đào."
+    },
+    {
+      id: "ruby",
+      name: "Ruby Ore",
+      name_vi: "Quặng Hồng Ngọc (Ruby)",
+      tier: "Tier 0",
+      y_level: "Y = 15 đến -48",
+      biomes_vi: "Nether Wastelands & Hang Scorched Caves (Overworld dưới sa mạc)",
+      biomes_en: "Nether Wastelands & Scorched Caves (Overworld under deserts)",
+      pickaxe_tier: "Sắt (Iron Pickaxe) trở lên",
+      vein_size: "3 - 6 khối mỗi mạch",
+      smelting_vi: "Đập bằng Cuốc Gia Tài rơi Ruby Gem.",
+      uses_vi: "Ghép Prismatic Jewel, rèn trang bị tăng sát thương chí mạng."
+    },
+    {
+      id: "sapphire",
+      name: "Sapphire Ore",
+      name_vi: "Quặng Lam Ngọc (Sapphire)",
+      tier: "Tier 0",
+      y_level: "Y = 40 đến -50",
+      biomes_vi: "Vùng tuyết lạnh (Snowy Plains, Taiga, Frozen Ocean)",
+      biomes_en: "Cold biomes (Snowy Plains, Taiga, Frozen Ocean)",
+      pickaxe_tier: "Sắt (Iron Pickaxe) trở lên",
+      vein_size: "4 - 8 khối mỗi mạch",
+      smelting_vi: "Đập bằng Cuốc rơi Sapphire Gem.",
+      uses_vi: "Ghép Prismatic Jewel, chế tạo vũ khí làm chậm mục tiêu."
+    },
+    {
+      id: "onyx",
+      name: "Onyx Ore",
+      name_vi: "Quặng Hắc Ngọc (Onyx)",
+      tier: "Tier 0",
+      y_level: "Y = 10 đến 60 (Outer End Islands)",
+      biomes_vi: "Các đảo The End ngoài không gian",
+      biomes_en: "The End Outer Islands",
+      pickaxe_tier: "Kim Cương (Diamond Pickaxe) trở lên",
+      vein_size: "2 - 5 khối mỗi mạch",
+      smelting_vi: "Đập bằng Cuốc rơi Onyx Gem.",
+      uses_vi: "Ghép Prismatic Jewel, chế tạo trang bị tàng hình và dịch chuyển."
+    },
+    {
+      id: "iridescent_shard",
+      name: "Iridescent Shard",
+      name_vi: "Mảnh Tinh Thể Cầu Vồng (Iridescent)",
+      tier: "Tier 0",
+      y_level: "Y = -40 đến -64 (Deepslate layer)",
+      biomes_vi: "Tầng đá phiến sâu ngầm toàn thế giới Overworld",
+      biomes_en: "Deepslate layer across Overworld underground",
+      pickaxe_tier: "Kim Cương (Diamond Pickaxe) trở lên",
+      vein_size: "2 - 4 khối mỗi mạch",
+      smelting_vi: "Khai thác trực tiếp từ khối quặng lấp lánh.",
+      uses_vi: "Nguyên liệu then chốt ghép viên ngọc Prismatic Jewel."
+    },
+    {
+      id: "dimlite",
+      name: "Dimlite Ore",
+      name_vi: "Quặng Ánh Mờ (Dimlite)",
+      tier: "Tier 1",
+      y_level: "Y = -20 đến -58",
+      biomes_vi: "Hang động ngầm sâu Overworld",
+      biomes_en: "Deep Overworld Caves",
+      pickaxe_tier: "Netherite Pickaxe",
+      vein_size: "3 - 5 khối",
+      smelting_vi: "Nung thỏi kết hợp Dimlite Smithing Template rơi từ Vua Lùn Gob.",
+      uses_vi: "Rèn bộ giáp Dimlite Armor tăng tốc độ chạy và né đòn."
+    },
+    {
+      id: "cosmilite",
+      name: "Cosmilite Ore",
+      name_vi: "Quặng Vũ Trụ (Cosmilite)",
+      tier: "Tier 1",
+      y_level: "Y = 120 đến 256 (Đỉnh núi cao / Tầng mây)",
+      biomes_vi: "Đỉnh núi tuyết cao ngất Overworld & The Aether",
+      biomes_en: "High Mountain Peaks & The Aether",
+      pickaxe_tier: "Netherite Pickaxe",
+      vein_size: "2 - 4 khối",
+      smelting_vi: "Nung kết hợp Cosmilite Template từ Super Sniffer.",
+      uses_vi: "Rèn vũ khí tầm xa và khiên chắn phản lực."
+    },
+    {
+      id: "iridium",
+      name: "Iridium Ore",
+      name_vi: "Quặng Bạch Kim Cổ Đại (Iridium)",
+      tier: "Tier 1.5",
+      y_level: "Y = -50 đến -64",
+      biomes_vi: "Gần lõi đá nền Bedrock Overworld",
+      biomes_en: "Near Bedrock layer in Overworld",
+      pickaxe_tier: "Dimlite / Cosmilite Pickaxe",
+      vein_size: "1 - 3 khối (Cực hiếm)",
+      smelting_vi: "Luyện thỏi trong Lò Luyện Kim Blast Furnace.",
+      uses_vi: "Rèn vũ khí Tier 1.5 để đủ sức khiêu chiến Trial Guardian."
+    },
+    {
+      id: "profanum",
+      name: "Profanum Ore",
+      name_vi: "Quặng Bất Tịnh (Profanum)",
+      tier: "Tier 2.5",
+      y_level: "Nether Y = 10 đến 35 (Gần hồ dung nham sâu)",
+      biomes_vi: "Vùng tro tàn Basalt Deltas & Soul Sand Valley trong Nether",
+      biomes_en: "Basalt Deltas & Soul Sand Valley in Nether",
+      pickaxe_tier: "Iridium Pickaxe",
+      vein_size: "2 - 4 khối",
+      smelting_vi: "Luyện thỏi Profanum Ingot để rèn Rìu Mặt Trời Rhitta.",
+      uses_vi: "Mở khóa khiêu chiến Hội Pháp Sư Bóng Tối Shadow Wizards."
+    },
+    {
+      id: "reverium",
+      name: "Reverium & Nyxium Ore",
+      name_vi: "Quặng Thánh Reverium & Quặng Đêm Nyxium",
+      tier: "Tier 4 (Endgame)",
+      y_level: "The End Void Islands (Y = 20 đến 70)",
+      biomes_vi: "Các hòn đảo ngoài rìa chiều không gian The End",
+      biomes_en: "Outer End Dimension Islands",
+      pickaxe_tier: "Profanum / Dreadsteel Pickaxe",
+      vein_size: "1 - 2 khối",
+      smelting_vi: "Kết hợp Antiprism từ Boss Archmage Gundalf.",
+      uses_vi: "Rèn Giáp Reverium Paladin & Giáp Exodium Warlock tối thượng."
+    }
+  ],
+
+  /* Metallurgy & Composite Materials */
+  alloys: [
+    {
+      name: "Damascus Steel Ingot",
+      name_vi: "Thép Damascus (Damascus Steel)",
+      tier: "Composite Tier I",
+      recipe: "1x Iron Ingot + 1x Coal + 1x Raw Copper (Alloy Smelter)",
+      uses_vi: "Rèn vũ khí cận chiến có độ bền gấp đôi vũ khí sắt vanilla."
+    },
+    {
+      name: "Dungeon Steel Ingot",
+      name_vi: "Thép Hầm Ngục (Dungeon Steel)",
+      tier: "Composite Tier II",
+      recipe: "1x Damascus Steel + 2x Gold Ingot + 1x Lapis Lazuli",
+      uses_vi: "Rèn vũ khí đĩa xoay Disc Weapons chém xuyên giáp quái vật hầm ngục."
+    },
+    {
+      name: "Etherite Ingot",
+      name_vi: "Thỏi Tinh Tú Etherite",
+      tier: "Composite Tier III",
+      recipe: "1x Netherite Ingot + 2x Zanite Gem + 2x Resonarium Ingot",
+      uses_vi: "Chế tạo Totem Bất Tử Primitive Tenacity và Trượng Không Gian."
+    },
+    {
+      name: "Dragonsteel (Fire/Ice/Lightning)",
+      name_vi: "Thép Rồng 3 Hệ (Dragonsteel)",
+      tier: "Mythical Alloy",
+      recipe: "Dragon Forge (Thổi hơi thở rồng) + Iron Ingot + Dragon Blood",
+      uses_vi: "Rèn vũ khí và bộ giáp có sức chống chịu nguyên tố cao nhất trước khi vào Endgame."
+    },
+    {
+      name: "Dreadsteel Ingot",
+      name_vi: "Thép Hủy Diệt Dreadsteel",
+      tier: "Supreme Alloy",
+      recipe: "1x Fire Dragonsteel + 1x Ice Dragonsteel + 1x Lightning Dragonsteel + 1x Dread Shard",
+      uses_vi: "Hợp nhất 3 chủng rồng rèn nên Đại Lưỡi Hái Dreadsteel Scythe."
+    },
+    {
+      name: "Apocalyptium Ingot",
+      name_vi: "Thỏi Thiên Sứ Apocalyptium",
+      tier: "Celestial Tier 5",
+      recipe: "1x Ascension Halo (từ Boss Apollyon) + 4x Netherite + 4x Deorum Ingot",
+      uses_vi: "Rèn bộ giáp Thiên Sứ kháng 6.66% ngọn lửa địa ngục và cung Seraph Bow."
+    }
+  ],
+
+  /* Existing Items & Dimensions & Classes... */
   items: [
-    /* --- MAGE (FIRE SPECIALIZATION) --- */
     {
       id: "fire_rune",
       name: "Fire Rune",
@@ -91,61 +567,6 @@ const WIKI_DATA = {
       source_location_en: "Harvest Fireblossoms in warm biomes combined with Fire Runes."
     },
     {
-      id: "fire_upgrade_orb",
-      name: "Fire Upgrade Orb",
-      name_vi: "Ngọc Cường Hóa Hỏa Hệ (Fire Orb)",
-      icon: "images/items/fire_upgrade_orb.png",
-      mod: "Iron's Spells 'n Spellbooks",
-      stage: "Mid",
-      classTags: ["Mage", "Fire Mage"],
-      category: "Upgrade Material",
-      recipe: "1x Upgrade Orb Base + 4x Fire Rune + 4x Cinder Essence",
-      effects_vi: "Khảm vào trang bị trên Đe Ma Thuật (Arcane Anvil), mỗi viên tăng vĩnh viễn +3% Sát thương Hỏa (tối đa 10 viên).",
-      effects_en: "Socket in Arcane Anvil to permanently add +3% Fire Spell Power per orb (Max 10).",
-      source_type: "Crafting / Nether",
-      source_url: "magic.html",
-      source_location_vi: "Săn quái Cinder trong Nether lấy Cinder Essence rèn thành ngọc.",
-      source_location_en: "Harvest Cinder Essence from Nether mobs to forge into orbs."
-    },
-
-    /* --- MAGE (ICE & ENDGAME) --- */
-    {
-      id: "ice_rune",
-      name: "Ice Rune",
-      name_vi: "Cổ Tự Băng Ma (Ice Rune)",
-      icon: "images/items/ice_rune.png",
-      mod: "Iron's Spells 'n Spellbooks",
-      stage: "Early",
-      classTags: ["Mage", "Ice Mage"],
-      category: "Magic Material",
-      recipe: "1x Blank Rune + 1x Frozen Bone (from Stray)",
-      effects_vi: "Dùng để rèn sách phép hệ Băng và trang bị Cryomancer Armor.",
-      effects_en: "Used to craft Ice Spellbooks and Cryomancer Armor.",
-      source_type: "Mob Drop (Stray in Tundra)",
-      source_url: "creatures.html",
-      source_location_vi: "Săn quái Stray tại quần xã tuyết băng giá lấy Xương Băng.",
-      source_location_en: "Hunt Strays in snowy biomes to obtain Frozen Bones."
-    },
-    {
-      id: "frostbound",
-      name: "Frostbound",
-      name_vi: "Lưỡi Hái Băng Ngục Frostbound",
-      icon: "images/items/frostbound.png",
-      mod: "Celestisynth",
-      stage: "Late",
-      classTags: ["Mage", "Ice Mage", "Warrior"],
-      category: "Mythical Weapon",
-      recipe: "Starlit Factory + Heated Celestial Core + Ice Dragon Bone + 4x Frost Shards",
-      effects_vi: "Kỹ năng [Absolute Zero]: Chém quét đóng băng toàn bộ kẻ địch xung quanh và triệu hồi rừng chông băng khổng lồ.",
-      effects_en: "[Absolute Zero]: Freezes all nearby enemies and erupts a forest of massive ice spikes.",
-      source_type: "Starlit Factory Crafting",
-      source_url: "magic.html",
-      source_location_vi: "Rèn tại trạm Starlit Factory sau khi đánh bại Rồng Băng cấp 4.",
-      source_location_en: "Crafted at Starlit Factory after defeating a Stage 4 Ice Dragon."
-    },
-
-    /* --- WARRIOR (BERSERKER) --- */
-    {
       id: "rage_glove",
       name: "Rage Glove",
       name_vi: "Găng Tay Cuồng Nộ (Rage Glove)",
@@ -178,42 +599,6 @@ const WIKI_DATA = {
       source_url: "magic.html",
       source_location_vi: "Rèn tại trạm Starlit Factory bằng Lông chim Umvuthi và Lõi Thiên Thể.",
       source_location_en: "Crafted at Starlit Factory with Sunbird Feathers and Celestial Core."
-    },
-    {
-      id: "dreadsteel_ingot",
-      name: "Dreadsteel Ingot",
-      name_vi: "Thỏi Thép Hủy Diệt Dreadsteel",
-      icon: "images/items/dreadsteel_ingot.png",
-      mod: "Dreadsteel / Ice & Fire",
-      stage: "Late",
-      classTags: ["Warrior", "Paladin", "All Classes"],
-      category: "Super Alloy",
-      recipe: "1x Fire Dragonsteel + 1x Ice Dragonsteel + 1x Lightning Dragonsteel + 1x Dread Shard",
-      effects_vi: "Hợp kim mạnh nhất dùng để rèn Đại Lưỡi Hái Dreadsteel Scythe và Bộ giáp Vô Địch.",
-      effects_en: "Supreme alloy used to forge the Dreadsteel Scythe and invulnerable armor.",
-      source_type: "Dragon Forge / Crafting",
-      source_url: "creatures.html",
-      source_location_vi: "Luyện 3 loại Thép Rồng tại Dragon Forge rồi hợp nhất cùng Mảnh Dread Shard.",
-      source_location_en: "Smelt 3 Dragonsteels at Dragon Forge and combine with Dread Shard."
-    },
-
-    /* --- PALADIN (HOLY TANKER) --- */
-    {
-      id: "holy_rune",
-      name: "Holy Rune",
-      name_vi: "Cổ Tự Thánh Quang (Holy Rune)",
-      icon: "images/items/holy_rune.png",
-      mod: "Iron's Spells 'n Spellbooks",
-      stage: "Early",
-      classTags: ["Paladin", "Mage"],
-      category: "Magic Material",
-      recipe: "1x Blank Rune + 1x Divine Pearl (from Cleric Villagers)",
-      effects_vi: "Dùng để rèn Sách phép Thánh Quang, giáp Priest Armor và bùa chú hồi phục.",
-      effects_en: "Used to forge Holy Spellbooks, Priest Armor, and restorative talismans.",
-      source_type: "Villager Trading / Crafting",
-      source_url: "magic.html",
-      source_location_vi: "Giao dịch với Dân Làng Mục Sư (Cleric) lấy Divine Pearl rồi rèn cổ tự.",
-      source_location_en: "Trade with Cleric Villagers for Divine Pearls, then craft rune."
     },
     {
       id: "hammer_of_kingbdogz",
@@ -249,8 +634,6 @@ const WIKI_DATA = {
       source_location_vi: "Chế tạo sớm tại Bàn chế tạo và đeo vào ô Curios Amulet.",
       source_location_en: "Craft early at Crafting Table and equip into Curios Amulet slot."
     },
-
-    /* --- RANGER (SNIPER / MOBILITY) --- */
     {
       id: "phoenix_bow",
       name: "Phoenix Bow",
@@ -285,25 +668,6 @@ const WIKI_DATA = {
       source_location_vi: "Khai thác thỏi Resonarium trong cõi âm The Otherside kết hợp cánh Elytra.",
       source_location_en: "Mine Resonarium in The Otherside dimension and upgrade Elytra."
     },
-    {
-      id: "dreadbow",
-      name: "Dreadbow",
-      name_vi: "Cung Hắc Ám Dreadbow",
-      icon: "images/items/dreadbow.png",
-      mod: "Alex's Caves",
-      stage: "Mid",
-      classTags: ["Ranger", "Sniper"],
-      category: "Ranged Weapon",
-      recipe: "Crafted from Dread Shards & Dark Tendrils in Forlorn Hollows",
-      effects_vi: "Mỗi phát bắn triệu hồi một cơn mưa tên bóng tối dội từ trên trời xuống gây sát thương đa mục tiêu.",
-      effects_en: "Each shot calls down a rain of dark shadow arrows striking multiple targets.",
-      source_type: "Alex's Caves: Forlorn Hollows",
-      source_url: "creatures.html",
-      source_location_vi: "Khám phá hang bóng tối Forlorn Hollows và thu thập mảnh Dread Shard.",
-      source_location_en: "Explore Forlorn Hollows deep caves and collect Dread Shards."
-    },
-
-    /* --- SUPREME ARTIFACTS & METAGAME --- */
     {
       id: "eternal_stella",
       name: "Eternal Stella",
@@ -340,232 +704,6 @@ const WIKI_DATA = {
     }
   ],
 
-  /* Bosses Data */
-  bosses: [
-    {
-      id: "umvuthi",
-      name: "Umvuthi, The Sunbird",
-      mod: "Born in Chaos",
-      tier: 1,
-      stars: "★☆☆☆☆",
-      hp: 500,
-      dimension: "Overworld",
-      location: "Savanna / Umvuthana Groves",
-      location_vi: "Đồng cỏ Xavan / Rừng Umvuthana",
-      summon: "Found in Sunbird nest or summoned at Sun Altar",
-      summon_vi: "Tìm thấy tại tổ chim mặt trời hoặc triệu hồi tại Tế đàn Mặt trời",
-      drops: ["Sunbird Feather", "Solar Staff", "XP"],
-      drops_vi: ["Lông vũ Chim Mặt Trời", "Trượng Thái Dương", "Kinh nghiệm"],
-      tips: "Use ranged attacks. Beware of dive bombs and fire trails.",
-      tips_vi: "Nên dùng vũ khí tầm xa. Cẩn thận các đòn bổ nhào lao xuống và vệt lửa thiêu đốt."
-    },
-    {
-      id: "gob_king",
-      name: "Gob, King of Gnomes",
-      mod: "Terramity",
-      tier: 1,
-      stars: "★☆☆☆☆",
-      hp: 120,
-      dimension: "Overworld",
-      location: "Court of Gnomes Structure",
-      location_vi: "Cấu trúc Vương triều Gnome (Court of Gnomes)",
-      summon: "Break the Gnome Throne in Court of Gnomes",
-      summon_vi: "Đập vỡ Ngai vàng Gnome trong cấu trúc",
-      drops: ["Blood Coins", "Gnome King Hat", "Dimlite Template"],
-      drops_vi: ["Đồng xu Blood Coins", "Mũ Vua Gnome", "Bản rèn Dimlite"],
-      tips: "Fast moving but low health. Clear the gnome guards first.",
-      tips_vi: "Di chuyển rất nhanh nhưng máu ít. Nên tiêu diệt đám lính Gnome xung quanh trước."
-    },
-    {
-      id: "slider",
-      name: "Slider",
-      mod: "The Aether",
-      tier: 1,
-      stars: "★☆☆☆☆",
-      hp: 400,
-      dimension: "The Aether",
-      location: "Bronze Dungeon",
-      location_vi: "Hầm ngục Đồng (Bronze Dungeon)",
-      summon: "Awaken in boss chamber inside Bronze Dungeon",
-      summon_vi: "Đánh thức trong phòng trùm hầm ngục",
-      drops: ["Bronze Dungeon Key", "Hammer of Kingbdogz", "Neptune Armor"],
-      drops_vi: ["Chìa khóa Hầm ngục Đồng", "Búa Thần Kingbdogz", "Giáp Neptune"],
-      tips: "ONLY takes damage from Pickaxes! Switches from blue (slow) to red (fast enraged).",
-      tips_vi: "CHỈ nhận sát thương từ Cuốc (Pickaxe)! Đổi màu từ xanh (chậm) sang đỏ (cuồng nộ siêu tốc)."
-    },
-    {
-      id: "super_sniffer",
-      name: "Super Sniffer",
-      mod: "Terramity",
-      tier: 1,
-      stars: "★☆☆☆☆",
-      hp: 350,
-      dimension: "Overworld",
-      location: "Plains / Forests",
-      location_vi: "Đồng bằng / Rừng rậm",
-      summon: "Feed a Sniffer a Profaned Berry or strike with lightning",
-      summon_vi: "Cho Sniffer ăn quả Profaned Berry hoặc đánh sét vào Sniffer",
-      drops: ["Ancient Fur", "Super Sniffer Horn", "Virentium Template"],
-      drops_vi: ["Lông Cổ Đại", "Sừng Siêu Sniffer", "Bản rèn Virentium"],
-      tips: "High knockback resistance. Keep moving in circles.",
-      tips_vi: "Kháng đẩy lùi rất cao. Hãy vừa di chuyển vòng quanh vừa tấn công."
-    },
-    {
-      id: "valkyrie_queen",
-      name: "Valkyrie Queen",
-      mod: "The Aether",
-      tier: 2,
-      stars: "★★☆☆☆",
-      hp: 500,
-      dimension: "The Aether",
-      location: "Silver Dungeon (Temple in sky)",
-      location_vi: "Hầm ngục Bạc (Đền mây)",
-      summon: "Present 10 Valkyrie Medals to challenge her",
-      summon_vi: "Giao nộp 10 Huy hiệu Valkyrie Medal để khiêu chiến",
-      drops: ["Silver Dungeon Key", "Valkyrie Lance", "Valkyrie Armor"],
-      drops_vi: ["Chìa khóa Hầm ngục Bạc", "Thương Valkyrie", "Giáp Valkyrie"],
-      tips: "Teleports frequently and strikes with lightning thrusts.",
-      tips_vi: "Thường xuyên dịch chuyển tức thời và tung đòn đâm sét liên hoàn."
-    },
-    {
-      id: "sun_spirit",
-      name: "Sun Spirit",
-      mod: "The Aether",
-      tier: 2,
-      stars: "★★☆☆☆",
-      hp: 1000,
-      dimension: "The Aether",
-      location: "Gold Dungeon (Sun Temple)",
-      location_vi: "Hầm ngục Vàng (Đền Mặt Trời)",
-      summon: "Interact in the lava core chamber",
-      summon_vi: "Tương tác trong căn phòng dung nham hoàng kim",
-      drops: ["Gold Dungeon Key", "Phoenix Bow", "Phoenix Armor"],
-      drops_vi: ["Chìa khóa Hầm ngục Vàng", "Cung Phượng Hoàng", "Giáp Phượng Hoàng"],
-      tips: "Immune to direct attacks! Hit his ice/fire orbs back at him.",
-      tips_vi: "Miễn nhiễm sát thương trực tiếp! Phải đánh phản các quả cầu băng/lửa dội ngược vào người boss."
-    },
-    {
-      id: "dead_king",
-      name: "The Dead King",
-      mod: "Iron's Spells",
-      tier: 2,
-      stars: "★★☆☆☆",
-      hp: 1800,
-      dimension: "Overworld",
-      location: "Catacombs (Deep Underground)",
-      location_vi: "Hầm mộ ngầm Catacombs",
-      summon: "Locate with Wayward Compass in underground throne",
-      summon_vi: "Dùng Wayward Compass định vị hầm ngục và đánh thức tại ngai vàng",
-      drops: ["Dead King Helm", "Blood Staff", "Legendary Ink & Runes"],
-      drops_vi: ["Mũ Vua Bất Tử", "Trượng Huyết Ma", "Mực & Cổ Tự Huyền Thoại"],
-      tips: "Has 2 phases. Summons hordes of undead mages and casts high-tier blood spells.",
-      tips_vi: "Có 2 giai đoạn. Triệu hồi quái phép liên tục và thi triển huyết phép diện rộng."
-    },
-    {
-      id: "trial_guardian",
-      name: "Trial Guardian",
-      mod: "Terramity",
-      tier: 3,
-      stars: "★★★☆☆",
-      hp: 1500,
-      dimension: "Overworld",
-      location: "Trial Spire (Height Y > 150)",
-      location_vi: "Tháp Thử Thách Trial Spire (Độ cao Y > 150)",
-      summon: "Activate the Spire Core at the top of Trial Spire",
-      summon_vi: "Kích hoạt lõi Spire Core trên đỉnh tháp",
-      drops: ["Iridium Shard", "Guardian Core", "Cosmilite Ingot"],
-      drops_vi: ["Mảnh Iridium", "Lõi Hộ Vệ", "Thỏi Cosmilite"],
-      tips: "Shielded against ranged attacks during barrier phase. Melee when vulnerable.",
-      tips_vi: "Bật khiên phản đòn tầm xa trong pha tạo khiên. Lao vào cận chiến khi khiên vỡ."
-    },
-    {
-      id: "netherite_monstrosity",
-      name: "Netherite Monstrosity",
-      mod: "Cataclysm",
-      tier: 3,
-      stars: "★★★☆☆",
-      hp: 4800,
-      dimension: "The Nether",
-      location: "Soul Blacksmith Arena",
-      location_vi: "Lò rèn Linh hồn (Soul Blacksmith Arena)",
-      summon: "Place Monstrous Eye into the central altar block",
-      summon_vi: "Đặt mắt Monstrous Eye vào bệ tế đàn trung tâm",
-      drops: ["Monstrous Horn", "Infernal Forge Hammer", "Netherite Scrap x12"],
-      drops_vi: ["Sừng Quái Thú", "Búa Luyện Lửa Infernal", "Mảnh Netherite x12"],
-      tips: "Massive ground slams. Jump or combat roll before impact. Avoid lava pools.",
-      tips_vi: "Đòn đập đất cực mạnh. Nhảy lên hoặc lăn lộn (Combat Roll) né chấn động và dung nham."
-    },
-    {
-      id: "the_leviathan",
-      name: "The Leviathan",
-      mod: "Cataclysm",
-      tier: 4,
-      stars: "★★★★☆",
-      hp: 180000,
-      dimension: "Overworld",
-      location: "Sunken City (Deep Ocean)",
-      location_vi: "Thành phố Chìm Đáy Biển (Sunken City)",
-      summon: "Place Tidal Claws on the altar of the Sunken City",
-      summon_vi: "Đặt vuốt Tidal Claws lên tế đàn đáy biển",
-      drops: ["Abyssal Sacrifice", "Tidal Claws", "Leviathan Armor Core"],
-      drops_vi: ["Hiến Tế Vực Thẳm", "Vuốt Thủy Triều", "Lõi Giáp Leviathan"],
-      tips: "Fought underwater. Must have Diving Armor or Conduit active.",
-      tips_vi: "Trận chiến hoàn toàn dưới nước. Bắt buộc có Giáp Lặn (Diving Armor) hoặc Conduit."
-    },
-    {
-      id: "ignis",
-      name: "Ignis, The Profane",
-      mod: "Cataclysm",
-      tier: 5,
-      stars: "★★★★★",
-      hp: 1000000,
-      dimension: "The Nether",
-      location: "Burning Arena in Nether Wastes",
-      location_vi: "Đấu trường Rực Lửa giữa biển dung nham Nether",
-      summon: "Insert Ignis Heart into the Flame Altar",
-      summon_vi: "Cắm Trái tim Ignis Heart vào Tế đàn Lửa",
-      drops: ["Incinerator Greatsword", "Ignitium Ingot", "Profane Core"],
-      drops_vi: ["Đại đao Incinerator", "Thỏi Kim Loại Ignitium", "Lõi Bất Tịnh"],
-      tips: "Extreme fire damage and armor penetration. Equip Fire Dragonsteel or Warden Armor.",
-      tips_vi: "Sát thương thiêu đốt và xuyên giáp cực nặng. Cần trang bị giáp Warden hoặc Fire Dragonsteel."
-    },
-    {
-      id: "apollyon",
-      name: "Apollyon (The Fallen Seraph)",
-      mod: "Goety Revelation",
-      tier: 5,
-      stars: "★★★★★",
-      hp: 6666,
-      dimension: "Overworld / Nether",
-      location: "Dark Altar Ritual",
-      location_vi: "Nghi lễ Tế Đàn Tối Thượng (Dark Altar)",
-      summon: "1% chance during Apostle Master Forge Ritual at midnight",
-      summon_vi: "1% tỉ lệ xuất hiện khi thực hiện nghi lễ gọi Apostle lúc nửa đêm",
-      drops: ["Ascension Halo", "Apocalyptium Ingot", "Seraph Bow"],
-      drops_vi: ["Hào Quang Thăng Hoa (Ascension Halo)", "Thỏi Apocalyptium", "Cung Thiên Sứ"],
-      tips: "Hellfire burns 6.66% Max HP. Cap damage per hit at 100. Bring Totems and high regen.",
-      tips_vi: "Ngọn lửa địa ngục thiêu 6.66% Máu tối đa. Sát thương nhận vào bị giới hạn 100/hit. Chuẩn bị nhiều Totem."
-    },
-    {
-      id: "ultra_sniffer",
-      name: "Ultra Sniffer (Vua Thần Thú Cổ Đại)",
-      mod: "Terramity",
-      tier: 5,
-      stars: "★★★★★",
-      hp: 1000000,
-      dimension: "Overworld / Custom Arena",
-      location: "Endgame Arena",
-      location_vi: "Đấu trường Vô Cực Tận Diệt",
-      summon: "Lightning strike on Super Sniffer Phase 2 when under 10% HP with Reverium Ingot",
-      summon_vi: "Đánh sét vào Super Sniffer giai đoạn 2 khi dưới 10% máu kèm thỏi Reverium",
-      drops: ["The Judgement", "Godly Essence", "Modpack Completion Badge"],
-      drops_vi: ["Thần Khí The Judgement", "Tinh Chất Thần Thánh", "Huy Hiệu Phá Đảo"],
-      tips: "The ultimate boss. Requires fully perfected Meta Build with Eternal Stella.",
-      tips_vi: "Siêu trùm tối thượng. Bắt buộc có trang bị Meta Build hoàn thiện ép ngọc Eternal Stella."
-    }
-  ],
-
-  /* Dimensions Data */
   dimensions: [
     {
       id: "aether",
@@ -617,7 +755,6 @@ const WIKI_DATA = {
     }
   ],
 
-  /* 12 Eyes Data */
   eyes: [
     { name: "Cursed Eye", loc: "Bastion Remnant Treasure Chest (Nether)", rate: "50%" },
     { name: "Black Eye", loc: "Buried Treasure Chest or Kill The Warden", rate: "30% / 10% (Drops 2)" },
@@ -633,7 +770,6 @@ const WIKI_DATA = {
     { name: "Undead Eye", loc: "Craft: Phantom Membrane + Bone + Rotten Flesh + Ghast Tear + Undead Soul", rate: "Craftable" }
   ],
 
-  /* Meta Build 6 Steps */
   meta_build: [
     {
       step: 1,
@@ -679,7 +815,6 @@ const WIKI_DATA = {
     }
   ],
 
-  /* Classes Data */
   classes: [
     {
       id: "warrior",
@@ -727,7 +862,6 @@ const WIKI_DATA = {
     }
   ],
 
-  /* Survival Tips */
   tips: [
     {
       type: "danger",

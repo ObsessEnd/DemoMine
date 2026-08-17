@@ -111,7 +111,10 @@
         card.id = `dim-${d.id}`;
         card.innerHTML = `
           <div class="card-header">
-            <div class="card-title">🌌 <span class="vi-text">${d.name_vi}</span><span class="en-text">${d.name}</span></div>
+            <div style="display:flex; align-items:center; gap:0.75rem;">
+              <img src="images/dimensions/${d.id}.svg" alt="${d.name}" width="36" height="36">
+              <div class="card-title"><span class="vi-text">${d.name_vi}</span><span class="en-text">${d.name}</span></div>
+            </div>
             <span class="badge badge-purple">Dimension</span>
           </div>
           <div class="card-body">

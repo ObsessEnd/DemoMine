@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="100%" height="100%">
+  <defs>
+    <linearGradient id="warriorGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f43f5e"/>
+      <stop offset="100%" stop-color="#fbbf24"/>
+    </linearGradient>
+  </defs>
+  <circle cx="40" cy="40" r="36" fill="#182030" stroke="url(#warriorGrad)" stroke-width="2.5"/>
+  <!-- Crossed Axes / Claymore -->
+  <path d="M22,22 L58,58" stroke="#f43f5e" stroke-width="4" stroke-linecap="round"/>
+  <path d="M58,22 L22,58" stroke="#fbbf24" stroke-width="4" stroke-linecap="round"/>
+  <!-- Axe Blades -->
+  <path d="M22,22 C14,26 14,38 26,38 C28,30 26,24 22,22 Z" fill="#f43f5e"/>
+  <path d="M58,22 C66,26 66,38 54,38 C52,30 54,24 58,22 Z" fill="#fbbf24"/>
+  <!-- Center Emblem -->
+  <polygon points="40,32 46,40 40,48 34,40" fill="#fff"/>
+</svg>

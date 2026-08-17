@@ -151,28 +151,31 @@ function initSearch() {
       });
     }
 
-    // Search Items & Recipes
-    if (WIKI_DATA.items) {
-      WIKI_DATA.items.forEach(item => {
-        const text = `${item.name} ${item.name_vi} ${item.mod} ${item.classTags.join(' ')} ${item.category} ${item.recipe}`.toLowerCase();
+    // Search Items & Recipes (Graph Database)
+    const searchItemsList = typeof ITEM_GRAPH_DATABASE !== 'undefined' ? ITEM_GRAPH_DATABASE : (WIKI_DATA.items || []);
+    if (searchItemsList) {
+      searchItemsList.forEach(item => {
+        const text = `${item.name} ${item.name_vi} ${item.mod} ${(item.classTags || []).join(' ')} ${item.category} ${item.recipe_desc_vi || ''}`.toLowerCase();
         if (!query || text.includes(query)) {
-          if (count++ > 15) return;
+          if (count++ > 25) return;
           const div = document.createElement('div');
           div.className = 'search-result-item';
           div.innerHTML = `
             <div style="display:flex; justify-content:space-between; align-items:center;">
               <div style="display:flex; align-items:center; gap:0.5rem;">
                 <img src="${item.icon}" alt="${item.name}" width="20" height="20" style="image-rendering:pixelated;" onerror="this.src='images/logo.svg'">
-                <strong style="color:var(--accent-gold); font-family:var(--font-title); font-size:0.9rem;"><span class="vi-text">${item.name_vi}</span><span class="en-text">${item.name}</span></strong>
+                <strong style="color:var(--accent-gold); font-size:0.88rem;"><span class="vi-text">${item.name_vi}</span><span class="en-text">${item.name}</span></strong>
               </div>
-              <span class="badge badge-cyan">${item.stage}</span>
+              <span class="badge badge-cyan">${item.category}</span>
             </div>
-            <div style="font-size:0.8rem; color:var(--text-muted); margin-top:3px;">
-              ${item.mod} • ${item.classTags.join(', ')} • 📜 ${item.recipe}
+            <div style="font-size:0.75rem; color:var(--text-muted); margin-top:3px;">
+              ${item.mod} • ${item.stage} Stage • ${item.recipe_desc_vi || item.recipe || ''}
             </div>
           `;
           div.addEventListener('click', () => {
-            window.location.href = `items.html#item-${item.id}`;
+            const modal = document.getElementById('search-modal');
+            if (modal) modal.classList.remove('open');
+            openItemModal(item.id);
           });
           resultsContainer.appendChild(div);
         }
